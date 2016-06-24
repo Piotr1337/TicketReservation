@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Moq;
 using Ninject;
 using TicketReservation.Domain.Abstract;
+using TicketReservation.Domain.Concrete;
 using TicketReservation.Domain.Entities;
 
 namespace TicketReservation.Infrastructure
@@ -34,15 +35,7 @@ namespace TicketReservation.Infrastructure
 
         private void AddBindings()
         {
-            Mock<IEventRepository> mock = new Mock<IEventRepository>();
-            mock.Setup(m => m.Events).Returns(new List<Event>
-            {
-                new Event { EventName = "OrangeFestiwal", OtherDetails = "elo impreza w chuj"},
-                new Event { EventName = "HipHopNaZywca", OtherDetails = "pozdrawiam"},
-                new Event { EventName = "COma", OtherDetails = "no witam"},
-            });
-
-            kernel.Bind<IEventRepository>().ToConstant(mock.Object);
+            kernel.Bind<IEventRepository>().To<EFEventRepository>();
         }
     }
 }
