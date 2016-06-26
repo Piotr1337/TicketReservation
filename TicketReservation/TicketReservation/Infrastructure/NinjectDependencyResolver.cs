@@ -36,6 +36,7 @@ namespace TicketReservation.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IEventRepository>().To<EFEventRepository>();
+            kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
         }
     }
 }

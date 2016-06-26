@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace TicketReservation.Domain.Entities
 {
     public class Event
     {
+        [Key]
         public int EventID { get; set; }
         public int EventCategoryID{ get; set; }
         public int ArtistID { get; set; }

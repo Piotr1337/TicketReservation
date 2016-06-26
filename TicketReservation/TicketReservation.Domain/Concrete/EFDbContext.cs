@@ -11,5 +11,7 @@ namespace TicketReservation.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Event> Events { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
     }
 }

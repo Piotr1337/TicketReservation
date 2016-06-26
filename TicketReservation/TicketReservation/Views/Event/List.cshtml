@@ -1,12 +1,11 @@
 ﻿
-@using TicketReservation.Domain.Entities
-@model IEnumerable<Event>
+@model TicketReservation.Models.EventsViewModel
 
 @{
     ViewBag.Title = "List";
 }
 
-@foreach (var e in Model)
+@foreach (var e in Model.Events)
 {
     <div>
         <h3>@e.EventName</h3>

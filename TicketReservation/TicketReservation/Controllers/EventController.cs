@@ -7,24 +7,40 @@ using System.Web;
 using System.Web.Mvc;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Entities;
+using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
     public class EventController : Controller
     {
         private IEventRepository repository;
+        private ICategoryRepository categoryRep;
 
-        public EventController(IEventRepository eventRepository)
+        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository)
         {
             this.repository = eventRepository;
+            this.categoryRep = categoryRepository;
+        }
+
+        [ChildActionOnly]
+        public ActionResult NavBar()
+        {
+            CategoryViewModel model = new CategoryViewModel
+            {
+                Categories = categoryRep.Categories,
+                SubCategories = categoryRep.SubCategories
+            };
+            return PartialView("NavBarSummary", model);
         }
 
         public ViewResult List()
         {
-            //IObservable<Event> observable = repository.Events.ToObservable(Scheduler.Default);
-            //observable.Subscribe(repository => View(repository.EventName));
+            EventsViewModel model = new EventsViewModel
+            {
+                Events = repository.Events
+            };
             
-            return View(repository.Events);
+            return View(model);
         }
     }
 }

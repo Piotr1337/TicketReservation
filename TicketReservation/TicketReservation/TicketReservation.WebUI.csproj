@@ -212,6 +212,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\EventsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +226,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Event\List.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\EventSummary.cshtml" />
+    <Content Include="Views\Shared\NavBarSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -233,7 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicketReservation.Domain\TicketReservation.Domain.csproj">
