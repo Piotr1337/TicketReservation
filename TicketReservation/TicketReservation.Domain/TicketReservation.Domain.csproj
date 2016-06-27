@@ -60,12 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TicketReservation.UnitTests\TicketReservation.UnitTests.csproj">
-      <Project>{82396c29-54c7-40ac-8376-bb02b2d1d79a}</Project>
-      <Name>TicketReservation.UnitTests</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

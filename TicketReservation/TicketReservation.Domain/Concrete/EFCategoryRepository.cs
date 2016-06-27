@@ -15,10 +15,12 @@ namespace TicketReservation.Domain.Concrete
         public IEnumerable<Category> Categories
         {
             get { return context.Categories; } 
+
         }
         public IEnumerable<SubCategory> SubCategories
         {
             get { return context.SubCategories; }
         }
+        
     }
 }

@@ -30,10 +30,11 @@ namespace TicketReservation.Controllers
                 Categories = categoryRep.Categories,
                 SubCategories = categoryRep.SubCategories
             };
+
             return PartialView("NavBarSummary", model);
         }
 
-        public ViewResult List()
+        public ViewResult List(string category)
         {
             EventsViewModel model = new EventsViewModel
             {

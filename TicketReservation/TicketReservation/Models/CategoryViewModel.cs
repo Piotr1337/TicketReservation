@@ -10,5 +10,6 @@ namespace TicketReservation.Models
     {
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<SubCategory> SubCategories { get; set; }
+        
     }
 }

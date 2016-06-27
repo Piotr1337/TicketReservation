@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TicketReservation.Domain.Entities.Event>
+
+@{
+    ViewBag.Title = "Administracja: Wszystkie wydarzenia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Wszystkie wydarzenia</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th class="NumericCol">Data rozpoczęcia imprezy</th>
+                <th>Data zakończenia imprezy</th>
+                <th>Akcje</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EventID</td>
+                    <td>@Html.ActionLink(item.EventName, "Edit", new { item.EventID})</td>
+                    <td class="NumericCol">@item.EventStartDateTime</td>
+                    <td>@item.EventEndDateTime</td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("EventID", item.EventID)
+                            <input type="submit" value="Usuń" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Dodaj nowe wydarzenie", "Create", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+

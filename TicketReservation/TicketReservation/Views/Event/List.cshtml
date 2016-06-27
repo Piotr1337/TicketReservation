@@ -2,16 +2,12 @@
 @model TicketReservation.Models.EventsViewModel
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "TicketPro";
 }
 
 @foreach (var e in Model.Events)
 {
-    <div>
-        <h3>@e.EventName</h3>
-        @e.OtherDetails
-        <div>Zaczynamy: @e.EventStartDateTime </div>
-        
 
-    </div>
+    @Html.Partial("EventSummary", e)
+
 }
