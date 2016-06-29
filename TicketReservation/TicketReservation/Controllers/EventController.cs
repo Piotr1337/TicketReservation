@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -30,6 +31,9 @@ namespace TicketReservation.Controllers
                 Categories = categoryRep.Categories,
                 SubCategories = categoryRep.SubCategories
             };
+
+            foreach (var aa in model.SubCategories);
+
 
             return PartialView("NavBarSummary", model);
         }
