@@ -38,12 +38,15 @@ namespace TicketReservation.Controllers
             return PartialView("NavBarSummary", model);
         }
 
-        public ViewResult List(string category)
+        public ViewResult List(int categoryId)
         {
             EventsViewModel model = new EventsViewModel
             {
                 Events = repository.Events
+                .Where(x => x.EventCategoryID == categoryId),
+                CurrentCategory = categoryRep.Categories.Single(x => x.EventCategoryID == categoryId),                
             };
+            
             
             return View(model);
         }
