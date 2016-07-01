@@ -1,13 +1,30 @@
-﻿@{
+﻿@model TicketReservation.Models.LoginViewModel
+
+@{
     ViewBag.Title = "Administracja: logowanie";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="Panel">
-    <div class="panel-heading">
-        <h3>Zaloguj się</h3>
-    </div>
-    <div id="rectangle">
-        
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-offset-8 col-md-3">
+            @Html.ValidationSummary()
+            <div class="form-login">
+                <h4>Panel Administracyjny</h4>
+                </br>
+                @using (Html.BeginForm())
+                {
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control input-sm chat-input", @placeholder="użytkownik" })
+
+                    @Html.TextBoxFor(x => x.Password, new {@class = "form-control input-sm chat-input", @placeholder = "hasło" })
+
+                    <div class="wrapper">
+                        <input type="submit" value="Zaloguj się" class="btn btn-primary"/>
+                    </div>
+                }
+            </div>
+
+        </div>
     </div>
 </div>

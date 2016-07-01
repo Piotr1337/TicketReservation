@@ -194,18 +194,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ErrorStyles.css">
+      <DependentUpon>ErrorStyles.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ErrorStyles.min.css">
+      <DependentUpon>ErrorStyles.css</DependentUpon>
+    </Content>
+    <Content Include="Content\myStyles.css">
+      <DependentUpon>myStyles.less</DependentUpon>
+    </Content>
+    <Content Include="Content\myStyles.min.css">
+      <DependentUpon>myStyles.css</DependentUpon>
+    </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Content\styles.css">
-      <DependentUpon>styles.less</DependentUpon>
-    </Content>
-    <Content Include="Content\styles.min.css">
-      <DependentUpon>styles.css</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Content\styles.less" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -217,6 +222,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\ErrorStyles.less" />
+    <Content Include="Content\myStyles.less" />
     <None Include="scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />

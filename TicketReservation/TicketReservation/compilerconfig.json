@@ -2,5 +2,13 @@
   {
     "outputFile": "Content/styles.css",
     "inputFile": "Content/styles.less"
+  },
+  {
+    "outputFile": "Content/myStyles.css",
+    "inputFile": "Content/myStyles.less"
+  },
+  {
+    "outputFile": "Content/ErrorStyles.css",
+    "inputFile": "Content/ErrorStyles.less"
   }
 ]
