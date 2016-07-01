@@ -9,6 +9,12 @@ namespace TicketReservation.Domain.Abstract
 {
     public interface IEventRepository
     {
-        IEnumerable<Event> Events { get; } 
+        IEnumerable<Event> Events { get; }
+
+        void SaveEvent(Event theEvent);
+
+        Event DeleteEvent(int eventId);
+
+
     }
 }

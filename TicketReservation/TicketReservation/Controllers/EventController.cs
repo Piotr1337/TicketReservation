@@ -38,7 +38,7 @@ namespace TicketReservation.Controllers
             return PartialView("NavBarSummary", model);
         }
 
-        public ViewResult List(int categoryId)
+        public ViewResult List(int? categoryId)
         {
             EventsViewModel model = new EventsViewModel
             {

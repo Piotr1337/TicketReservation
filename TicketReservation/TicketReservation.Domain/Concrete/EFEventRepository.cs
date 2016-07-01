@@ -15,5 +15,36 @@ namespace TicketReservation.Domain.Concrete
         {
             get { return context.Events; }
         }
+
+        public void SaveEvent(Event theEvent)
+        {
+            if (theEvent.EventID == 0)
+            {
+                context.Events.Add(theEvent);
+            }
+            else
+            {
+                Event dbEntry = context.Events.Find(theEvent.EventID);
+                if (dbEntry != null)
+                {
+                    dbEntry.EventName = theEvent.EventName;
+                    dbEntry.OtherDetails = theEvent.OtherDetails;
+                    dbEntry.EventStartDateTime = theEvent.EventStartDateTime;
+                    dbEntry.EventEndDateTime = theEvent.EventEndDateTime;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public Event DeleteEvent(int eventId)
+        {
+            Event dbEntry = context.Events.Find(eventId);
+            if (dbEntry != null)
+            {
+                context.Events.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;           
+        }
     }
 }

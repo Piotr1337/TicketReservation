@@ -15,19 +15,20 @@
 {
     <div class="panel-body">
         @Html.HiddenFor(x => x.EventID)
+
         @foreach (var item in ViewData.ModelMetadata.Properties)
         {
             switch (item.PropertyName)
             {
-                case "ProductID":
+                case "EventID":
                 case "ImageData":
                 case "ImageMimeType":
-
+                    
                     break;
                 default:
                     <div class="form-group">
                         <label>@(item.DisplayName ?? item.PropertyName)</label>
-                        @if (item.PropertyName == "Description")
+                        @if (item.PropertyName == "OtherDetails")
                         {
                             @Html.TextArea(item.PropertyName, null, new { @class = "form-control", rows = 5 })
                         }

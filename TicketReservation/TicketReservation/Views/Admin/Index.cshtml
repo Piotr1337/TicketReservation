@@ -23,7 +23,7 @@
                 <tr>
                     <td>@item.EventID</td>
                     <td>@Html.ActionLink(item.EventName, "Edit", new { item.EventID})</td>
-                    <td class="NumericCol">@item.EventStartDateTime</td>
+                    <td>@item.EventStartDateTime</td>
                     <td>@item.EventEndDateTime</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
