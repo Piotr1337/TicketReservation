@@ -233,7 +233,9 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\less.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\navbarHover.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
