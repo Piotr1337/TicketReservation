@@ -13,7 +13,10 @@ namespace TicketReservation.Domain.Concrete
         private EFDbContext context = new EFDbContext();
         public IEnumerable<Event> Events
         {
-            get { return context.Events; }
+            get
+            { 
+                return context.Events;
+            }
         }
 
         public void SaveEvent(Event theEvent)

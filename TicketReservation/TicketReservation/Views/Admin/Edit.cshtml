@@ -9,9 +9,8 @@
         <h2>Edycja @Model.EventName</h2>
     </div>
 </div>
-
 @using (Html.BeginForm("Edit", "Admin",
-                    FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="panel-body">
         @Html.HiddenFor(x => x.EventID)
@@ -23,7 +22,6 @@
                 case "EventID":
                 case "ImageData":
                 case "ImageMimeType":
-                    
                     break;
                 default:
                     <div class="form-group">
@@ -41,7 +39,7 @@
                     break;
 
             }
-        }    
+        }
 
     </div>
 

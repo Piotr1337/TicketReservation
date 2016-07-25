@@ -41,5 +41,8 @@ namespace TicketReservation.Domain.Entities
         [Required(ErrorMessage = "Proszę podać opis")]
         public string OtherDetails { get; set; }
 
+        public virtual Category Category { get; set; }
+
+        public virtual ICollection<Category> CategoryList { get; set; } 
     }
 }
