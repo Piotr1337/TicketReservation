@@ -1,4 +1,7 @@
-﻿@model TicketReservation.Domain.Entities.Event
+﻿@using System.Activities.Statements
+@using TicketReservation.Domain.Entities
+
+@model TicketReservation.Models.AdminViewModel
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,42 +9,54 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h2>Edycja @Model.EventName</h2>
+        <h2>Edycja @Model.GetEvent.EventName</h2>
     </div>
 </div>
 @using (Html.BeginForm("Edit", "Admin",
                                 FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="panel-body">
-        @Html.HiddenFor(x => x.EventID)
+        @Html.HiddenFor(x => x.GetEvent.EventID)
 
         @foreach (var item in ViewData.ModelMetadata.Properties)
         {
             switch (item.PropertyName)
             {
-                case "EventID":
-                case "ImageData":
-                case "ImageMimeType":
+                case "Categories":
+                    {
+                        <label>Kategoria</label>
+                        @Html.DropDownListFor(model => model.Categories.FirstOrDefault().EventCategoryName, Model.Categories.Select(x => new SelectListItem { Text = x.EventCategoryName, Value = x.EventCategoryName }))
+                    }
                     break;
-                default:
-                    <div class="form-group">
-                        <label>@(item.DisplayName ?? item.PropertyName)</label>
-                        @if (item.PropertyName == "OtherDetails")
-                        {
-                            @Html.TextArea(item.PropertyName, null, new { @class = "form-control", rows = 5 })
-                        }
-                        else
-                        {
-                            @Html.TextBox(item.PropertyName, null, new { @class = "form-control" })
-                        }
-                        @Html.ValidationMessage(item.PropertyName)
-                    </div>
+                case "SubCategories":
+                    {
+                        <label>SubKategoria</label>
+                        @Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName, Model.SubCategories.Select(x => new SelectListItem { Text = x.EventSubCategoryName, Value = x.EventSubCategoryName}))                   
+                    }
                     break;
+                case "GetEvent":
+                {
+                    foreach (var item2 in item.Properties)
+                    {
 
+                        <div class="form-group">
+                            <label>@(item2.DisplayName ?? item2.PropertyName)</label>
+                            @if (item2.PropertyName == "Opis")
+                            {
+                                @Html.TextArea(item2.PropertyName, null, new {@class = "form-control", rows = 5})
+                            }
+                            else
+                            {
+                                @Html.TextBox(item2.PropertyName, null, new {@class = "form-control"})
+                            }
+                            @Html.ValidationMessage(item2.PropertyName)
+                        </div>
+                    }
+                }
+                    break;
             }
         }
-
-    </div>
+</div>
 
 
     <div class="panel-footer">

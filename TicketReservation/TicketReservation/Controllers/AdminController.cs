@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Entities;
+using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
@@ -12,10 +13,12 @@ namespace TicketReservation.Controllers
     public class AdminController : Controller
     {
         private IEventRepository repository;
+        private ICategoryRepository catRepo;
 
-        public AdminController(IEventRepository repo)
+        public AdminController(IEventRepository repo, ICategoryRepository catRepository)
         {
             repository = repo;
+            catRepo = catRepository;
         }
 
         // GET: Admin
@@ -26,10 +29,13 @@ namespace TicketReservation.Controllers
 
         public ViewResult Edit(int eventId)
         {
-            Event editEvent = repository.Events
-                .FirstOrDefault(e => e.EventID == eventId);
+            
+            AdminViewModel adm = new AdminViewModel();
+            adm.GetEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
+            adm.Categories = catRepo.Categories;
+            adm.SubCategories = catRepo.SubCategories;
 
-            return View(editEvent);
+            return View(adm);
         }
 
         [HttpPost]

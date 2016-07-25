@@ -42,7 +42,5 @@ namespace TicketReservation.Domain.Entities
         public string OtherDetails { get; set; }
 
         public virtual Category Category { get; set; }
-
-        public virtual ICollection<Category> CategoryList { get; set; } 
     }
 }
