@@ -39,17 +39,17 @@ namespace TicketReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Event theEvent)
+        public ActionResult Edit(AdminViewModel adminViewModel)
         {
             if (ModelState.IsValid)
             {
-                repository.SaveEvent(theEvent);
-                TempData["message"] = string.Format("Zapisano {0}", theEvent.EventName);
+                repository.SaveEvent(adminViewModel.GetEvent);
+                TempData["message"] = string.Format("Zapisano {0}", adminViewModel.GetEvent.EventName);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(theEvent);
+                return View();
             }
         }
 

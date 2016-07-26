@@ -35,24 +35,31 @@
                     }
                     break;
                 case "GetEvent":
-                {
-                    foreach (var item2 in item.Properties)
                     {
 
                         <div class="form-group">
-                            <label>@(item2.DisplayName ?? item2.PropertyName)</label>
-                            @if (item2.PropertyName == "Opis")
+                            @Html.LabelFor(m => m.GetEvent.EventName)
+                            @Html.TextBoxFor(m => m.GetEvent.EventName,null, new {@class = "form-control"})
+                            @Html.LabelFor(m => m.GetEvent.EventStartDateTime)
+                            @Html.TextBoxFor(m => m.GetEvent.EventStartDateTime, null, new { @class = "form-control" })
+                            @Html.LabelFor(m => m.GetEvent.EventEndDateTime)
+                            @Html.TextBoxFor(m => m.GetEvent.EventEndDateTime, null, new { @class = "form-control" })
+                            @Html.LabelFor(m => m.GetEvent.TicketsOnSaleDateTime)
+                            @Html.TextBoxFor(m => m.GetEvent.TicketsOnSaleDateTime, null, new { @class = "form-control" })
+                            @Html.LabelFor(m => m.GetEvent.OtherDetails)
+                            @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new { @class = "form-control", rows = 5})
+                            @*<label>@(item2.DisplayName ?? item2.PropertyName)</label>
+                            @if (item2.PropertyName == "OtherDetails")
                             {
-                                @Html.TextArea(item2.PropertyName, null, new {@class = "form-control", rows = 5})
+                                @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new { @class = "form-control", rows = 5})
                             }
                             else
                             {
-                                @Html.TextBox(item2.PropertyName, null, new {@class = "form-control"})
+                                @Html.TextBoxFor(m => m.GetEvent.Category.EventCategoryName, null, new {@class = "form-control"})
                             }
-                            @Html.ValidationMessage(item2.PropertyName)
-                        </div>
+                            @Html.ValidationMessage(item2.PropertyName)*@
+                        </div>  
                     }
-                }
                     break;
             }
         }
