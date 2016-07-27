@@ -9,14 +9,22 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/myStyles.css" rel="stylesheet" />
-    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />    
     <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/moment.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/bootstrap-datetimepicker.js"></script>
     <script src="~/scripts/jquery.validate.js"></script>
     <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            jQuery.validator.methods["date"] = function (value, element) { return true; }
+        $(document).ready(function() {
+            jQuery.validator.methods["date"] = function(value, element) { return true; }
         });
+    </script>
+    <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
     </script>
 </head>
 <body>

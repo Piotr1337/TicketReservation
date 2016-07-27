@@ -30,7 +30,7 @@
                     break;
                 case "SubCategories":
                     {
-                        <label>SubKategoria</label>
+                        <label>Podkategoria</label>
                         @Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName, Model.SubCategories.Select(x => new SelectListItem { Text = x.EventSubCategoryName, Value = x.EventSubCategoryName}))                   
                     }
                     break;
@@ -38,16 +38,27 @@
                     {
 
                         <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                             @Html.LabelFor(m => m.GetEvent.EventName)
-                            @Html.TextBoxFor(m => m.GetEvent.EventName,null, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.GetEvent.EventName, null, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.GetEvent.EventName)
                             @Html.LabelFor(m => m.GetEvent.EventStartDateTime)
-                            @Html.TextBoxFor(m => m.GetEvent.EventStartDateTime, null, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.GetEvent.EventStartDateTime, null, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.GetEvent.EventStartDateTime)
                             @Html.LabelFor(m => m.GetEvent.EventEndDateTime)
-                            @Html.TextBoxFor(m => m.GetEvent.EventEndDateTime, null, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.GetEvent.EventEndDateTime, null, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.GetEvent.EventEndDateTime)
                             @Html.LabelFor(m => m.GetEvent.TicketsOnSaleDateTime)
-                            @Html.TextBoxFor(m => m.GetEvent.TicketsOnSaleDateTime, null, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.GetEvent.TicketsOnSaleDateTime, null, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.GetEvent.TicketsOnSaleDateTime)
                             @Html.LabelFor(m => m.GetEvent.OtherDetails)
-                            @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new { @class = "form-control", rows = 5})
+                            @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new {@class = "form-control", rows = 5})
+                            @Html.ValidationMessageFor(m => m.GetEvent.OtherDetails)
                             @*<label>@(item2.DisplayName ?? item2.PropertyName)</label>
                             @if (item2.PropertyName == "OtherDetails")
                             {
@@ -74,5 +85,6 @@
    })
     </div>
 }
+
 
 
