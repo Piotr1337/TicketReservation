@@ -34,6 +34,7 @@ namespace TicketReservation.Domain.Concrete
                     dbEntry.OtherDetails = theEvent.OtherDetails;
                     dbEntry.EventStartDateTime = theEvent.EventStartDateTime;
                     dbEntry.EventEndDateTime = theEvent.EventEndDateTime;
+                    dbEntry.Category = theEvent.Category;
                 }
             }
             context.SaveChanges();

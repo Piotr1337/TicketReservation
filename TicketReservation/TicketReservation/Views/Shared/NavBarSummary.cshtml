@@ -29,7 +29,7 @@
                 @foreach (var e in Model.Categories)
                 {
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle category" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="@e.Icon"></i>@e.EventCategoryName<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle category" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="@e.Icon" id="iconsNavbar"></i>@e.EventCategoryName<span class="caret"></span></a>
 
                         @*@Html.RouteLink(e.EventCategoryName, new { controller = "Event", action = "List", category = e.EventCategoryID })*@
 

@@ -5,35 +5,39 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link href="~/Content/myStyles.css" rel="stylesheet" />
-    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />    
+    <meta name="viewport" content="width=device-width" charset="UTF8"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="~/Content/myStyles.css" rel="stylesheet"/>
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-datetimepicker-build.css" rel="stylesheet"/>
+</head>
+<body>
+<div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    @RenderBody()
+</div>
+
+
+
     <script src="~/scripts/jquery-1.10.2.js"></script>
-    <script src="~/scripts/moment.min.js"></script>
+    <script src="~/scripts/moment.es5.min.js"></script>
     <script src="~/scripts/bootstrap.min.js"></script>
     <script src="~/scripts/bootstrap-datetimepicker.js"></script>
     <script src="~/scripts/jquery.validate.js"></script>
     <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            jQuery.validator.methods["date"] = function(value, element) { return true; }
+        $(document).ready(function () {
+            jQuery.validator.methods["date"] = function (value, element) { return true; }
         });
     </script>
     <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
+        $(function () {
+            $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY HH:mm:ss' });
+        });
     </script>
-</head>
-<body>
-    <div>
-        @if (TempData["message"] != null)
-        {
-            <div class="alert alert-success">@TempData["message"]</div>
-        }
-        @RenderBody()
-    </div>
 </body>
 </html>

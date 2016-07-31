@@ -34,7 +34,6 @@ namespace TicketReservation.Controllers
             adm.GetEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             adm.Categories = catRepo.Categories;
             adm.SubCategories = catRepo.SubCategories;
-
             return View(adm);
         }
 
@@ -43,6 +42,7 @@ namespace TicketReservation.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 repository.SaveEvent(adminViewModel.GetEvent);
                 TempData["message"] = string.Format("Zapisano {0}", adminViewModel.GetEvent.EventName);
                 return RedirectToAction("Index");
@@ -55,7 +55,17 @@ namespace TicketReservation.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new Event());
+            return View("Edit", new AdminViewModel()
+            {
+                GetEvent = new Event()
+                {
+                    EventStartDateTime = DateTime.Now,
+                    EventEndDateTime = DateTime.Now,
+                    TicketsOnSaleDateTime = DateTime.Now
+                },
+                Categories = catRepo.Categories,
+                SubCategories = catRepo.SubCategories
+            });
         }
 
         [HttpPost]

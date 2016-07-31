@@ -18,5 +18,13 @@
   {
     "outputFile": "Content/bootstrap-datetimepicker-build.css",
     "inputFile": "Content/bootstrap-datetimepicker-build.less"
+  },
+  {
+    "outputFile": "Content/bootstrap/variables.css",
+    "inputFile": "Content/bootstrap/variables.less"
+  },
+  {
+    "outputFile": "scripts/moment.es5.js",
+    "inputFile": "scripts/moment.js"
   }
 ]

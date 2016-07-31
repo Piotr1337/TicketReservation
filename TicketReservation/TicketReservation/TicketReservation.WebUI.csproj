@@ -190,10 +190,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker-build.css">
+      <DependentUpon>bootstrap-datetimepicker-build.less</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-datetimepicker-build.min.css">
+      <DependentUpon>bootstrap-datetimepicker-build.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap\variables.min.css">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
     <Content Include="Content\ErrorStyles.css">
       <DependentUpon>ErrorStyles.less</DependentUpon>
     </Content>
@@ -317,6 +329,12 @@
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\moment-with-locales.js" />
     <Content Include="scripts\moment-with-locales.min.js" />
+    <Content Include="scripts\moment.es5.js">
+      <DependentUpon>moment.js</DependentUpon>
+    </Content>
+    <Content Include="scripts\moment.es5.min.js">
+      <DependentUpon>moment.es5.js</DependentUpon>
+    </Content>
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\moment.min.js" />
     <Content Include="scripts\navbarHover.js" />
