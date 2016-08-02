@@ -12,10 +12,6 @@ namespace TicketReservation.Domain.Entities
 {
     public class Category
     {
-        public Category()
-        {
-            SubCategories = new List<SubCategory>();
-        }
         [Key]
         public int EventCategoryID { get; set; }
         public string EventCategoryDescription { get; set; }

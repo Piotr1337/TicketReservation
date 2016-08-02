@@ -1,3 +1,8 @@
+using System.Diagnostics;
+using System.EnterpriseServices;
+using AutoMapper;
+using TicketReservation.Models;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TicketReservation.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TicketReservation.App_Start.NinjectWebCommon), "Stop")]
 
@@ -63,6 +68,6 @@ namespace TicketReservation.App_Start
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new 
                 TicketReservation.Infrastructure.NinjectDependencyResolver(kernel));
-        }        
+        }      
     }
 }

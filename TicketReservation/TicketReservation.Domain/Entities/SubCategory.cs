@@ -14,7 +14,6 @@ namespace TicketReservation.Domain.Entities
         public int EventSubcategoryID { get; set; }
         public int EventCategoryID { get; set; }
         public string EventSubCategoryName { get; set; }
-        [ForeignKey("EventCategoryID")]
         public virtual Category Category { get; set; }
     }
 }

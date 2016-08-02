@@ -9,87 +9,52 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h2>Edycja @Model.GetEvent.EventName</h2>
+        <h2>Edycja @Model.EventName</h2>
     </div>
 </div>
 @using (Html.BeginForm("Edit", "Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="col-md-6">
         <div class="panel-body">
-            @Html.HiddenFor(x => x.GetEvent.EventID)
-
+            @Html.HiddenFor(x => x.EventID)
             @foreach (var item in ViewData.ModelMetadata.Properties)
             {
                 switch (item.PropertyName)
                 {
                     case "Categories":
-                        {
-                            <label>Kategoria</label>
-                            @Html.DropDownListFor(model => model.Categories.FirstOrDefault().EventCategoryName,
-                       Model.Categories.Select(x => new SelectListItem { Text = x.EventCategoryName, Value = x.EventCategoryID.ToString() }))
-                        }
+                        @*@Html.DropDownListFor(model => model.Categories.FirstOrDefault().EventCategoryName,
+                Model.Categories.Select(x => new SelectListItem { Text = x.EventCategoryName, Value = x.EventCategoryID.ToString() }))*@
+                        @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.Categories.Select(x => new KeyValuePair<string,int>(x.EventCategoryName, x.EventCategoryID)), "Value", "Key"))
                         break;
                     case "SubCategories":
-                        {
-                            <label>Podkategoria</label>
-                            @Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName,
-                            Model.SubCategories.Select(x => new SelectListItem { Text = x.EventSubCategoryName, Value = x.EventSubcategoryID.ToString() }))
-  
-                        }
+                        @*@Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName,
+                            Model.SubCategories.Select(x => new SelectListItem { Text = x.EventSubCategoryName, Value = x.EventSubcategoryID.ToString() }))*@
                         break;
-                    case "GetEvent":
-                        {
-
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.GetEvent.EventName)
-                                @Html.TextBoxFor(m => m.GetEvent.EventName, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.GetEvent.EventName)
-                                <br />
-                                @Html.LabelFor(m => m.GetEvent.EventStartDateTime)
-                                <div class='input-group date datetimepicker1'>
-                                    @Html.TextBoxFor(m => m.GetEvent.EventStartDateTime, null, new { @class = "form-control" })
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                @Html.ValidationMessageFor(m => m.GetEvent.EventStartDateTime)
-                                <br />
-                                @Html.LabelFor(m => m.GetEvent.EventEndDateTime)
-                                <div class='input-group date datetimepicker1'>
-                                    @Html.TextBoxFor(m => m.GetEvent.EventEndDateTime, null, new { @class = "form-control" })
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                @Html.ValidationMessageFor(m => m.GetEvent.EventEndDateTime)
-                                <br />
-                                @Html.LabelFor(m => m.GetEvent.TicketsOnSaleDateTime)
-                                <div class='input-group date datetimepicker1'>
-                                    @Html.TextBoxFor(m => m.GetEvent.TicketsOnSaleDateTime, null, new { @class = "form-control" })
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                @Html.ValidationMessageFor(m => m.GetEvent.TicketsOnSaleDateTime)
-                                <br />
-                                @Html.LabelFor(m => m.GetEvent.OtherDetails)
-                                @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new { @class = "form-control", rows = 5 })
-                                @Html.ValidationMessageFor(m => m.GetEvent.OtherDetails)
-                                @*<label>@(item2.DisplayName ?? item2.PropertyName)</label>
-                                    @if (item2.PropertyName == "OtherDetails")
-                                    {
-                                        @Html.TextAreaFor(x => x.GetEvent.OtherDetails, new { @class = "form-control", rows = 5})
-                                    }
-                                    else
-                                    {
-                                        @Html.TextBoxFor(m => m.GetEvent.Category.EventCategoryName, null, new {@class = "form-control"})
-                                    }
-                                    @Html.ValidationMessage(item2.PropertyName)*@
-                            </div>
+                    default:
+                                    <div class="form-group">
+                                        <label>@(item.DisplayName ?? item.PropertyName)</label>
+                                        @if (item.PropertyName == "OtherDetails")
+                                        {
+                                            @Html.TextArea(item.PropertyName, null, new {@class = "form-control", rows = 5})
+                                        }
+                                        else if (item.PropertyName == "EventStartDateTime" || item.PropertyName == "EventEndDateTime" || item.PropertyName == "TicketsOnSaleDateTime")
+                                        {
+                                            <div class='input-group date datetimepicker1'>
+                                                @Html.TextBox(item.PropertyName, null, new { @class = "form-control" })
+                                                    <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        }                                        
+                                        else
+                                        {
+                                            @Html.TextBox(item.PropertyName, null, new {@class = "form-control"})
+                                        }
+                                        @Html.ValidationMessage(item.PropertyName)
+                                    </div>
+                                    break;
+                            }
                         }
-                        break;
-                }
-            }
         </div>
     </div>
     <div class="panel-footer col-md-12">
