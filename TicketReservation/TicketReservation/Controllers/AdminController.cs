@@ -34,6 +34,7 @@ namespace TicketReservation.Controllers
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
             viewModel.Categories = catRepo.Categories;
             viewModel.SubCategories = catRepo.SubCategories;
+            viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;           
             return View(viewModel);
         }
 

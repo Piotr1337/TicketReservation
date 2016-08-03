@@ -7,12 +7,14 @@ using System.Web.Mvc;
 using AutoMapper;
 using TicketReservation.Domain.Entities;
 
+
 namespace TicketReservation.Models
 {
     public class AdminViewModel
     {
         [Key]
         public int EventID { get; set; }
+        [Display(Name = "Kategoria")]
         public int EventCategoryID { get; set; }
         public int ArtistID { get; set; }
         public int PlaceID { get; set; }
@@ -36,6 +38,8 @@ namespace TicketReservation.Models
         [DataType(DataType.MultilineText), Display(Name = "Opis")]
         [Required(ErrorMessage = "Proszę podać opis")]
         public string OtherDetails { get; set; }
+
+        public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }
 
         public IEnumerable<Category> Categories { get; set; }
 

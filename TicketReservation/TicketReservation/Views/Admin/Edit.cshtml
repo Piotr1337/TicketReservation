@@ -22,9 +22,8 @@
                 switch (item.PropertyName)
                 {
                     case "Categories":
-                        @*@Html.DropDownListFor(model => model.Categories.FirstOrDefault().EventCategoryName,
-                Model.Categories.Select(x => new SelectListItem { Text = x.EventCategoryName, Value = x.EventCategoryID.ToString() }))*@
-                        @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.Categories.Select(x => new KeyValuePair<string,int>(x.EventCategoryName, x.EventCategoryID)), "Value", "Key"))
+                        @*@Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.Categories.Select(x => new KeyValuePair<string,int>(x.EventCategoryName, x.EventCategoryID)), "Value", "Key"))*@
+                        @*@Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList)*@
                         break;
                     case "SubCategories":
                         @*@Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName,
@@ -45,7 +44,15 @@
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
-                                        }                                        
+                                        }
+                                        else if (item.PropertyName == "EventCategoryID")
+                                        {
+                                            @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new { @class = "form-control" })
+                                        }
+                                        else if ()
+                                        {
+                                            
+                                        }
                                         else
                                         {
                                             @Html.TextBox(item.PropertyName, null, new {@class = "form-control"})
