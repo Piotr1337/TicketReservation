@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using TicketReservation.Domain.Entities;
 
@@ -17,6 +18,8 @@ namespace TicketReservation.Models
         [Display(Name = "Kategoria")]
         public int EventCategoryID { get; set; }
         public int ArtistID { get; set; }
+        [Display(Name = "Podkategoria")]
+        public int EventSubCategoryID { get; set; }
         public int PlaceID { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwe wydarzenia")]
@@ -39,10 +42,8 @@ namespace TicketReservation.Models
         [Required(ErrorMessage = "Proszę podać opis")]
         public string OtherDetails { get; set; }
 
+        public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
+
         public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }
-
-        public IEnumerable<Category> Categories { get; set; }
-
-        public IEnumerable<SubCategory> SubCategories { get; set; }
     }
 }

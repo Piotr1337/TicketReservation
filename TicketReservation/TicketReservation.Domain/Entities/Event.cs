@@ -12,6 +12,7 @@ namespace TicketReservation.Domain.Entities
     {
         public int EventID { get; set; }
         public int EventCategoryID{ get; set; }
+        public int EventSubCategoryID { get; set; }
         public int ArtistID { get; set; }
         public int PlaceID { get; set; }
         public string EventName { get; set; }

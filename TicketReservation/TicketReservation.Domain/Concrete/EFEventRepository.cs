@@ -35,6 +35,7 @@ namespace TicketReservation.Domain.Concrete
                     dbEntry.EventStartDateTime = theEvent.EventStartDateTime;
                     dbEntry.EventEndDateTime = theEvent.EventEndDateTime;
                     dbEntry.EventCategoryID = theEvent.EventCategoryID;
+                    dbEntry.EventSubCategoryID = theEvent.EventSubCategoryID;
                     dbEntry.Category = theEvent.Category;
                 }
             }

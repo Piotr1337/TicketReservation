@@ -32,9 +32,8 @@ namespace TicketReservation.Controllers
         {
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
-            viewModel.Categories = catRepo.Categories;
-            viewModel.SubCategories = catRepo.SubCategories;
-            viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;           
+            viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
+            viewModel.SubCategoryForDropList = catRepo.SubCategoryForDropList;
             return View(viewModel);
         }
 
@@ -54,20 +53,18 @@ namespace TicketReservation.Controllers
             }
         }
 
-        //public ViewResult Create()
-        //{
-        //    return View("Edit", new AdminViewModel()
-        //    {
-        //        GetEvent = new Event()
-        //        {
-        //            EventStartDateTime = DateTime.Now,
-        //            EventEndDateTime = DateTime.Now,
-        //            TicketsOnSaleDateTime = DateTime.Now
-        //        },
-        //        Categories = catRepo.Categories,
-        //        SubCategories = catRepo.SubCategories
-        //    });
-        //}
+        public ViewResult Create()
+        {
+            return View("Edit", new AdminViewModel()
+            {
+
+                EventStartDateTime = DateTime.Now,
+                EventEndDateTime = DateTime.Now,
+                TicketsOnSaleDateTime = DateTime.Now,
+                CategoriesForDropList = catRepo.CategoriesForDropList,
+                SubCategoryForDropList = catRepo.SubCategoryForDropList,
+            });
+        }
 
         [HttpPost]
         public ActionResult Delete(int eventId)

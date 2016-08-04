@@ -21,14 +21,7 @@
             {
                 switch (item.PropertyName)
                 {
-                    case "Categories":
-                        @*@Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.Categories.Select(x => new KeyValuePair<string,int>(x.EventCategoryName, x.EventCategoryID)), "Value", "Key"))*@
-                        @*@Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList)*@
-                        break;
-                    case "SubCategories":
-                        @*@Html.DropDownListFor(model => model.SubCategories.FirstOrDefault().EventSubCategoryName,
-                            Model.SubCategories.Select(x => new SelectListItem { Text = x.EventSubCategoryName, Value = x.EventSubcategoryID.ToString() }))*@
-                        break;
+
                     default:
                                     <div class="form-group">
                                         <label>@(item.DisplayName ?? item.PropertyName)</label>
@@ -49,9 +42,9 @@
                                         {
                                             @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new { @class = "form-control" })
                                         }
-                                        else if ()
+                                        else if (item.PropertyName == "EventSubCategoryID")
                                         {
-                                            
+                                            @Html.DropDownListFor(m => m.EventSubCategoryID, Model.SubCategoryForDropList, new { @class = "form-control" })
                                         }
                                         else
                                         {

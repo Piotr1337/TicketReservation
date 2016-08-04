@@ -37,6 +37,20 @@ namespace TicketReservation.Domain.Concrete
             }
         }
 
+        public IEnumerable<SelectListItem> SubCategoryForDropList
+        {
+            get
+            {
+                IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
+                selectListItems = SubCategories.Select(x => new SelectListItem
+                {
+                    Value = x.EventSubcategoryID.ToString(),
+                    Text = x.EventSubCategoryName
+                });
+                return DefaultItem.Concat(selectListItems);
+            }
+        }
+
         public IEnumerable<SelectListItem> DefaultItem
         {
             get
