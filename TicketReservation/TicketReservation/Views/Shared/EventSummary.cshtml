@@ -1,6 +1,14 @@
 ﻿@model TicketReservation.Domain.Entities.Event
 
 <div class="well">
+    @if (Model.ImageData != null)
+    {
+        <div class="pull-left" style="margin-right: 10px">
+            <img class="imgm-thumbnail" width="150" height="100"
+                 src="@Url.Action("GetImage","Event", new {Model.EventID})"/>
+        </div>
+    }
+
     <h3>
         <strong>@Model.EventName</strong>
         <span class="pull-right label label-primary">@Model.EventStartDateTime , @Model.Category.EventCategoryName</span>       

@@ -38,11 +38,17 @@ namespace TicketReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Event theEvent)
+        public ActionResult Edit(Event theEvent, HttpPostedFileBase image = null)
         {
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    theEvent.ImageMimeType = image.ContentType;
+                    theEvent.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(theEvent.ImageData, 0, image.ContentLength);
+                }
                 repository.SaveEvent(theEvent);
                 TempData["message"] = string.Format("Zapisano {0}", theEvent.EventName);
                 return RedirectToAction("Index");

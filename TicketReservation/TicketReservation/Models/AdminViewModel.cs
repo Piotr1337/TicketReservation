@@ -42,8 +42,10 @@ namespace TicketReservation.Models
         [Required(ErrorMessage = "Proszę podać opis")]
         public string OtherDetails { get; set; }
 
-        public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
 
+        public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
         public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }
     }
 }

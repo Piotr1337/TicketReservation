@@ -50,5 +50,18 @@ namespace TicketReservation.Controllers
             
             return View(model);
         }
+
+        public FileContentResult GetImage(int eventId)
+        {
+            Event theEvent = repository.Events.FirstOrDefault(e => e.EventID == eventId);
+            if (theEvent != null)
+            {
+                return File(theEvent.ImageData, theEvent.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
