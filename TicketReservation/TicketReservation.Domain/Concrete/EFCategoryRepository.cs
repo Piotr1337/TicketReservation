@@ -58,7 +58,7 @@ namespace TicketReservation.Domain.Concrete
                 return Enumerable.Repeat(new SelectListItem
                 {
                     Value = "",
-                    Text = "- SELECT -"
+                    Text = "- Wybierz -"
                 }, count: 1);
             }
         }

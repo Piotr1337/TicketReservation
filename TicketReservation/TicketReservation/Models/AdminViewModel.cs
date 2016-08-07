@@ -15,11 +15,17 @@ namespace TicketReservation.Models
     {
         [Key]
         public int EventID { get; set; }
+
         [Display(Name = "Kategoria")]
+        [Required(ErrorMessage = "Proszę wybrać kategorię")]
         public int EventCategoryID { get; set; }
+
         public int ArtistID { get; set; }
+
         [Display(Name = "Podkategoria")]
+        [Required(ErrorMessage = "Proszę wybrać Podkategorię")]
         public int EventSubCategoryID { get; set; }
+
         public int PlaceID { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwe wydarzenia")]
@@ -45,7 +51,12 @@ namespace TicketReservation.Models
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
+        public virtual SubCategory SubCategory { get; set; }
+
+        public virtual Category Category { get; set; }
+
         public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
+
         public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }
     }
 }

@@ -13,14 +13,19 @@ namespace TicketReservation
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(null, "", new {controller = "Event", action = "List", categoryId = 1 });
 
-            routes.MapRoute(
-               "Default",                                              // Route name
-               "{controller}/{action}/{categoryId}",                           // URL with parameters
-               new { controller = "Event", action = "List", categoryId = 1 }  // Parameter defaults
-           );
+           // routes.MapRoute(
+           //    "Default",                                              // Route name
+           //    "{controller}/{action}/{categoryId}",                           // URL with parameters
+           //    new { controller = "Event", action = "List", categoryId = 2}  // Parameter defaults
+           //);
 
+            routes.MapRoute(null, "{controller}/{action}");
 
+            routes.MapRoute("Error", "{*url}",
+                new { controller = "Error", action = "404" }
+            );
             //routes.MapRoute(null,
             //    "",
             //    new

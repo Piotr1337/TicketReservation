@@ -56,37 +56,51 @@
                             }
                         }*@
             <div class="form-group">
-                <label>@Html.LabelFor(m => m.EventName)</label>
+                @Html.LabelFor(m => m.EventName)
                 @Html.TextBoxFor(m => m.EventName, null, new { @class = "form-control" })
-                <label>@Html.LabelFor(m => m.OtherDetails)</label>
+                @Html.ValidationMessageFor(m => m.EventName)
+                <br/>
+                @Html.LabelFor(m => m.OtherDetails)
                 @Html.TextAreaFor(m => m.OtherDetails, new { @class = "form-control", rows = 5 })
-                <label>@Html.LabelFor(m => m.EventStartDateTime)</label>
+                @Html.ValidationMessageFor(m => m.OtherDetails)
+                <br />
+                @Html.LabelFor(m => m.EventStartDateTime)
                 <div class='input-group date datetimepicker1'>
-                    @Html.TextBoxFor(m => m.EventStartDateTime, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.EventStartDateTime, null, new {@class = "form-control"})
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <label>@Html.LabelFor(m => m.TicketsOnSaleDateTime)</label>
+                @Html.ValidationMessageFor(m => m.EventStartDateTime)
+                <br />
+                @Html.LabelFor(m => m.TicketsOnSaleDateTime)
                 <div class='input-group date datetimepicker1'>
-                    @Html.TextBoxFor(m => m.TicketsOnSaleDateTime, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.TicketsOnSaleDateTime, null, new {@class = "form-control"})
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <label>@Html.LabelFor(m => m.EventEndDateTime)</label>
+                @Html.ValidationMessageFor(m => m.TicketsOnSaleDateTime)
+                <br />
+                @Html.LabelFor(m => m.EventEndDateTime)
                 <div class='input-group date datetimepicker1'>
-                    @Html.TextBoxFor(m => m.EventEndDateTime, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.EventEndDateTime, null, new {@class = "form-control"})
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <label>@Html.LabelFor(m => m.EventCategoryID)</label>
+                @Html.ValidationMessageFor(m => m.EventEndDateTime)
+                <br />
+                @Html.LabelFor(m => m.EventCategoryID)
                 @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new { @class = "form-control" })
-                <label>@Html.LabelFor(m => m.EventSubCategoryID)</label>
+                @Html.ValidationMessageFor(m => m.EventCategoryID)
+                <br />
+                @Html.LabelFor(m => m.EventSubCategoryID)
                 @Html.DropDownListFor(m => m.EventSubCategoryID, Model.SubCategoryForDropList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EventSubCategoryID)
+                <br />
                 <div style="position: relative;">
-                    <label>Zdjęcie</label>
+                    <label>Plakat</label>
                     <a class='btn' href='javascript:;'>
                         Wybierz plik...
                         <input type="file" name="Image" size="40"
@@ -99,7 +113,7 @@
                 </div>
                 @if (Model.ImageData == null)
                 {
-                    <div class="form-control-static">Brak zdjęcia</div>
+                    <div class="form-control-static">Brak plakatu</div>
                 }
                 else
                 {

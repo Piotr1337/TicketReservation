@@ -32,7 +32,7 @@ namespace TicketReservation.Controllers
                 SubCategories = categoryRep.SubCategories
             };
 
-            foreach (var aa in model.SubCategories);
+
 
 
             return PartialView("NavBarSummary", model);
@@ -40,14 +40,19 @@ namespace TicketReservation.Controllers
 
         public ViewResult List(int? categoryId)
         {
+
             EventsViewModel model = new EventsViewModel
             {
                 Events = repository.Events
-                .Where(x => x.EventCategoryID == categoryId),
-                CurrentCategory = categoryRep.Categories.Single(x => x.EventCategoryID == categoryId),                
+                .Where(x => categoryId == null || x.EventSubCategoryID == categoryId),
+                CurrentCategory = categoryRep.Categories.Single(x => x.EventCategoryID == categoryId),
             };
-            
-            
+
+            //EventsViewModel model = new EventsViewModel
+            //{
+            //    Events = repository.Events.Where(x => x.Category.EventCategoryName == categoryName)
+            //};
+
             return View(model);
         }
 
