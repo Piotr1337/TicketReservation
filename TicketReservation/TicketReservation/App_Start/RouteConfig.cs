@@ -13,7 +13,15 @@ namespace TicketReservation
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(null, "", new {controller = "Event", action = "List", categoryId = 1 });
+            routes.MapRoute(null, "{controller}/{action}/{categoryName}/{categoryId}/{subcategoryName}/{subcategoryId}", new
+            {
+                controller = "Event",
+                action = "List",
+                categoryName = UrlParameter.Optional,
+                categoryId  = UrlParameter.Optional,
+                subcategoryName = UrlParameter.Optional,
+                subcategoryId = UrlParameter.Optional
+            });
 
            // routes.MapRoute(
            //    "Default",                                              // Route name

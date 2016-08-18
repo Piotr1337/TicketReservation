@@ -49,6 +49,7 @@ namespace TicketReservation.Controllers
                     theEvent.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(theEvent.ImageData, 0, image.ContentLength);
                 }
+                ViewData["Category"] = viewModel;
                 repository.SaveEvent(theEvent);
                 TempData["message"] = string.Format("Zapisano {0}", theEvent.EventName);
                 return RedirectToAction("Index");

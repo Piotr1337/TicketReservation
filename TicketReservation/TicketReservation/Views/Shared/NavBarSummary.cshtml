@@ -36,7 +36,7 @@
                         <ul class="dropdown-menu">
                             @foreach (var sub in e.SubCategories.Where(x => x.EventCategoryID == e.EventCategoryID))
                             {
-                                <li>@Html.RouteLink(sub.EventSubCategoryName, new { controller = "Event", action = "List", categoryId = sub.EventSubcategoryID })</li>
+                                <li>@Html.RouteLink(sub.EventSubCategoryName, new {controller = "Event", action = "List", categoryName = e.EventCategoryName, categoryId = e.EventCategoryID, subcategoryName = sub.EventSubCategoryName, subcategoryId = sub.EventSubcategoryID})</li>
                                 @*<li><a href="#">@sub.EventSubCategoryName</a></li>*@
                             }
                         </ul>

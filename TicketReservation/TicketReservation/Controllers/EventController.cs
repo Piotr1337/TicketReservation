@@ -38,22 +38,31 @@ namespace TicketReservation.Controllers
             return PartialView("NavBarSummary", model);
         }
 
-        public ViewResult List(int? categoryId)
+        public ViewResult List(int? categoryId,int? subcategoryId)
         {
-
-            EventsViewModel model = new EventsViewModel
+            if (subcategoryId.HasValue)
             {
-                Events = repository.Events
-                .Where(x => categoryId == null || x.EventSubCategoryID == categoryId),
-                CurrentCategory = categoryRep.Categories.Single(x => x.EventCategoryID == categoryId),
-            };
+                EventsViewModel model = new EventsViewModel
+                {
+                    Events = repository.Events.Where(x => x.EventSubCategoryID == null || x.EventSubCategoryID == subcategoryId && x.EventSubCategoryID == subcategoryId)
 
+                };
+                return View(model);
+            }
+            else
+            {
+                EventsViewModel model = new EventsViewModel
+                {
+                    Events = repository.Events
+                };
+                return View(model);
+            }
             //EventsViewModel model = new EventsViewModel
             //{
             //    Events = repository.Events.Where(x => x.Category.EventCategoryName == categoryName)
             //};
 
-            return View(model);
+
         }
 
         public FileContentResult GetImage(int eventId)

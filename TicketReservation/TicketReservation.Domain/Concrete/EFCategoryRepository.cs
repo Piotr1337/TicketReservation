@@ -16,8 +16,8 @@ namespace TicketReservation.Domain.Concrete
         public IEnumerable<Category> Categories
         {
             get { return context.Categories; } 
-
         }
+
         public IEnumerable<SubCategory> SubCategories
         {
             get { return context.SubCategories; }
@@ -31,7 +31,7 @@ namespace TicketReservation.Domain.Concrete
                 selectListItems = Categories.Select(x => new SelectListItem
                 {
                     Value = x.EventCategoryID.ToString(),
-                    Text = x.EventCategoryName
+                    Text = x.EventCategoryName,
                 });
                 return DefaultItem.Concat(selectListItems);
             }
