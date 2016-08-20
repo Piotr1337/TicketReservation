@@ -32,6 +32,7 @@ namespace TicketReservation.Controllers
         {
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
+  
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
             viewModel.SubCategoryForDropList = catRepo.SubCategoryForDropList;
             return View(viewModel);
@@ -44,13 +45,14 @@ namespace TicketReservation.Controllers
             if (ModelState.IsValid)
             {
                 if (image != null)
-                {
-                    theEvent.ImageMimeType = image.ContentType;
-                    theEvent.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(theEvent.ImageData, 0, image.ContentLength);
+                {                 
+                    viewModel.ImageMimeType = image.ContentType;
+                    viewModel.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(viewModel.ImageData, 0, image.ContentLength);
                 }
                 ViewData["Category"] = viewModel;
-                repository.SaveEvent(theEvent);
+                var toModel = Mapper.Map<AdminViewModel, Event>(viewModel);
+                repository.SaveEvent(toModel);
                 TempData["message"] = string.Format("Zapisano {0}", theEvent.EventName);
                 return RedirectToAction("Index");
             }
@@ -64,7 +66,6 @@ namespace TicketReservation.Controllers
         {
             return View("Edit", new AdminViewModel()
             {
-
                 EventStartDateTime = DateTime.Now,
                 EventEndDateTime = DateTime.Now,
                 TicketsOnSaleDateTime = DateTime.Now,

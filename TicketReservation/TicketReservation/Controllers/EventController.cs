@@ -32,9 +32,6 @@ namespace TicketReservation.Controllers
                 SubCategories = categoryRep.SubCategories
             };
 
-
-
-
             return PartialView("NavBarSummary", model);
         }
 

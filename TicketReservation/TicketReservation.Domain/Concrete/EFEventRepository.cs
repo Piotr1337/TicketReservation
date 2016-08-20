@@ -36,8 +36,11 @@ namespace TicketReservation.Domain.Concrete
                     dbEntry.EventEndDateTime = theEvent.EventEndDateTime;
                     dbEntry.EventCategoryID = theEvent.EventCategoryID;
                     dbEntry.EventSubCategoryID = theEvent.EventSubCategoryID;
-                    dbEntry.ImageData = theEvent.ImageData;
-                    dbEntry.ImageMimeType = theEvent.ImageMimeType;
+                    if (!string.IsNullOrEmpty(theEvent.ImageMimeType))
+                    {
+                        dbEntry.ImageData = theEvent.ImageData;
+                        dbEntry.ImageMimeType = theEvent.ImageMimeType;
+                    }
                 }
             }
             context.SaveChanges();

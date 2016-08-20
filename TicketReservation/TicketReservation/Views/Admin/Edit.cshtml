@@ -16,7 +16,8 @@
 {
     <div class="col-md-6">
         <div class="panel-body">
-            @*@Html.HiddenFor(x => x.EventID)
+            @Html.HiddenFor(x => x.EventID)
+            @*
             @foreach (var item in ViewData.ModelMetadata.Properties)
             {
                 switch (item.PropertyName)
@@ -57,13 +58,13 @@
                         }*@
             <div class="form-group">
                 @Html.LabelFor(m => m.EventName)
-                @Html.TextBoxFor(m => m.EventName, null, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.EventName, null, new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.EventName)
                 <br/>
                 @Html.LabelFor(m => m.OtherDetails)
-                @Html.TextAreaFor(m => m.OtherDetails, new { @class = "form-control", rows = 5 })
+                @Html.TextAreaFor(m => m.OtherDetails, new {@class = "form-control", rows = 5})
                 @Html.ValidationMessageFor(m => m.OtherDetails)
-                <br />
+                <br/>
                 @Html.LabelFor(m => m.EventStartDateTime)
                 <div class='input-group date datetimepicker1'>
                     @Html.TextBoxFor(m => m.EventStartDateTime, null, new {@class = "form-control"})
@@ -72,7 +73,7 @@
                     </span>
                 </div>
                 @Html.ValidationMessageFor(m => m.EventStartDateTime)
-                <br />
+                <br/>
                 @Html.LabelFor(m => m.TicketsOnSaleDateTime)
                 <div class='input-group date datetimepicker1'>
                     @Html.TextBoxFor(m => m.TicketsOnSaleDateTime, null, new {@class = "form-control"})
@@ -81,7 +82,7 @@
                     </span>
                 </div>
                 @Html.ValidationMessageFor(m => m.TicketsOnSaleDateTime)
-                <br />
+                <br/>
                 @Html.LabelFor(m => m.EventEndDateTime)
                 <div class='input-group date datetimepicker1'>
                     @Html.TextBoxFor(m => m.EventEndDateTime, null, new {@class = "form-control"})
@@ -90,23 +91,23 @@
                     </span>
                 </div>
                 @Html.ValidationMessageFor(m => m.EventEndDateTime)
-                <br />
+                <br/>
                 @Html.LabelFor(m => m.EventCategoryID)
-                @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.EventCategoryID)
-                <br />
+                <br/>
                 @Html.LabelFor(m => m.EventSubCategoryID)
-                @Html.DropDownListFor(m => m.EventSubCategoryID, Model.SubCategoryForDropList, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.EventSubCategoryID, Model.SubCategoryForDropList, new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.EventSubCategoryID)
-                <br />
+                <br/>
                 <div style="position: relative;">
                     <label>Plakat</label>
                     <a class='btn' href='javascript:;'>
                         Wybierz plik...
                         <input type="file" name="Image" size="40"
-                               style="position:absolute;z-index:2;top:0;
-                                 left: 0; filter: alpha(opacity=0); opacity:0;
-                                 background-color:transparent;color: transparent;"
+                               style="position: absolute; z-index: 2; top: 0;
+                               left: 0; filter: alpha(opacity=0); opacity: 0;
+                               background-color: transparent; color: transparent;"
                                onchange='$("#upload-file-info").html($(this).val());'>
                     </a>
                     <span class='label label-info' id="upload-file-info"></span>
