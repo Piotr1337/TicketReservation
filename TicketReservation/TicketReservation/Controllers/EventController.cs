@@ -54,12 +54,6 @@ namespace TicketReservation.Controllers
                 };
                 return View(model);
             }
-            //EventsViewModel model = new EventsViewModel
-            //{
-            //    Events = repository.Events.Where(x => x.Category.EventCategoryName == categoryName)
-            //};
-
-
         }
 
         public FileContentResult GetImage(int eventId)

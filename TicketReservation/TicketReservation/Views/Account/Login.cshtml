@@ -15,9 +15,8 @@
                 <br/>
                 @using (Html.BeginForm())
                 {
-                    <p>Login</p>
                     @Html.TextBoxFor(x => x.UserName, new { @class = "form-control input-sm chat-input", @placeholder="użytkownik" })
-                    <p>Hasło</p>
+
                     @Html.TextBoxFor(x => x.Password, new {@class = "form-control input-sm chat-input", @placeholder = "hasło", @type = "password" })
                     <br />
                     <div class="wrapper">

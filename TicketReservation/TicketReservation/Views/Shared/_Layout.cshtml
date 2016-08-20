@@ -12,17 +12,15 @@
 </head>
 <body>
   @Html.Action("NavBar", "Event")
-    <div class="row panel">
-        <div id="categories" class="col-xs-3">
-        </div>
-    </div>
-<div class="col-xs-8">
-    @RenderBody()
+
+<div class="container body-content">
+        @RenderBody()
 </div>
 
-    <script src="~/scripts/jquery-1.10.2.js"></script>
-    <script src="~/scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/less.js"></script>
-    <script src="~/scripts/navbarHover.js"></script>
+
+        <script src="~/scripts/jquery-1.10.2.js"></script>
+        <script src="~/scripts/bootstrap.min.js"></script>
+        <script src="~/scripts/less.js"></script>
+        <script src="~/scripts/navbarHover.js"></script>
 </body>
 </html>
