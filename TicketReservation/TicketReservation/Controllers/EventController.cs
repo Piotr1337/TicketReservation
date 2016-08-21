@@ -41,7 +41,7 @@ namespace TicketReservation.Controllers
             {
                 EventsViewModel model = new EventsViewModel
                 {
-                    Events = repository.Events.Where(x => x.EventSubCategoryID == null || x.EventSubCategoryID == subcategoryId && x.EventSubCategoryID == subcategoryId)
+                    Events = repository.Events.Where(x => x.EventSubCategoryID == subcategoryId && x.EventSubCategoryID == subcategoryId)
 
                 };
                 return View(model);
