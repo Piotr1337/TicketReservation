@@ -34,10 +34,24 @@
             jQuery.validator.methods["date"] = function (value, element) { return true; }
         });
     </script>
-    <script type="text/javascript">
-        $(function () {
-            $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY HH:mm:ss' });
-        });
-    </script>
+<script type="text/javascript">
+    $(function() {
+        $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY HH:mm:ss' });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $("#EventCategoryID").change(function() {
+            var val = $(this).val();
+            var subItems = "";
+            $.getJSON("@Url.Action("GetSubcategory","Admin")",{id:val}, function(data) {
+                $.each(data, function(index, item) {
+                    subItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
+                });
+                $("#EventSubCategoryID").html(subItems)
+            })
+        })
+    })
+</script>
 </body>
 </html>

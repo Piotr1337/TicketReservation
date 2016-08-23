@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,9 +33,18 @@ namespace TicketReservation.Controllers
         {
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
-  
+
+            IEnumerable<SubCategory> sub = new List<SubCategory>();
+            IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
+            sub = catRepo.SubCategories.Where(x => x.EventCategoryID == viewModel.EventCategoryID);
+            selectListItems = sub.Select(x => new SelectListItem
+            {
+                Value = x.EventSubcategoryID.ToString(),
+                Text = x.EventSubCategoryName
+            });
+
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
-            viewModel.SubCategoryForDropList = catRepo.SubCategoryForDropList;
+            viewModel.SubCategoryForDropList = selectListItems;
             return View(viewModel);
         }
 
@@ -70,8 +80,21 @@ namespace TicketReservation.Controllers
                 EventEndDateTime = DateTime.Now,
                 TicketsOnSaleDateTime = DateTime.Now,
                 CategoriesForDropList = catRepo.CategoriesForDropList,
-                SubCategoryForDropList = catRepo.SubCategoryForDropList,
+                SubCategoryForDropList = new[] {new SelectListItem {Value = "", Text = ""}}
             });
+        }
+
+        public ActionResult GetSubcategory(int id)
+        {
+            IEnumerable<SubCategory> sub = new List<SubCategory>();
+            IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
+            sub = catRepo.SubCategories.Where(x => x.EventCategoryID == id);
+            selectListItems = sub.Select(x => new SelectListItem
+            {
+                Value = x.EventSubcategoryID.ToString(),
+                Text = x.EventSubCategoryName
+            });
+            return Json(selectListItems, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

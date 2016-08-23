@@ -93,11 +93,11 @@
                 @Html.ValidationMessageFor(m => m.EventEndDateTime)
                 <br/>
                 @Html.LabelFor(m => m.EventCategoryID)
-                @Html.DropDownListFor(m => m.EventCategoryID, Model.CategoriesForDropList, new {@class = "form-control"})
+                @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.CategoriesForDropList,"Value","Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.EventCategoryID)
                 <br/>
                 @Html.LabelFor(m => m.EventSubCategoryID)
-                @Html.DropDownListFor(m => m.EventSubCategoryID, Model.SubCategoryForDropList, new {@class = "form-control"})
+                @Html.DropDownListFor(m => m.EventSubCategoryID, new SelectList(Model.SubCategoryForDropList, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.EventSubCategoryID)
                 <br/>
                 <div style="position: relative;">
