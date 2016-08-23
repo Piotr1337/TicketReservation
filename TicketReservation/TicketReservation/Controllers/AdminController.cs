@@ -34,17 +34,8 @@ namespace TicketReservation.Controllers
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
 
-            IEnumerable<SubCategory> sub = new List<SubCategory>();
-            IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
-            sub = catRepo.SubCategories.Where(x => x.EventCategoryID == viewModel.EventCategoryID);
-            selectListItems = sub.Select(x => new SelectListItem
-            {
-                Value = x.EventSubcategoryID.ToString(),
-                Text = x.EventSubCategoryName
-            });
-
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
-            viewModel.SubCategoryForDropList = selectListItems;
+            viewModel.SubCategoryForDropList = PopulateSubCategory(viewModel.EventCategoryID);
             return View(viewModel);
         }
 
@@ -86,15 +77,7 @@ namespace TicketReservation.Controllers
 
         public ActionResult GetSubcategory(int id)
         {
-            IEnumerable<SubCategory> sub = new List<SubCategory>();
-            IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
-            sub = catRepo.SubCategories.Where(x => x.EventCategoryID == id);
-            selectListItems = sub.Select(x => new SelectListItem
-            {
-                Value = x.EventSubcategoryID.ToString(),
-                Text = x.EventSubCategoryName
-            });
-            return Json(selectListItems, JsonRequestBehavior.AllowGet);
+            return Json(PopulateSubCategory(id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -106,6 +89,20 @@ namespace TicketReservation.Controllers
                 TempData["message"] = string.Format("Usunięto {0}", deletedEvent.EventName);
             }
             return RedirectToAction("Index");
+        }
+
+        public IEnumerable<SelectListItem> PopulateSubCategory(int id)
+        {
+            IEnumerable<SubCategory> sub = new List<SubCategory>();
+            IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
+            sub = catRepo.SubCategories.Where(x => x.EventCategoryID == id);
+            selectListItems = sub.Select(x => new SelectListItem
+            {
+                Value = x.EventSubcategoryID.ToString(),
+                Text = x.EventSubCategoryName
+            });
+
+            return selectListItems;
         }
     }
 }
