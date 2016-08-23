@@ -34,6 +34,7 @@
                         @*@Html.RouteLink(e.EventCategoryName, new { controller = "Event", action = "List", category = e.EventCategoryID })*@
 
                         <ul class="dropdown-menu">
+                            <li>@Html.RouteLink("Pokaż wszystkie...", new {controller = "Event", action = "List", categoryname = e.EventCategoryName, categoryId = e.EventCategoryID})</li>
                             @foreach (var sub in e.SubCategories.Where(x => x.EventCategoryID == e.EventCategoryID))
                             {
                                 <li>@Html.RouteLink(sub.EventSubCategoryName, new {controller = "Event", action = "List", categoryName = e.EventCategoryName, categoryId = e.EventCategoryID, subcategoryName = sub.EventSubCategoryName, subcategoryId = sub.EventSubcategoryID})</li>

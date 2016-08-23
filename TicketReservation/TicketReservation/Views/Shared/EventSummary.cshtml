@@ -7,7 +7,7 @@
             <img src="@Url.Action("GetImage", "Event", new {Model.EventID})" alt="">
         }
         <div class="caption">
-            <h4>@Model.EventName</h4>
+            <h4>@Html.RouteLink(Model.EventName, new { controller = "Event", action = "ShowEvent", eventId = Model.EventID})</h4>
             <b>Data rozpoczęcia: </b>
             <p>@Model.EventStartDateTime.Date.ToLongDateString()</p>
             <b>Data zakończenia: </b>

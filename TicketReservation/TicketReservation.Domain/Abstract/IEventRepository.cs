@@ -11,10 +11,10 @@ namespace TicketReservation.Domain.Abstract
     {
         IEnumerable<Event> Events { get; }
 
+        Event GetEvent(int? eventId);
+
         void SaveEvent(Event theEvent);
 
         Event DeleteEvent(int eventId);
-
-
     }
 }

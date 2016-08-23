@@ -19,6 +19,12 @@ namespace TicketReservation.Domain.Concrete
             }
         }
 
+        public Event GetEvent(int? eventId)
+        {
+            Event foundEvent = context.Events.Find(eventId);
+            return foundEvent;           
+        }
+
         public void SaveEvent(Event theEvent)
         {
             if (theEvent.EventID == 0)

@@ -23,17 +23,21 @@ namespace TicketReservation
                 subcategoryId = UrlParameter.Optional
             });
 
-           // routes.MapRoute(
-           //    "Default",                                              // Route name
-           //    "{controller}/{action}/{categoryId}",                           // URL with parameters
-           //    new { controller = "Event", action = "List", categoryId = 2}  // Parameter defaults
-           //);
+            //routes.MapRoute(null, "{controller}/{action}/{eventId}", new
+            //{
+            //    controller = "Event",
+            //    action = "ShowEvent",
+            //    eventId = UrlParameter.Optional, 
+            //});
+
+            // routes.MapRoute(
+            //    "Default",                                              // Route name
+            //    "{controller}/{action}/{categoryId}",                           // URL with parameters
+            //    new { controller = "Event", action = "List", categoryId = 2}  // Parameter defaults
+            //);
 
             routes.MapRoute(null, "{controller}/{action}");
 
-            routes.MapRoute("Error", "{*url}",
-                new { controller = "Error", action = "404" }
-            );
             //routes.MapRoute(null,
             //    "",
             //    new

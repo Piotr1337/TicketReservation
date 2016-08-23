@@ -16,6 +16,7 @@ namespace TicketReservation.Controllers
     {
         private IEventRepository repository;
         private ICategoryRepository categoryRep;
+          
 
         public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository)
         {
@@ -50,10 +51,16 @@ namespace TicketReservation.Controllers
             {
                 EventsViewModel model = new EventsViewModel
                 {
-                    Events = repository.Events
+                    Events = repository.Events.Where(x => x.EventCategoryID == categoryId)
                 };
                 return View(model);
             }
+        }
+
+        public ViewResult ShowEvent(int? eventId)
+        {
+            Event foundEvent = repository.GetEvent(eventId);
+            return View(foundEvent);
         }
 
         public FileContentResult GetImage(int eventId)
