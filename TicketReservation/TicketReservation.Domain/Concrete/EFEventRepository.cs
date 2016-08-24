@@ -11,7 +11,8 @@ namespace TicketReservation.Domain.Concrete
     public class EFEventRepository : IEventRepository
     {
         private EFDbContext context = new EFDbContext();
-        public IEnumerable<Event> Events
+
+        public IEnumerable<Events> Events
         {
             get
             { 
@@ -19,13 +20,13 @@ namespace TicketReservation.Domain.Concrete
             }
         }
 
-        public Event GetEvent(int? eventId)
+        public Events GetEvent(int? eventId)
         {
-            Event foundEvent = context.Events.Find(eventId);
+            Events foundEvent = context.Events.Find(eventId);
             return foundEvent;           
         }
 
-        public void SaveEvent(Event theEvent)
+        public void SaveEvent(Events theEvent)
         {
             if (theEvent.EventID == 0)
             {
@@ -33,7 +34,7 @@ namespace TicketReservation.Domain.Concrete
             }
             else
             {
-                Event dbEntry = context.Events.Find(theEvent.EventID);
+                Events dbEntry = context.Events.Find(theEvent.EventID);
                 if (dbEntry != null)
                 {
                     dbEntry.EventName = theEvent.EventName;
@@ -52,9 +53,9 @@ namespace TicketReservation.Domain.Concrete
             context.SaveChanges();
         }
 
-        public Event DeleteEvent(int eventId)
+        public Events DeleteEvent(int eventId)
         {
-            Event dbEntry = context.Events.Find(eventId);
+            Events dbEntry = context.Events.Find(eventId);
             if (dbEntry != null)
             {
                 context.Events.Remove(dbEntry);

@@ -1,4 +1,4 @@
-﻿@model TicketReservation.Domain.Entities.Event
+﻿@model TicketReservation.Domain.Entities.Events
 
 @{
     ViewBag.Title = "ShowEvent";
@@ -17,9 +17,40 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <h3>
-            Zaczynamy w <b>@Model.EventStartDateTime.Date.ToLongDateString()</b> o godzinie <b>@Model.EventStartDateTime.Date.ToLongTimeString()</b>
-        </h3>
+        Zaczynamy w <b>@Model.EventStartDateTime.Value.Date.ToLongDateString()</b> o godzinie <b>@Model.EventStartDateTime.Value.TimeOfDay</b>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bilety</h3>
+                            <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tytuł</th>
+                                    <th>Miejsce</th>
+                                    <th>Cena</th>
+                                </tr>
+
+                                @foreach (var tickets in Model.Ticket.Where(x => x.EventID == Model.EventID))
+                                {
+                                    <tr>
+                                        <th>@tickets.DateOfEvent.Date.Month.ToString()</th>
+                                        <th>@tickets.Title</th>
+                                        <th>@tickets.Location</th>
+                                        <th>@tickets.Price</th>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

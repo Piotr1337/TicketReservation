@@ -24,7 +24,6 @@ namespace TicketReservation.Infrastructure
             AddBindings();
         }
 
-
         public object GetService(Type serviceType)
         {
             return kernel.TryGet(serviceType);
@@ -40,6 +39,7 @@ namespace TicketReservation.Infrastructure
             kernel.Bind<IEventRepository>().To<EFEventRepository>();
             kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
             kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            kernel.Bind<ITicketRepository>().To<EFTicketRepository>();
         }
     }
 }

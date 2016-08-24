@@ -7,14 +7,8 @@ using TicketReservation.Domain.Entities;
 
 namespace TicketReservation.Domain.Abstract
 {
-    public interface IEventRepository
+    public interface ITicketRepository
     {
-        IEnumerable<Events> Events { get; }     
-
-        Events GetEvent(int? eventId);
-
-        void SaveEvent(Events theEvent);
-
-        Events DeleteEvent(int eventId);
+        IEnumerable<Ticket> Tickets { get; }
     }
 }

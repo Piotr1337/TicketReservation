@@ -59,13 +59,14 @@ namespace TicketReservation.Controllers
 
         public ViewResult ShowEvent(int? eventId)
         {
-            Event foundEvent = repository.GetEvent(eventId);
+            Events foundEvent = repository.GetEvent(eventId);
+
             return View(foundEvent);
         }
 
         public FileContentResult GetImage(int eventId)
         {
-            Event theEvent = repository.Events.FirstOrDefault(e => e.EventID == eventId);
+            Events theEvent = repository.Events.FirstOrDefault(e => e.EventID == eventId);
             if (theEvent != null)
             {
                 return File(theEvent.ImageData, theEvent.ImageMimeType);

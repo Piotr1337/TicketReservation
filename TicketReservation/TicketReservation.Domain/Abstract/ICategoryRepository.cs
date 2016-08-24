@@ -10,8 +10,8 @@ namespace TicketReservation.Domain.Abstract
 {
     public interface ICategoryRepository
     {
-        IEnumerable<Category> Categories { get; }
-        IEnumerable<SubCategory> SubCategories { get; }
+        IEnumerable<Categories> Categories { get; }
+        IEnumerable<SubCategories> SubCategories { get; }
         IEnumerable<SelectListItem> CategoriesForDropList { get; }
 
     }

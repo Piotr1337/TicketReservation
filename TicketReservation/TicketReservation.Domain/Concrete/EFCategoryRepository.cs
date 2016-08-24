@@ -13,12 +13,12 @@ namespace TicketReservation.Domain.Concrete
     {
         EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Category> Categories
+        public IEnumerable<Categories> Categories
         {
             get { return context.Categories; } 
         }
 
-        public IEnumerable<SubCategory> SubCategories
+        public IEnumerable<SubCategories> SubCategories
         {
             get { return context.SubCategories; }
         }

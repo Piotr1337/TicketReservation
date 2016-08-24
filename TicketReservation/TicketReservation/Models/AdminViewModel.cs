@@ -51,9 +51,9 @@ namespace TicketReservation.Models
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
-        public virtual SubCategory SubCategory { get; set; }
+        public virtual SubCategories SubCategory { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Categories Category { get; set; }
 
         public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
 

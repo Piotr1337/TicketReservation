@@ -8,8 +8,9 @@ namespace TicketReservation.Models
 {
     public class EventsViewModel
     {
-        public IEnumerable<Event> Events { get; set; }  
-        public Category CurrentCategory { get; set; }
-        public Event Event { get; set; }
+        public IEnumerable<Events> Events { get; set; }  
+        public Categories CurrentCategory { get; set; }
+        public Events Event { get; set; }
+        public IEnumerable<Ticket> Tickets { get; set; } 
     }
 }

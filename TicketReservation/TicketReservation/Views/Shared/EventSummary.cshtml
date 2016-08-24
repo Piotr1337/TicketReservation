@@ -1,4 +1,4 @@
-﻿@model TicketReservation.Domain.Entities.Event
+﻿@model TicketReservation.Domain.Entities.Events
 
 <div class="col-xs-12 col-sm-6 col-md-3">
     <div class="thumbnail">
@@ -9,9 +9,9 @@
         <div class="caption">
             <h4>@Html.RouteLink(Model.EventName, new { controller = "Event", action = "ShowEvent", eventId = Model.EventID})</h4>
             <b>Data rozpoczęcia: </b>
-            <p>@Model.EventStartDateTime.Date.ToLongDateString()</p>
+            <p>@Model.EventStartDateTime.Value.Date.ToLongDateString()</p>
             <b>Data zakończenia: </b>
-            <p>@Model.EventEndDateTime.Date.ToLongDateString()</p>
+            <p>@Model.EventEndDateTime.Value.Date.ToLongDateString()</p>
             <p>
                 <a href="#" class="btn btn-primary btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
             </p>

@@ -1,17 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketReservation.Domain.Entities;
-
-namespace TicketReservation.Domain.Concrete
+namespace TicketReservation.Domain.Entities
 {
-    public class EFDbContext : DbContext
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class EFDbContext : DbContext
     {
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
+        public EFDbContext()
+            : base("name=EFDbContext")
+        {
+        }
+
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
+        public virtual DbSet<SubCategories> SubCategories { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Events>()
+                .Property(e => e.ImageMimeType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Events>()
+                .HasMany(e => e.Ticket)
+                .WithRequired(e => e.Events)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ticket>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
+        }
     }
 }

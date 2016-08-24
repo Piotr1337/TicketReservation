@@ -8,8 +8,8 @@ namespace TicketReservation.Models
 {
     public class CategoryViewModel
     {
-        public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<SubCategory> SubCategories { get; set; }
+        public IEnumerable<Categories> Categories { get; set; }
+        public IEnumerable<SubCategories> SubCategories { get; set; }
         
     }
 }

@@ -32,7 +32,7 @@ namespace TicketReservation.Controllers
         public ViewResult Edit(int eventId)
         {
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
-            var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
+            var viewModel = Mapper.Map<Events, AdminViewModel>(theEvent);
 
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
             viewModel.SubCategoryForDropList = PopulateSubCategory(viewModel.EventCategoryID);
@@ -40,9 +40,9 @@ namespace TicketReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Event theEvent, HttpPostedFileBase image = null)
+        public ActionResult Edit(Events theEvent, HttpPostedFileBase image = null)
         {
-            var viewModel = Mapper.Map<Event, AdminViewModel>(theEvent);
+            var viewModel = Mapper.Map<Events, AdminViewModel>(theEvent);
             if (ModelState.IsValid)
             {
                 if (image != null)
@@ -52,7 +52,7 @@ namespace TicketReservation.Controllers
                     image.InputStream.Read(viewModel.ImageData, 0, image.ContentLength);
                 }
                 ViewData["Category"] = viewModel;
-                var toModel = Mapper.Map<AdminViewModel, Event>(viewModel);
+                var toModel = Mapper.Map<AdminViewModel, Events>(viewModel);
                 repository.SaveEvent(toModel);
                 TempData["message"] = string.Format("Zapisano {0}", theEvent.EventName);
                 return RedirectToAction("Index");
@@ -83,7 +83,7 @@ namespace TicketReservation.Controllers
         [HttpPost]
         public ActionResult Delete(int eventId)
         {
-            Event deletedEvent = repository.DeleteEvent(eventId);
+            Events deletedEvent = repository.DeleteEvent(eventId);
             if (deletedEvent != null)
             {
                 TempData["message"] = string.Format("Usunięto {0}", deletedEvent.EventName);
@@ -93,12 +93,12 @@ namespace TicketReservation.Controllers
 
         public IEnumerable<SelectListItem> PopulateSubCategory(int id)
         {
-            IEnumerable<SubCategory> sub = new List<SubCategory>();
+            IEnumerable<SubCategories> sub = new List<SubCategories>();
             IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
             sub = catRepo.SubCategories.Where(x => x.EventCategoryID == id);
             selectListItems = sub.Select(x => new SelectListItem
             {
-                Value = x.EventSubcategoryID.ToString(),
+                Value = x.EventSubCategoryID.ToString(),
                 Text = x.EventSubCategoryName
             });
 
