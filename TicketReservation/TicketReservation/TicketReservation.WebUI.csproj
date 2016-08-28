@@ -370,6 +370,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\EventsViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +393,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Event\ShowEvent.cshtml" />
+    <Content Include="Views\Shared\TicketSummary.cshtml" />
+    <Content Include="Views\Admin\TicketEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

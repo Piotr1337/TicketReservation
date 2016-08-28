@@ -7,11 +7,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (TempData["ticketMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["ticketMessage"]</div>
+}
 <div class="panel">
     <div class="panel-heading">
         <h2>Edycja @Model.EventName</h2>
     </div>
 </div>
+
 @using (Html.BeginForm("Edit", "Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="col-md-6">
@@ -93,11 +98,11 @@
                 @Html.ValidationMessageFor(m => m.EventEndDateTime)
                 <br/>
                 @Html.LabelFor(m => m.EventCategoryID)
-                @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.CategoriesForDropList,"Value","Text"), new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.CategoriesForDropList, "Value", "Text"), new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.EventCategoryID)
                 <br/>
                 @Html.LabelFor(m => m.EventSubCategoryID)
-                @Html.DropDownListFor(m => m.EventSubCategoryID, new SelectList(Model.SubCategoryForDropList, "Value", "Text"), new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.EventSubCategoryID, new SelectList(Model.SubCategoryForDropList, "Value", "Text"), new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.EventSubCategoryID)
                 <br/>
                 <div style="position: relative;">
@@ -118,11 +123,17 @@
                 }
                 else
                 {
-                    <img class="img thumbnail" width="150" height="150"
+                    <img class="img thumbnail" width="400" height="250"
                          src="@Url.Action("GetImage", "Event", new {Model.EventID})"/>
                 }
             </div>
         </div>
+    </div>
+    <br/>
+    <div class="col-md-6">
+        @Html.Label("Bilety")
+        @Html.Partial("TicketSummary", Model.Events)
+        @Html.ActionLink("Dodaj", "AddTicket", "Admin" , new { eventId = Model.EventID } , new { @class = "glyphicon glyphicon-plus pull-right" })
     </div>
     <div class="panel-footer col-md-12">
         <input type="submit" value="Zapisz" class="btn btn-primary" />
@@ -132,6 +143,7 @@
    })
     </div>
 }
+
 
 
 

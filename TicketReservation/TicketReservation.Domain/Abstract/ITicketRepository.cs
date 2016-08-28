@@ -10,5 +10,9 @@ namespace TicketReservation.Domain.Abstract
     public interface ITicketRepository
     {
         IEnumerable<Ticket> Tickets { get; }
+
+        void SaveTicket(Ticket theTicket);
+
+        Ticket DeleteTicket(int ticketId);
     }
 }

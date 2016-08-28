@@ -16,11 +16,13 @@ namespace TicketReservation.Controllers
     {
         private IEventRepository repository;
         private ICategoryRepository catRepo;
+        private ITicketRepository ticketRepository;
 
-        public AdminController(IEventRepository repo, ICategoryRepository catRepository)
+        public AdminController(IEventRepository repo, ICategoryRepository catRepository, ITicketRepository ticketRepo)
         {
             repository = repo;
             catRepo = catRepository;
+            ticketRepository = ticketRepo;
         }
 
         // GET: Admin
@@ -36,6 +38,8 @@ namespace TicketReservation.Controllers
 
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
             viewModel.SubCategoryForDropList = PopulateSubCategory(viewModel.EventCategoryID);
+            viewModel.Events = repository.Events.FirstOrDefault(x => x.EventID == eventId);
+            ViewBag.IsAdmin = true;
             return View(viewModel);
         }
 
@@ -63,6 +67,40 @@ namespace TicketReservation.Controllers
             }
         }
 
+        public ViewResult AddTicket(int eventId)
+        {
+            return View("TicketEdit", new TicketViewModel()
+            {
+                DateOfEvent = DateTime.Now,
+                EventID = eventId
+            });
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTicket(int ticketId)
+        {
+            Ticket deletedTicket = ticketRepository.DeleteTicket(ticketId);
+            if (deletedTicket != null)
+            {
+                TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedTicket.Title);
+                return View("Index");
+            }
+            return View("Index");
+        }
+
+        [HttpPost]
+        public ActionResult TicketEdit(Ticket theTicket)
+        {
+            var viewModel = Mapper.Map<Ticket, TicketViewModel>(theTicket);
+            if (ModelState.IsValid)
+            {
+                var toModel = Mapper.Map<TicketViewModel, Ticket>(viewModel);
+                ticketRepository.SaveTicket(toModel);
+                TempData["ticketMessage"] = string.Format("Zapisano bilet {0}", toModel.Title);
+            }
+            return RedirectToAction("Edit","Admin", new { eventId = viewModel.EventID});
+        }
+
         public ViewResult Create()
         {
             return View("Edit", new AdminViewModel()
@@ -86,7 +124,7 @@ namespace TicketReservation.Controllers
             Events deletedEvent = repository.DeleteEvent(eventId);
             if (deletedEvent != null)
             {
-                TempData["message"] = string.Format("Usunięto {0}", deletedEvent.EventName);
+                TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedEvent.EventName);
             }
             return RedirectToAction("Index");
         }

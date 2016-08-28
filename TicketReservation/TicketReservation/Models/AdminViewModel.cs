@@ -55,6 +55,8 @@ namespace TicketReservation.Models
 
         public virtual Categories Category { get; set; }
 
+        public virtual Events Events { get; set; }
+
         public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
 
         public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }

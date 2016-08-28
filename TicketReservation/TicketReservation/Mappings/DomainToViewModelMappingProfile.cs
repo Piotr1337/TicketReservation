@@ -18,6 +18,7 @@ namespace TicketReservation.Mappings
         protected override void Configure()
         {
             CreateMap<Events, AdminViewModel>();
+            CreateMap<Ticket, TicketViewModel>();
         }
     }
 }

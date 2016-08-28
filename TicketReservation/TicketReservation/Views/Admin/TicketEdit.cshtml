@@ -1,0 +1,40 @@
+﻿@model TicketReservation.Models.TicketViewModel
+
+@{
+    ViewBag.Title = "TicketEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Bilet</h2>
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("TicketEdit", "Admin", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.TicketID)
+            @Html.HiddenFor(m => m.EventID)
+
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, null, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Title)
+            <br/>
+            @Html.LabelFor(m => m.DateOfEvent)
+            @Html.TextBoxFor(m => m.DateOfEvent, null, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.DateOfEvent)
+            <br/>
+            @Html.LabelFor(m => m.Location)
+            @Html.TextBoxFor(m => m.Location, null, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Location)
+            <br/>
+            @Html.LabelFor(m => m.Price)
+            @Html.TextBoxFor(m => m.Price, null, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Price)
+            <div class="panel-footer col-md-12">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
+               {
+                   @class = "btn btn-default"
+               })
+                </div>
+         }
+   </div>
+</div>
