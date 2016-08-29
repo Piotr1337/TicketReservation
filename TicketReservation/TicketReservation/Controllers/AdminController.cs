@@ -76,16 +76,23 @@ namespace TicketReservation.Controllers
             });
         }
 
-        [HttpPost]
         public ActionResult DeleteTicket(int ticketId)
         {
             Ticket deletedTicket = ticketRepository.DeleteTicket(ticketId);
             if (deletedTicket != null)
             {
                 TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedTicket.Title);
-                return View("Index");
+                return Redirect(Request.UrlReferrer.PathAndQuery);
             }
             return View("Index");
+        }
+
+        public ViewResult TicketEdit(int ticketId)
+        {
+            var theTicket = ticketRepository.Tickets.FirstOrDefault(x => x.TicketID == ticketId);
+            var viewModel = Mapper.Map<Ticket, TicketViewModel>(theTicket);
+
+            return View(viewModel);
         }
 
         [HttpPost]

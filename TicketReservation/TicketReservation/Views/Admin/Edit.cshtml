@@ -19,7 +19,7 @@
 
 @using (Html.BeginForm("Edit", "Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="panel-body">
             @Html.HiddenFor(x => x.EventID)
             @*
@@ -130,7 +130,7 @@
         </div>
     </div>
     <br/>
-    <div class="col-md-6">
+    <div class="col-md-7">
         @Html.Label("Bilety")
         @Html.Partial("TicketSummary", Model.Events)
         @Html.ActionLink("Dodaj", "AddTicket", "Admin" , new { eventId = Model.EventID } , new { @class = "glyphicon glyphicon-plus pull-right" })

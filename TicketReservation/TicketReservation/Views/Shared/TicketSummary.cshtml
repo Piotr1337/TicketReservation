@@ -50,13 +50,10 @@
                                 {
                                     <td class="agenda-actions">
                                         <div class="agenda-action">
-                                            @*@using (Html.BeginForm("Delete", "Admin"))
-                                            {
-                                                @Html.Hidden("EventID", item.EventID)
-                                                <input type="submit" value="Usuń" />
-                                            }*@
-                                            <i class="glyphicon glyphicon-edit" style="color: #4C96D7; font-size: 20px"></i>
-                                            @Html.ActionLink("Usuń", "DeleteTicket", "Admin", new { ticketId = Model.Ticket.Select(x => x.TicketID) }, new { @class = "glyphicon glyphicon-trash", style= "color: #F95431; font-size: 20px " })                                          
+                                            <div class="btn-group pull-right" role="group" aria-label="...">
+                                                @Html.ActionLink("Usuń","DeleteTicket","Admin",new {ticketId = tickets.TicketID}, new {@class = "btn btn-danger", type="button"})
+                                                @Html.ActionLink("Edytuj", "TicketEdit", "Admin", new { ticketId = tickets.TicketID }, new { @class = "btn btn-primary", type = "button" })
+                                            </div>
                                         </div>
                                     </td>
                                 }
