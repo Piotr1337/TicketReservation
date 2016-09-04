@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TicketReservation.App_Start;
 using TicketReservation.Mappings;
 
 namespace TicketReservation
@@ -14,6 +15,7 @@ namespace TicketReservation
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AutoMapperConfiguration.Configure();
         }
     }

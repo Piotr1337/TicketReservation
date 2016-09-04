@@ -5,8 +5,13 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Bilet</h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h2>Edycja @Model.Title</h2>
+    </div>
+</div>
 <div class="container">
+
     <div class="row">
         @using (Html.BeginForm("TicketEdit", "Admin", FormMethod.Post))
         {
@@ -18,7 +23,12 @@
             @Html.ValidationMessageFor(m => m.Title)
             <br/>
             @Html.LabelFor(m => m.DateOfEvent)
-            @Html.TextBoxFor(m => m.DateOfEvent, null, new {@class = "form-control"})
+            <div class='input-group date datetimepicker1'>
+                @Html.TextBoxFor(m => m.DateOfEvent, null, new {@class = "form-control"})
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
             @Html.ValidationMessageFor(m => m.DateOfEvent)
             <br/>
             @Html.LabelFor(m => m.Location)
@@ -29,12 +39,12 @@
             @Html.TextBoxFor(m => m.Price, null, new {@class = "form-control"})
             @Html.ValidationMessageFor(m => m.Price)
             <div class="panel-footer col-md-12">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary"/>
                 @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
-               {
-                   @class = "btn btn-default"
-               })
-                </div>
-         }
-   </div>
+                {
+                    @class = "btn btn-default"
+                })
+            </div>
+        }
+    </div>
 </div>

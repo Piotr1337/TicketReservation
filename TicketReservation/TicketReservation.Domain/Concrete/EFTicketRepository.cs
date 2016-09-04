@@ -23,6 +23,17 @@ namespace TicketReservation.Domain.Concrete
             {
                 context.Ticket.Add(theTicket);
             }
+            else
+            {
+                Ticket dbEntry = context.Ticket.Find(theTicket.TicketID);
+                if (dbEntry != null)
+                {
+                    dbEntry.DateOfEvent = theTicket.DateOfEvent;
+                    dbEntry.Location = theTicket.Location;
+                    dbEntry.Title = theTicket.Title;
+                    dbEntry.Price = theTicket.Price;
+                }
+            }
             context.SaveChanges();
         }
 

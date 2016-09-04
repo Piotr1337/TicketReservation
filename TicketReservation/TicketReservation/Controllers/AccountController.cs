@@ -8,6 +8,7 @@ using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         IAuthProvider authProvider;
