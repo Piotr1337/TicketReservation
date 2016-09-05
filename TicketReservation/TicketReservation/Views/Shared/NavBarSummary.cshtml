@@ -4,7 +4,7 @@
         <a href="/Event/List" class="navbar-left logo"><img src="/img/tickets.png"></a>
     </div>
     <div class="col-md-4 col-xs-5 visible-xs">
-        <img class="logo_mobile" src="/img/logo_mobile.png"/>
+        <img class="logo_mobile" src="/img/logo_mobile.png" />
     </div>
     <div id="nav-center" class="hidden-xs">
         <p class="company_whole_name" onselectstart="return false"> <span class="company_name_1">Ticket</span><span class="company_name_2"> Hunter</span></p>
@@ -14,36 +14,81 @@
         </form>
     </div>
 </div>
-<nav class="navbar navbar-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                @foreach (var e in Model.Categories)
-                {
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @foreach (var e in Model.Categories)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle category" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="@e.Icon" id="iconsNavbar"></i>@e.EventCategoryName<span class="caret"></span></a>
+
+                            @*@Html.RouteLink(e.EventCategoryName, new { controller = "Event", action = "List", category = e.EventCategoryID })*@
+
+                            <ul class="dropdown-menu">
+                                <li>@Html.RouteLink("Pokaż wszystkie...", new {controller = "Event", action = "List", categoryname = e.EventCategoryName, categoryId = e.EventCategoryID})</li>
+                                @foreach (var sub in e.SubCategories.Where(x => x.EventCategoryID == e.EventCategoryID))
+                                {
+                                    <li>@Html.RouteLink(sub.EventSubCategoryName, new {controller = "Event", action = "List", categoryName = e.EventCategoryName, categoryId = e.EventCategoryID, subcategoryName = sub.EventSubCategoryName, subcategoryId = sub.EventSubCategoryID})</li>
+                                    @*<li><a href="#">@sub.EventSubCategoryName</a></li>*@
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li>
+                        <p class="navbar-text">Already have an account?</p>
+                    </li>*@
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle category" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="@e.Icon" id="iconsNavbar"></i>@e.EventCategoryName<span class="caret"></span></a>
-
-                        @*@Html.RouteLink(e.EventCategoryName, new { controller = "Event", action = "List", category = e.EventCategoryID })*@
-
-                        <ul class="dropdown-menu">
-                            <li>@Html.RouteLink("Pokaż wszystkie...", new {controller = "Event", action = "List", categoryname = e.EventCategoryName, categoryId = e.EventCategoryID})</li>
-                            @foreach (var sub in e.SubCategories.Where(x => x.EventCategoryID == e.EventCategoryID))
-                            {
-                                <li>@Html.RouteLink(sub.EventSubCategoryName, new {controller = "Event", action = "List", categoryName = e.EventCategoryName, categoryId = e.EventCategoryID, subcategoryName = sub.EventSubCategoryName, subcategoryId = sub.EventSubCategoryID})</li>
-                                @*<li><a href="#">@sub.EventSubCategoryName</a></li>*@
-                            }
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>Zaloguj</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Zaloguj przez
+                                        <div class="social-buttons">
+                                            <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                        </div>
+                                        lub
+                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">adres email</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="adres email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">hasło</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="hasło" required>
+                                                <div class="help-block text-right">
+                                                    <a href="">Zapomniałeś hasła ?</a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Pamiętaj mnie
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="bottom text-center">
+                                        Niemasz konta? @Html.ActionLink("Zarejestruj się","Registration","Auth")
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </li>
-                }
-            </ul>                     
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>

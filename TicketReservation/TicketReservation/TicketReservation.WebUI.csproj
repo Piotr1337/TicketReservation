@@ -420,6 +420,7 @@
     <Content Include="Views\Shared\TicketSummary.cshtml" />
     <Content Include="Views\Admin\TicketEdit.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

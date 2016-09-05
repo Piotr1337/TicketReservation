@@ -15,7 +15,6 @@ namespace TicketReservation.Domain.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MemberID { get; set; }
 
         public int? address_id { get; set; }

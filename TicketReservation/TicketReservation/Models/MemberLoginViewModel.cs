@@ -9,6 +9,7 @@ namespace TicketReservation.Models
 {
     public class MemberLoginViewModel
     {
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -17,6 +18,9 @@ namespace TicketReservation.Models
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
         public string Password { get; set; }
+
+        [Required]
+        public string RepeatPassword { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }

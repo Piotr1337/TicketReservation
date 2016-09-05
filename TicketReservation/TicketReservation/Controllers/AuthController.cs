@@ -4,7 +4,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using TicketReservation.Domain.Abstract;
+using TicketReservation.Domain.Entities;
 using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
@@ -33,8 +35,6 @@ namespace TicketReservation.Controllers
                 return View(model);
             }
 
-            var checkEmail = _memberRepository.Members.FirstOrDefault(m => m.Email == model.Email);
-
             if (model.Email != null && model.Password == _memberRepository.GetPassword(model.Email))
             {
                 var identity = new ClaimsIdentity(new[]
@@ -53,6 +53,26 @@ namespace TicketReservation.Controllers
             }
             ModelState.AddModelError("","Nieprawidłowy email albo hasło");
             return View(model);
+        }
+
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registration(MemberLoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var toModel = Mapper.Map<MemberLoginViewModel, Members>(model);
+                _memberRepository.AddMember(toModel);
+            }
+            else
+            {
+                ModelState.AddModelError("","Cos nie tak");
+            }
+            return View();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace TicketReservation.Domain.Abstract
     {
         IEnumerable<Members> Members { get; }
 
+        void AddMember(Members member);
+
         string GetPassword(string email);
     }
 }
