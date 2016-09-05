@@ -40,6 +40,7 @@ namespace TicketReservation.Infrastructure
             kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
             kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             kernel.Bind<ITicketRepository>().To<EFTicketRepository>();
+            kernel.Bind<IMemberRepository>().To<EFMemberRepository>();
         }
     }
 }

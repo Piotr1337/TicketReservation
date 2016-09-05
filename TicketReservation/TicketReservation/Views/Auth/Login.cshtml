@@ -1,17 +1,34 @@
-﻿
+﻿@model TicketReservation.Models.MemberLoginViewModel
+
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>Login</title>
 </head>
 <body>
-    <div> 
-    </div>
+@{
+    ViewBag.Title = "Login";
+}
+    @Html.ValidationSummary(true)
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(u => u.Email)
+        @Html.TextBoxFor(u => u.Email, null, new { @class = "form-control" })
+        @Html.LabelFor(u => u.Password)
+        @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+        <p>
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </p>
+     
+    }
+</div>
 </body>
 </html>

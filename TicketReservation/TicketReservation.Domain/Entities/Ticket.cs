@@ -25,6 +25,10 @@ namespace TicketReservation.Domain.Entities
         [StringLength(50)]
         public string Title { get; set; }
 
+        public int? OrderID { get; set; }
+
         public virtual Events Events { get; set; }
+
+        public virtual Members_Orders Members_Orders { get; set; }
     }
 }

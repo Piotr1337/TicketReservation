@@ -81,13 +81,17 @@
   <ItemGroup>
     <Compile Include="Abstract\ICategoryRepository.cs" />
     <Compile Include="Abstract\IEventRepository.cs" />
+    <Compile Include="Abstract\IMemberRepository.cs" />
     <Compile Include="Abstract\ITicketRepository.cs" />
     <Compile Include="Concrete\EFCategoryRepository.cs" />
     <Compile Include="Concrete\EFEventRepository.cs" />
+    <Compile Include="Concrete\EFMemberRepository.cs" />
     <Compile Include="Concrete\EFTicketRepository.cs" />
     <Compile Include="Entities\Categories.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Entities\Events.cs" />
+    <Compile Include="Entities\Members.cs" />
+    <Compile Include="Entities\Members_Orders.cs" />
     <Compile Include="Entities\SubCategories.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
