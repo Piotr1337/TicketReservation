@@ -390,10 +390,12 @@
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\AuthModelView.cs" />
+    <Compile Include="Models\NavbarViewModel.cs" />
     <Compile Include="Models\EventsViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MemberLoginViewModel.cs" />
+    <Compile Include="Models\MemberRegisterViewModel.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -421,6 +423,8 @@
     <Content Include="Views\Admin\TicketEdit.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Registration.cshtml" />
+    <Content Include="Views\Shared\MemberLoginSummary.cshtml" />
+    <Content Include="Views\Shared\MemberRegisterSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

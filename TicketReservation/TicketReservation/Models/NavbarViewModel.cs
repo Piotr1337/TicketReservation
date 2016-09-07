@@ -6,10 +6,10 @@ using TicketReservation.Domain.Entities;
 
 namespace TicketReservation.Models
 {
-    public class CategoryViewModel
+    public class NavbarViewModel
     {
         public IEnumerable<Categories> Categories { get; set; }
         public IEnumerable<SubCategories> SubCategories { get; set; }
-        
+        public MemberLoginViewModel LoginModel { get; set; }
     }
 }

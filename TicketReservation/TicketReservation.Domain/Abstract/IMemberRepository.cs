@@ -13,6 +13,8 @@ namespace TicketReservation.Domain.Abstract
 
         void AddMember(Members member);
 
+        Members GetMember(string email);
+
         string GetPassword(string email);
     }
 }

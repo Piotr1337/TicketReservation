@@ -27,7 +27,7 @@ namespace TicketReservation.Controllers
         [ChildActionOnly]
         public ActionResult NavBar()
         {
-            CategoryViewModel model = new CategoryViewModel
+            NavbarViewModel model = new NavbarViewModel
             {
                 Categories = categoryRep.Categories,
                 SubCategories = categoryRep.SubCategories

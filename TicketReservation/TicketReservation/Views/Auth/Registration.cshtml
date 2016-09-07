@@ -11,40 +11,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <h4 class="accountText">MOJE KONTO:<b>LOGOWANIE</b></h4>
-        @Html.TextBoxFor(m => m.Email, null, new {@class = "form-control", placeholder = "Adres email"})
-        <br/>
-        @Html.TextBoxFor(m => m.Password, null, new {@class = "form-control", placeholder = "Hasło"})
-        <br />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Zapamiętaj mnie
-            </label>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
-        </div>
-        <div class="social-buttons">
-            Masz konto na facebooku?<a href="#"> zaloguj się</a>
-        </div>
-        <br/>
-        <a href="">Zapomniałeś hasła ?</a>
-    </div>
-    <div class="col-md-6">
-        <h4 class="accountText">SZYBKA REJESTRACJA</h4>
-
-        @Html.ValidationSummary(true)
-
-        @using (Html.BeginForm())
-        {
-            @Html.TextBoxFor(m => m.Email, null, new {@class = "form-control", placeholder = "Adres email"})
-            <br/>
-            @Html.TextBoxFor(m => m.Password, null, new {@class = "form-control", placeholder = "Hasło"})
-            <br/>
-            @Html.TextBoxFor(m => m.RepeatPassword, null, new {@class = "form-control", placeholder = "Powtórz hasło"})
-            <br/>
-            <button type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
-        }
-    </div>
+    @Html.Partial("MemberLoginSummary", Model)
+    @Html.Partial("MemberRegisterSummary", Model)
 </div>

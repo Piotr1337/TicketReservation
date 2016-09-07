@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace TicketReservation.Models
 {
-    public class MemberLoginViewModel
+    public class MemberRegisterViewModel
     {
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -17,5 +17,11 @@ namespace TicketReservation.Models
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
         public string Password { get; set; }
+
+        [Required]
+        public string RepeatPassword { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string ReturnUrl { get; set; }
     }
 }

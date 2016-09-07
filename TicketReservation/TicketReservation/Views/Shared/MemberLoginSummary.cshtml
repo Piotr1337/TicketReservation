@@ -1,0 +1,23 @@
+﻿@model TicketReservation.Models.AuthModelView
+
+<div class="col-md-6">
+    @using (Html.BeginForm("MemberLoginSummary","Auth"))
+    {
+        <h4 class="accountText">MOJE KONTO:<b>LOGOWANIE</b></h4>
+        @Html.TextBoxFor(m => m.LoginModel.Email, null, new { @class = "form-control", placeholder = "Adres email" })
+        <br />
+        @Html.TextBoxFor(m => m.LoginModel.Password, null, new { @class = "form-control", placeholder = "Hasło" })
+        <br />
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Zapamiętaj mnie
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
+        <div class="social-buttons">
+            Masz konto na facebooku?<a href="#"> zaloguj się</a>
+        </div>
+        <br />
+        <a href="">Zapomniałeś hasła ?</a>
+    }
+</div>

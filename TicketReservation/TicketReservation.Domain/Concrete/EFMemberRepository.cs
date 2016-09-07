@@ -31,6 +31,12 @@ namespace TicketReservation.Domain.Concrete
             context.SaveChanges();
         }
 
+        public Members GetMember(string email)
+        {
+            Members member = context.Members.FirstOrDefault(x => x.Email == email);
+            return member;
+        }
+
         public string GetPassword(string email)
         {
             Members member = context.Members.FirstOrDefault(x => x.Email == email);
@@ -38,6 +44,7 @@ namespace TicketReservation.Domain.Concrete
             var decryptedPassword = CustomDecrypt.Decrypt(materializePassword);
 
             return decryptedPassword;
+
         }
     }
 }

@@ -22,26 +22,27 @@ namespace TicketReservation.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult MemberLoginSummary()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(MemberLoginViewModel model)
+        public ActionResult MemberLoginSummary(AuthModelView model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            if (model.Email != null && model.Password == _memberRepository.GetPassword(model.Email))
+            if (model.LoginModel.Email != null && model.LoginModel.Password == _memberRepository.GetPassword(model.LoginModel.Email))
             {
+                var member = _memberRepository.GetMember(model.LoginModel.Email);
+
                 var identity = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, "Xtian"),
-                    new Claim(ClaimTypes.Email, "xtiian@gmail.com"),
-                    new Claim(ClaimTypes.Country, "Philipines"),   
+                    new Claim(ClaimTypes.Email, member.Email),
+                    new Claim(ClaimTypes.Name, member.Email),
                 },"ApplicationCookie");
 
                 var ctx = Request.GetOwinContext();
@@ -49,7 +50,7 @@ namespace TicketReservation.Controllers
 
                 authManager.SignIn(identity);
 
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("List","Event");
             }
             ModelState.AddModelError("","Nieprawidłowy email albo hasło");
             return View(model);
@@ -60,12 +61,21 @@ namespace TicketReservation.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            var ctx = Request.GetOwinContext();
+            var authManager = ctx.Authentication;
+
+            authManager.SignOut("ApplicationCookie");
+            return RedirectToAction("Registration", "Auth");
+        }
+
         [HttpPost]
-        public ActionResult Registration(MemberLoginViewModel model)
+        public ActionResult MemberRegisterSummary(AuthModelView model)
         {
             if (ModelState.IsValid)
             {
-                var toModel = Mapper.Map<MemberLoginViewModel, Members>(model);
+                var toModel = Mapper.Map<MemberRegisterViewModel, Members>(model.RegisterModel);
                 _memberRepository.AddMember(toModel);
             }
             else
