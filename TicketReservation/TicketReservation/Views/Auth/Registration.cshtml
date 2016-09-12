@@ -1,4 +1,4 @@
-﻿@model TicketReservation.Models.MemberLoginViewModel
+﻿@model TicketReservation.Models.AuthModelView
 
 @{
     ViewBag.Title = "Registration";
@@ -9,6 +9,9 @@
     <div class="col-md-12">
         <h3 class="accountHeadText">LOGOWANIE</h3>
     </div>
+</div>
+<div>
+    <p class="bg-danger">@Html.ValidationMessage("LoginError")</p>
 </div>
 <div class="row">
     @Html.Partial("MemberLoginSummary", Model)

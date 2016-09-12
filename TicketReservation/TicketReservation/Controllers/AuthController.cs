@@ -32,7 +32,7 @@ namespace TicketReservation.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Registration", model);
             }
 
             if (model.LoginModel.Email != null && model.LoginModel.Password == _memberRepository.GetPassword(model.LoginModel.Email))
@@ -52,8 +52,9 @@ namespace TicketReservation.Controllers
 
                 return RedirectToAction("List","Event");
             }
-            ModelState.AddModelError("","Nieprawidłowy email albo hasło");
-            return View(model);
+            ModelState.AddModelError("LoginError","Nieprawidłowy email albo hasło");
+
+            return View("Registration", model);
         }
 
         public ActionResult Registration()

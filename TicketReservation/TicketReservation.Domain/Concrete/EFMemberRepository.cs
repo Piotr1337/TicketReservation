@@ -39,9 +39,19 @@ namespace TicketReservation.Domain.Concrete
 
         public string GetPassword(string email)
         {
-            Members member = context.Members.FirstOrDefault(x => x.Email == email);
-            var materializePassword = member.Password;
-            var decryptedPassword = CustomDecrypt.Decrypt(materializePassword);
+            Members mem = new Members();
+            mem = context.Members.FirstOrDefault(x => x.Email == email);
+            var decryptedPassword = "";
+            if (mem != null)
+            {
+                var materializePassword = mem.Password;
+                decryptedPassword = CustomDecrypt.Decrypt(materializePassword);
+            }
+            else
+            {
+               decryptedPassword = "";
+            }
+
 
             return decryptedPassword;
 

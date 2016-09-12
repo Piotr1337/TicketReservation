@@ -365,6 +365,7 @@
     </Content>
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\moment.min.js" />
+    <Content Include="scripts\myScripts.js" />
     <Content Include="scripts\navbarHover.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

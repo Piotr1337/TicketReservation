@@ -116,7 +116,8 @@ namespace TicketReservation.Controllers
                 EventEndDateTime = DateTime.Now,
                 TicketsOnSaleDateTime = DateTime.Now,
                 CategoriesForDropList = catRepo.CategoriesForDropList,
-                SubCategoryForDropList = new[] {new SelectListItem {Value = "", Text = ""}}
+                SubCategoryForDropList = new[] {new SelectListItem {Value = "", Text = ""}},
+                Events = new Events()
             });
         }
 

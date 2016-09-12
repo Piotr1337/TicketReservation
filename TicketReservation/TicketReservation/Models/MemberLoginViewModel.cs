@@ -9,13 +9,15 @@ namespace TicketReservation.Models
 {
     public class MemberLoginViewModel
     {
-        [Required]
+
         [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Proszę podać email")]
         public string Email { get; set; }
 
-        [Required]
+
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
+        [Required(ErrorMessage = "Proszę podać hasło")]
         public string Password { get; set; }
     }
 }
