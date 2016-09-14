@@ -250,6 +250,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Content\img\404.png" />
+    <Content Include="Content\img\default.gif" />
+    <Content Include="Content\img\logo_mobile.png" />
+    <Content Include="Content\img\tickets.png" />
+    <Content Include="Content\img\tickets_icon.ico" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <None Include="compilerconfig.json" />
@@ -342,6 +347,7 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <None Include="scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="scripts\blazy.min.js" />
     <Content Include="scripts\bootstrap-datetimepicker.js" />
     <Content Include="scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -435,7 +441,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicketReservation.Domain\TicketReservation.Domain.csproj">
