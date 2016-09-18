@@ -33,6 +33,7 @@ namespace TicketReservation.Controllers
 
         public ViewResult Edit(int eventId)
         {
+
             var theEvent = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             var viewModel = Mapper.Map<Events, AdminViewModel>(theEvent);
 
@@ -114,7 +115,6 @@ namespace TicketReservation.Controllers
             {
                 EventStartDateTime = DateTime.Now,
                 EventEndDateTime = DateTime.Now,
-                TicketsOnSaleDateTime = DateTime.Now,
                 CategoriesForDropList = catRepo.CategoriesForDropList,
                 SubCategoryForDropList = new[] {new SelectListItem {Value = "", Text = ""}},
                 Events = new Events()
@@ -135,6 +135,46 @@ namespace TicketReservation.Controllers
                 TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedEvent.EventName);
             }
             return RedirectToAction("Index");
+        }
+
+        public IEnumerable<Ticket> LoadAllTickets()
+        {
+            var result = ticketRepository.Tickets;
+            List<Ticket> ticketList = new List<Ticket>();
+            foreach (var item in result)
+            {
+                Ticket ticket = new Ticket();
+                ticket.EventID = item.EventID;
+                ticket.TicketID = item.TicketID;
+                ticket.DateOfEvent = item.DateOfEvent;
+                ticket.Title = item.Title;
+                ticket.Location = item.Location;
+                ticket.Price = item.Price;
+
+                ticketList.Add(ticket);
+            }
+
+            return ticketList;
+        }
+
+        public JsonResult GetTickets(int eventID)
+        {
+            var myTickets = LoadAllTickets();
+
+            var ticketList = from e in myTickets
+                select new
+                {
+                    id = e.TicketID,
+                    price = e.Price,
+                    title = e.Title,
+                    date = e.DateOfEvent,
+                    location = e.Location,
+                    eventID = e.EventID,
+                    beginDate = repository.GetEvent(eventID).EventStartDateTime.Value.ToShortDateString(),
+                    finishDate = repository.GetEvent(eventID).EventEndDateTime.Value.ToShortDateString()
+                };
+            var rows = ticketList.ToArray();
+            return Json(rows.Where(x => x.eventID == eventID), JsonRequestBehavior.AllowGet);
         }
 
         public IEnumerable<SelectListItem> PopulateSubCategory(int id)

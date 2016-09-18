@@ -40,10 +40,6 @@ namespace TicketReservation.Models
         [Required(ErrorMessage = "Proszę podać date zakończenia wydarzenia")]
         public DateTime EventEndDateTime { get; set; }
 
-        [DataType(DataType.DateTime), Display(Name = "Promocja na bilety")]
-        [Required(ErrorMessage = "Proszę podać date promocji")]
-        public DateTime TicketsOnSaleDateTime { get; set; }
-
         [DataType(DataType.MultilineText), Display(Name = "Opis")]
         [Required(ErrorMessage = "Proszę podać opis")]
         public string OtherDetails { get; set; }

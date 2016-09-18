@@ -4,9 +4,6 @@
     <div class="thumbnail">
         @if (Model.ImageData != null)
         {
-            @*<div class="ratio_big-img">
-                <img class="b-lazy" src="@Url.Action("GetImage", "Event", new {Model.EventID})">
-            </div>*@
             <div class="ratio_big-img loading">
                 <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="@Url.Action("GetImage", "Event", new {Model.EventID})">
             </div>

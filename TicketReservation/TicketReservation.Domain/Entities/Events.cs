@@ -30,8 +30,6 @@ namespace TicketReservation.Domain.Entities
 
         public DateTime? EventEndDateTime { get; set; }
 
-        public DateTime? TicketsOnSaleDateTime { get; set; }
-
         public string OtherDetails { get; set; }
 
         public int? EventSubCategoryID { get; set; }
