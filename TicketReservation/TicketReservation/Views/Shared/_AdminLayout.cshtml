@@ -36,6 +36,7 @@
     <script src="~/scripts/myCalendar.js"></script>
 
 <script type="text/javascript">
+    jQuery.validator.methods["date"] = function (value, element) { return true; }
     $(function() {
         $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
         $('.datetimepicker2').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });

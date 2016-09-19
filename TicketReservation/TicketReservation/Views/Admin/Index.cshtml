@@ -22,13 +22,13 @@
             {
                 <tr>
                     <td>@item.EventID</td>
-                    <td>@Html.ActionLink(item.EventName, "Edit", new {item.EventID})</td>
+                    <td>@Html.ActionLink(item.EventName, "Edit", new {eventId = item.EventID})</td>
                     <td>@item.EventStartDateTime</td>
                     <td>@item.EventEndDateTime</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("EventID", item.EventID)
+                            @Html.Hidden("eventId", item.EventID)
                             <input type="submit" value="Usuń" class="form-control"/>
                         }
                     </td>

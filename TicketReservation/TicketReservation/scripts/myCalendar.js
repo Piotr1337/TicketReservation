@@ -13,10 +13,38 @@
     }
 };
 
+Date.prototype.addDays = function (days) {
+    var dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
 
+    Date.prototype.addDays = function(days) {
+        var dat = new Date(this.valueOf())
+        dat.setDate(dat.getDate() + days);
+        return dat;
+    }
+    var list = [];
+
+    var date = $('#EventStartDateTime').val().substring(0, 10);
+    var date2 = $('#EventEndDateTime').val().substring(0, 10);
+
+    var dataParts = date.split(".");
+    var dataParts2 = date2.split(".");
+    var dateObjectForStart = new Date(dataParts[2], dataParts[1] - 1, dataParts[0]);
+    var dateObjectForEnd = new Date(dataParts2[2], dataParts2[1] - 1, dataParts2[0]);
+
+    while (dateObjectForStart <= dateObjectForEnd) {
+
+        //list.push(dateObjectForStart);
+        dateObjectForStart = dateObjectForStart.addDays(1);
+        var myNewDate = (new Date(dateObjectForStart)).toISOString().slice(0, 10)
+        list.push(myNewDate)
+        console.log("M:" + " " + dateObjectForStart)
+    }
+
+    var eventId = getUrlParameter('eventId');
 $(document).ready(function () {
-    jQuery.validator.methods["date"] = function (value, element) { return true; }
-    var eventId = getUrlParameter('EventID');
     $('#calendar')
         .fullCalendar({
             header: {
@@ -48,30 +76,18 @@ $(document).ready(function () {
                     eventLimit: 4
                 }
             },
-
-            eventRender: function (event, element, view) {
-                Date.prototype.addDays = function (days) {
-                    var dat = new Date(this.valueOf())
-                    dat.setDate(dat.getDate() + days);
-                    return dat;
-                }
-                var list = [],
-                    dateStart = event.beginDate,
-                    dateEnd = event.finishDate
-                    var dataParts = dateStart.split(".");
-                    var dataParts2 = dateEnd.split(".");
-                var dateObjectForStart = new Date(dataParts[2], dataParts[1] - 1, dataParts[0]);
-                var dateObjectForEnd = new Date(dataParts2[2], dataParts2[1] - 1, dataParts2[0]);
-
-                while (dateObjectForStart <= dateObjectForEnd) {
-
-                    list.push(dateObjectForStart);
-                    dateObjectForStart = dateObjectForStart.addDays(1);
-                    var myNewDate = (new Date(dateObjectForStart)).toISOString().slice(0, 10)
-                    $(view.el[0]).find(".fc-day[data-date='" + myNewDate + "']").css('background-color', '#effbff')
-                }
-                
-
+            dayRender: function (date, cell) {
+                var getNormalDate = new Date(date);
+                var myNewDate = (new Date(getNormalDate)).toISOString().slice(0, 10)
+                list.forEach(function (item) {
+                    console.log("itemek" + item)
+                    console.log(getNormalDate)
+                   if (myNewDate === item) {
+                       cell.css("background-color", "#eafde4");
+                   }
+               })
+            },
+            eventRender: function (event, element, view) {                               
                 var param = event.creatorID;
                 var url = '@Url.Action("GetImage", "Home", new { contactId = "myParam" })';
                 if (view.name === "agendaWeek" || view.name === "agendaDay") {
@@ -99,7 +115,7 @@ $(document).ready(function () {
                     title: event.title,
                     html: true,
                     animation: true,
-                    placement: 'right',
+                    placement: 'left',
 
                     content:
                         "<h6>" +
@@ -130,14 +146,8 @@ $(document).ready(function () {
 
                 element.bind('dblclick',
                     function () {
-
-                        if (event.creatorID === event.loggedUserID) {
-                            var url = "/Create/EditAppointment?appointmentId=" + event.id;
+                            var url = "/Admin/TicketEdit?ticketId=" + event.id;
                             window.location.href = url;                                                     
-                        } else {
-                            alert("Nie jesteś organizatorem tego spotkania")
-                        }
-
                     })
 
             },
@@ -164,7 +174,7 @@ $(document).ready(function () {
     }
 
     function dblClickFunction(date) {
-        var url = "/Create/CreateAppointment?date=" + date.format();
+        var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
         window.location.href = url;
     }
 

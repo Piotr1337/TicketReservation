@@ -68,11 +68,11 @@ namespace TicketReservation.Controllers
             }
         }
 
-        public ViewResult AddTicket(int eventId)
+        public ViewResult AddTicket(string date, int eventId)
         {
             return View("TicketEdit", new TicketViewModel()
             {
-                DateOfEvent = DateTime.Now,
+                DateOfEvent = DateTime.Parse(date),
                 EventID = eventId
             });
         }
