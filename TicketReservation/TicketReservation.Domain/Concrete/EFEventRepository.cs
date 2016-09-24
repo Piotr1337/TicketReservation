@@ -56,9 +56,11 @@ namespace TicketReservation.Domain.Concrete
         public Events DeleteEvent(int eventId)
         {
             Events dbEntry = context.Events.Find(eventId);
+            List<Ticket> dbListTicket = context.Ticket.Where(x => x.EventID == eventId).ToList();
             if (dbEntry != null)
             {
                 context.Events.Remove(dbEntry);
+                context.Ticket.RemoveRange(dbListTicket);
                 context.SaveChanges();
             }
             return dbEntry;           

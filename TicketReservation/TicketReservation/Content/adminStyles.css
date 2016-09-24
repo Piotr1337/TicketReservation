@@ -1,0 +1,21 @@
+﻿.fc-event {
+  cursor: pointer;
+}
+#deleteEvent:hover {
+  border-color: red;
+  color: red;
+  background-color: white;
+}
+#editEvent:hover {
+  border-color: #337ab7;
+  background-color: white;
+}
+#editEvent a:link {
+  color: #337ab7;
+}
+#editEvent a:visited {
+  color: #337ab7;
+}
+#editEvent a:active {
+  color: #337ab7;
+}

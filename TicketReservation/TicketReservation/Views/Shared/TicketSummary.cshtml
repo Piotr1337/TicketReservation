@@ -8,11 +8,11 @@
                 <table class="table table-condensed table-bordered">
                     <thead>
                         <tr class="headers">
-                            <th><i class="glyphicon glyphicon-calendar text-muted"></i>Data</th>
-                            <th><i class="glyphicon glyphicon-time text-muted"></i>Godzina</th>
-                            <th><i class="glyphicon glyphicon-tag text-muted"></i>Tytuł</th>
-                            <th><i class="glyphicon glyphicon-map-marker text-muted"></i>Miejsce</th>
-                            <th>Cena</th>
+                            <th><i class="glyphicon glyphicon-calendar text-muted"></i> Data</th>
+                            <th><i class="glyphicon glyphicon-time text-muted"></i> Godzina</th>
+                            <th><i class="glyphicon glyphicon-tag text-muted"></i> Tytuł</th>
+                            <th><i class="glyphicon glyphicon-map-marker text-muted"></i> Miejsce</th>
+                            <th><i class="fa fa-money"></i> Cena</th>
                             @if (ViewBag.IsAdmin == true)
                             {
                               <th>Akcje</th>
@@ -43,7 +43,7 @@
                                 </td>
                                 <td class="agenda-prices">
                                     <div class="agenda-price">
-                                        @tickets.Price zł
+                                        @tickets.Price PLN
                                     </div>
                                 </td>
                                 @if (ViewBag.IsAdmin == true)

@@ -1,4 +1,44 @@
-﻿var getUrlParameter = function getUrlParameter(sParam) {
+﻿$(function () {
+    $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
+    $('.datetimepicker2').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
+});
+
+function convertToDash(start, end) {
+    
+}
+
+Date.prototype.addDays = function (days) {
+    var dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+var list = [];
+
+var date = $('#EventStartDateTime').val().substring(0, 10);
+var date2 = $('#EventEndDateTime').val().substring(0, 10);
+var dataParts;
+var dataParts2;
+if (date.includes("-") && date2.includes("-")) {
+    var start = date.replace(/-/g, ".");
+    var end = date2.replace(/-/g, ".");
+    date = start;
+    date2 = end;
+}
+dataParts = date.split(".");
+dataParts2 = date2.split(".");
+
+var dateObjectForStart = new Date(dataParts[2], dataParts[1] - 1, dataParts[0]);
+var dateObjectForEnd = new Date(dataParts2[2], dataParts2[1] - 1, dataParts2[0]);
+
+while (dateObjectForStart <= dateObjectForEnd) {
+
+    dateObjectForStart = dateObjectForStart.addDays(1);
+    var myNewDate = (new Date(dateObjectForStart)).toISOString().slice(0, 10)
+    list.push(myNewDate)
+    console.log("M:" + " " + dateObjectForStart)
+}
+
+var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -13,37 +53,8 @@
     }
 };
 
-Date.prototype.addDays = function (days) {
-    var dat = new Date(this.valueOf())
-    dat.setDate(dat.getDate() + days);
-    return dat;
-}
+var eventId = getUrlParameter('eventId');
 
-    Date.prototype.addDays = function(days) {
-        var dat = new Date(this.valueOf())
-        dat.setDate(dat.getDate() + days);
-        return dat;
-    }
-    var list = [];
-
-    var date = $('#EventStartDateTime').val().substring(0, 10);
-    var date2 = $('#EventEndDateTime').val().substring(0, 10);
-
-    var dataParts = date.split(".");
-    var dataParts2 = date2.split(".");
-    var dateObjectForStart = new Date(dataParts[2], dataParts[1] - 1, dataParts[0]);
-    var dateObjectForEnd = new Date(dataParts2[2], dataParts2[1] - 1, dataParts2[0]);
-
-    while (dateObjectForStart <= dateObjectForEnd) {
-
-        //list.push(dateObjectForStart);
-        dateObjectForStart = dateObjectForStart.addDays(1);
-        var myNewDate = (new Date(dateObjectForStart)).toISOString().slice(0, 10)
-        list.push(myNewDate)
-        console.log("M:" + " " + dateObjectForStart)
-    }
-
-    var eventId = getUrlParameter('eventId');
 $(document).ready(function () {
     $('#calendar')
         .fullCalendar({
@@ -63,11 +74,12 @@ $(document).ready(function () {
             defaultView: 'month',
             allDaySlot: true,
             selectable: true,
-            editable: true,
+            editable: false,
             slotMinutes: 15,
             locale: 'pl',
             timeFormat: 'H:mm',
             axisFormat: 'H:mm',
+            eventBorderColor: '#51dfd4',
             ignoreTimezone: false,
             eventLimit: true,
             events: 'GetTickets?eventID='+ eventId,
@@ -77,17 +89,18 @@ $(document).ready(function () {
                 }
             },
             dayRender: function (date, cell) {
+
                 var getNormalDate = new Date(date);
                 var myNewDate = (new Date(getNormalDate)).toISOString().slice(0, 10)
+
                 list.forEach(function (item) {
-                    console.log("itemek" + item)
-                    console.log(getNormalDate)
+                    //console.log("itemek" + item)
                    if (myNewDate === item) {
                        cell.css("background-color", "#eafde4");
                    }
                })
             },
-            eventRender: function (event, element, view) {                               
+            eventRender: function (event, element, view) {
                 var param = event.creatorID;
                 var url = '@Url.Action("GetImage", "Home", new { contactId = "myParam" })';
                 if (view.name === "agendaWeek" || view.name === "agendaDay") {
@@ -174,8 +187,13 @@ $(document).ready(function () {
     }
 
     function dblClickFunction(date) {
-        var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
-        window.location.href = url;
+ 
+        if (date <= dateObjectForEnd) {
+            var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
+            window.location.href = url;
+        } else {
+            alert("Można dodać bilet tylko na zielonych polach")
+        }
     }
 
     $("#calendar")

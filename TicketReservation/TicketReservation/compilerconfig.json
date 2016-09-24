@@ -26,5 +26,13 @@
   {
     "outputFile": "scripts/moment.es5.js",
     "inputFile": "scripts/moment.js"
+  },
+  {
+    "outputFile": "Content/adminStyles.css",
+    "inputFile": "Content/adminStyles.less"
+  },
+  {
+    "outputFile": "Content/metro-bootstrap.css",
+    "inputFile": "Content/metro-bootstrap.less"
   }
 ]

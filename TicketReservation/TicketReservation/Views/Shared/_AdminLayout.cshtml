@@ -9,10 +9,13 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet"/>
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet"/>
     <link href="~/Content/fullcalendar.css" rel="stylesheet" />
-
+    <link href="~/Content/adminStyles.css" rel="stylesheet" />
     <link href="~/Content/ErrorStyles.css" rel="stylesheet"/>
     <link href="~/Content/bootstrap-datetimepicker-build.css" rel="stylesheet"/>
-
+    <link href="~/Content/chosen.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/metro-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
 </head>
 <body>
 <div>
@@ -34,20 +37,15 @@
     <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/scripts/fullcalendar.min.js"></script>
     <script src="~/scripts/myCalendar.js"></script>
-
-<script type="text/javascript">
-    jQuery.validator.methods["date"] = function (value, element) { return true; }
-    $(function() {
-        $('.datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
-        $('.datetimepicker2').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
-    });
-</script>
+    <script src="~/scripts/chosen.jquery.min.js"></script>
+    <script src="~/scripts/myScriptsAdmin.js"></script>
+    <script src="~/scripts/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $("#EventCategoryID").change(function() {
             var val = $(this).val();
             var subItems = "";
-            $.getJSON("@Url.Action("GetSubcategory","Admin")",{id:val}, function(data) {
+            $.getJSON("@Url.Action("GetSubcategory", "Admin")", { id: val }, function(data) {
                 $.each(data, function(index, item) {
                     subItems += "<option value='" + item.Value + "'>" + item.Text + "</option>"
                 });

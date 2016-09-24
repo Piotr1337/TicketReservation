@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using TicketReservation.Domain.Entities;
 
 namespace TicketReservation.Models
@@ -14,6 +15,9 @@ namespace TicketReservation.Models
         public int TicketID { get; set; }
 
         public int EventID { get; set; }
+
+        [DisplayName("Artysta")]
+        public int ArtistID { get; set; }
 
         [DisplayName("Data wydarzenia")]
         public DateTime DateOfEvent { get; set; }
@@ -26,6 +30,8 @@ namespace TicketReservation.Models
 
         [DisplayName("Tytuł")]
         public string Title { get; set; }
+
+        public IEnumerable<SelectListItem> ArtistList { get; set; }
 
         public virtual Events Events { get; set; }
     }
