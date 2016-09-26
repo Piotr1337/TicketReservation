@@ -1,3 +1,5 @@
+using System.Web.Mvc;
+
 namespace TicketReservation.Domain.Entities
 {
     using System;
@@ -11,6 +13,7 @@ namespace TicketReservation.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Events()
         {
+            Artists = new HashSet<Artists>();
             Ticket = new HashSet<Ticket>();
         }
 
@@ -18,8 +21,6 @@ namespace TicketReservation.Domain.Entities
         public int EventID { get; set; }
 
         public int? EventCategoryID { get; set; }
-
-        public int? ArtistID { get; set; }
 
         public int? PlaceID { get; set; }
 
@@ -30,6 +31,7 @@ namespace TicketReservation.Domain.Entities
 
         public DateTime? EventEndDateTime { get; set; }
 
+        [AllowHtml]
         public string OtherDetails { get; set; }
 
         public int? EventSubCategoryID { get; set; }
@@ -38,6 +40,9 @@ namespace TicketReservation.Domain.Entities
 
         [StringLength(50)]
         public string ImageMimeType { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artists> Artists { get; set; }
 
         public virtual Categories Categories { get; set; }
 

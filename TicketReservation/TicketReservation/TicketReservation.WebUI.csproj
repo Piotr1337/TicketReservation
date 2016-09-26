@@ -261,6 +261,7 @@
       <DependentUpon>myStyles.css</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
+    <Content Include="Content\summernote.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -402,6 +403,9 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\summernote.eot" />
+    <Content Include="Content\fonts\summernote.ttf" />
+    <Content Include="Content\fonts\summernote.woff" />
     <None Include="scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="scripts\jquery-1.11.3.js" />
     <Content Include="scripts\jquery-1.11.3.min.js" />
@@ -507,6 +511,9 @@
     <Content Include="scripts\myScripts.js" />
     <Content Include="scripts\myScriptsAdmin.js" />
     <Content Include="scripts\navbarHover.js" />
+    <Content Include="scripts\readmore.min.js" />
+    <Content Include="scripts\summernote-pl-PL.min.js" />
+    <Content Include="scripts\summernote.min.js" />
     <Content Include="scripts\sweetalert.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -533,6 +540,7 @@
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ArtistViewModel.cs" />
     <Compile Include="Models\AuthModelView.cs" />
     <Compile Include="Models\NavbarViewModel.cs" />
     <Compile Include="Models\EventsViewModel.cs" />
@@ -567,6 +575,7 @@
     <Content Include="Views\Auth\Registration.cshtml" />
     <Content Include="Views\Shared\MemberLoginSummary.cshtml" />
     <Content Include="Views\Shared\MemberRegisterSummary.cshtml" />
+    <Content Include="Views\Admin\ArtistiEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

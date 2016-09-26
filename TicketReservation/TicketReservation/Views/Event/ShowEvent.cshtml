@@ -12,8 +12,10 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <p class="eventTitle">@Model.EventName</p>
-        <p>@Model.OtherDetails</p>
+        <section id="eventDescription">
+            <p class="eventTitle">@Model.EventName</p>
+            <p>@Html.Raw(Model.OtherDetails)</p>
+        </section>
     </div>
 </div>
 

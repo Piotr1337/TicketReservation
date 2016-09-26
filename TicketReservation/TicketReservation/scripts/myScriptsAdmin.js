@@ -6,7 +6,33 @@ $('#showAll').click(function() {
     $('#allEventsAdmin').slideToggle("medium");
 });
 
+$(document).ready(function () {
+    $('#OtherDetails').summernote({
+        height: 300,
+        toolbar:
+            [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul','ol','paragraph']],
+            ],
+        lang: "pl-PL"
+    });
+});
 
+$(document).ready(function () {
+    $('#Description').summernote({
+        height: 300,
+        toolbar:
+            [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+            ],
+        lang: "pl-PL"
+    });
+});
 
 $('body').on('click', '#deleteEvent', function () {
     var eventId = $(this).data('eventid');
@@ -18,6 +44,7 @@ $('body').on('click', '#deleteEvent', function () {
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Tak, usuń!",
+        cancelButtonText: "Anuluj",
         closeOnConfirm: false
     }, function (isConfirm) {
         if (isConfirm) {

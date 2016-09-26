@@ -31,7 +31,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle category" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="@e.Icon" id="iconsNavbar"></i>@e.EventCategoryName<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu categoryItems">
                                 <li>@Html.RouteLink("Pokaż wszystkie...", new {controller = "Event", action = "List", categoryname = e.EventCategoryName, categoryId = e.EventCategoryID})</li>
                                 @foreach (var sub in e.SubCategories.Where(x => x.EventCategoryID == e.EventCategoryID))
                                 {
@@ -46,7 +46,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
 
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>@User.Identity.Name</b> <span class="caret"></span></a>
+                            <a href="#" class="dropdown userDrop" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>@User.Identity.Name</b> <span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li><a href="#">Twój profil</a></li>
                                 <li><a href="#">Koszyk(0)</a></li>
@@ -56,7 +56,7 @@
                         }
                         else
                         {
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>Zaloguj</b> <span class="caret"></span></a>
+                            <a href="#" class="dropdown userDrop" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>Zaloguj</b> <span class="caret"></span></a>
                                 <ul id="login-dp" class="dropdown-menu">
                                     <li>
                                         <div class="row">
@@ -65,7 +65,7 @@
                                                 <div class="col-md-12">
                                                     Zaloguj przez
                                                     <div class="social-buttons">
-                                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                        <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
                                                     </div>
                                                     lub
                                                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">

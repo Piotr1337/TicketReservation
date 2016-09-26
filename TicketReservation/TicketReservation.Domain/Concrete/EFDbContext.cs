@@ -12,6 +12,7 @@ namespace TicketReservation.Domain.Entities
         {
         }
 
+        public virtual DbSet<Artists> Artists { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Members> Members { get; set; }
@@ -21,6 +22,18 @@ namespace TicketReservation.Domain.Entities
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Artists>()
+                .Property(e => e.ImageData)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Artists>()
+                .Property(e => e.CategoryID)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Artists>()
+                .Property(e => e.ImageMimeType)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Events>()
                 .Property(e => e.ImageMimeType)
                 .IsUnicode(false);
@@ -37,6 +50,10 @@ namespace TicketReservation.Domain.Entities
             modelBuilder.Entity<Ticket>()
                 .Property(e => e.Price)
                 .HasPrecision(18, 0);
+
+            modelBuilder.Entity<Ticket>()
+                .HasOptional(e => e.Artists)
+                .WithRequired(e => e.Ticket);
         }
     }
 }

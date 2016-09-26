@@ -42,6 +42,7 @@ namespace TicketReservation.Models
 
         [DataType(DataType.MultilineText), Display(Name = "Opis")]
         [Required(ErrorMessage = "Proszę podać opis")]
+        [AllowHtml]
         public string OtherDetails { get; set; }
 
         public byte[] ImageData { get; set; }

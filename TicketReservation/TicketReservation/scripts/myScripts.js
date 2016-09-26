@@ -8,7 +8,15 @@
     }
 });
 
-; (function () {
+$('#eventDescription').readmore({
+    speed: 500,
+    collapsedHeight: 300,
+    heightMargin: 16,
+    moreLink: '<a href="#">czytaj więcej...</a>',
+    lessLink: '<a href="#">zwiń</a>'
+});
+
+(function () {
     // Initialize
     var bLazy = new Blazy({
 

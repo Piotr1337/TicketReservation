@@ -1,0 +1,27 @@
+﻿@model TicketReservation.Models.ArtistViewModel
+
+@{
+    ViewBag.Title = "ArtistEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(x => x.FirstName)
+            @Html.TextBoxFor(x => x.FirstName, new {@class = "form-control"})
+            <br/>
+            @Html.LabelFor(x => x.LastName)
+            @Html.TextBoxFor(x => x.LastName, new {@class = "form-control"})
+            <br/>
+            @Html.LabelFor(x => x.Nickname)
+            @Html.TextBoxFor(x => x.Nickname, new { @class = "form-control"})
+            <br/>
+            @Html.LabelFor(x => x.Description)
+            @Html.TextAreaFor(x => x.Description, new {@class = "form-control", rows = 10})
+        </div>
+        <div class="col-md-6">
+            
+        </div>
+    </div>
+</div>

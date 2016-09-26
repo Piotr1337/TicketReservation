@@ -33,6 +33,7 @@ namespace TicketReservation.Controllers
             return View(repository.Events);
         }
 
+        //EVENTY
         public ViewResult Edit(int eventId)
         {
 
@@ -44,6 +45,17 @@ namespace TicketReservation.Controllers
             viewModel.Events = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             ViewBag.IsAdmin = true;
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int eventId)
+        {
+            Events deletedEvent = repository.DeleteEvent(eventId);
+            if (deletedEvent != null)
+            {
+                TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedEvent.EventName);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -70,6 +82,19 @@ namespace TicketReservation.Controllers
             }
         }
 
+        public ViewResult Create()
+        {
+            return View("Edit", new AdminViewModel()
+            {
+                EventStartDateTime = DateTime.Now,
+                EventEndDateTime = DateTime.Now,
+                CategoriesForDropList = catRepo.CategoriesForDropList,
+                SubCategoryForDropList = new[] { new SelectListItem { Value = "", Text = "" } },
+                Events = new Events()
+            });
+        }
+
+        //BILETY
         public ViewResult AddTicket(string date, int eventId)
         {
             return View("TicketEdit", new TicketViewModel()
@@ -98,47 +123,6 @@ namespace TicketReservation.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult TicketEdit(Ticket theTicket)
-        {
-            var viewModel = Mapper.Map<Ticket, TicketViewModel>(theTicket);
-            if (ModelState.IsValid)
-            {
-                var toModel = Mapper.Map<TicketViewModel, Ticket>(viewModel);
-                ticketRepository.SaveTicket(toModel);
-                TempData["ticketMessage"] = string.Format("Zapisano bilet {0}", toModel.Title);
-            }
-            return RedirectToAction("Edit","Admin", new { eventId = viewModel.EventID});
-        }
-
-        public ViewResult Create()
-        {
-            return View("Edit", new AdminViewModel()
-            {
-                EventStartDateTime = DateTime.Now,
-                EventEndDateTime = DateTime.Now,
-                CategoriesForDropList = catRepo.CategoriesForDropList,
-                SubCategoryForDropList = new[] {new SelectListItem {Value = "", Text = ""}},
-                Events = new Events()
-            });
-        }
-
-        public ActionResult GetSubcategory(int id)
-        {
-            return Json(PopulateSubCategory(id), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(int eventId)
-        {
-            Events deletedEvent = repository.DeleteEvent(eventId);
-            if (deletedEvent != null)
-            {
-                TempData["ticketMessage"] = string.Format("Usunięto {0}", deletedEvent.EventName);
-            }
-            return RedirectToAction("Index");
-        }
-
         public IEnumerable<Ticket> LoadAllTickets()
         {
             var result = ticketRepository.Tickets;
@@ -164,19 +148,52 @@ namespace TicketReservation.Controllers
             var myTickets = LoadAllTickets();
 
             var ticketList = from e in myTickets
-                select new
-                {
-                    id = e.TicketID,
-                    price = e.Price,
-                    title = e.Title,
-                    date = e.DateOfEvent,
-                    location = e.Location,
-                    eventID = e.EventID,
-                    beginDate = repository.GetEvent(eventID).EventStartDateTime.Value.ToShortDateString(),
-                    finishDate = repository.GetEvent(eventID).EventEndDateTime.Value.ToShortDateString()
-                };
+                             select new
+                             {
+                                 id = e.TicketID,
+                                 price = e.Price,
+                                 title = e.Title,
+                                 date = e.DateOfEvent,
+                                 location = e.Location,
+                                 eventID = e.EventID,
+                                 beginDate = repository.GetEvent(eventID).EventStartDateTime.Value.ToShortDateString(),
+                                 finishDate = repository.GetEvent(eventID).EventEndDateTime.Value.ToShortDateString()
+                             };
             var rows = ticketList.ToArray();
             return Json(rows.Where(x => x.eventID == eventID), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult TicketEdit(Ticket theTicket)
+        {
+            var viewModel = Mapper.Map<Ticket, TicketViewModel>(theTicket);
+            if (ModelState.IsValid)
+            {
+                var toModel = Mapper.Map<TicketViewModel, Ticket>(viewModel);
+                ticketRepository.SaveTicket(toModel);
+                TempData["ticketMessage"] = string.Format("Zapisano bilet {0}", toModel.Title);
+            }
+            return RedirectToAction("Edit","Admin", new { eventId = viewModel.EventID});
+        }
+
+        //ARTYSCI
+        public ViewResult AddArtist()
+        {
+            return View("ArtistiEdit", new ArtistViewModel()
+            {
+
+            });
+        }
+
+        //public ViewResult EditArtist(int artistId)
+        //{
+        //    return View();
+        //}
+
+        //KATEGORIE
+        public ActionResult GetSubcategory(int id)
+        {
+            return Json(PopulateSubCategory(id), JsonRequestBehavior.AllowGet);
         }
 
         public IEnumerable<SelectListItem> PopulateSubCategory(int id)

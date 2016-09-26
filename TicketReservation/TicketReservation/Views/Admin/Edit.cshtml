@@ -7,10 +7,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@if (TempData["ticketMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["ticketMessage"]</div>
-}
 <div class="panel">
     <div class="panel-heading">
         <h2>Edycja @Model.EventName</h2>
