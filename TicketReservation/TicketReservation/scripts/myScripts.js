@@ -1,6 +1,16 @@
-﻿$('#Email').blur(function () {
+﻿$(document).ready(function() {
+    $('article').readmore({
+        speed: 500,
+        collapsedHeight: 300,
+        heightMargin: 16,
+        moreLink: '<a href="#">czytaj więcej...</a>',
+        lessLink: '<a href="#">zwiń</a>'
+    });
+})
+
+$('#Email').keyup(function () {
     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-    if (!testEmail.test(this.value)) {
+    if (!testEmail.test(this.value) && this.value !== '') {
         $('.validate').remove();
         $('#Email').after('<p style="color: red;" class="validate">Wpisz poprawny adres Email.</p>')
     } else {
@@ -8,13 +18,7 @@
     }
 });
 
-$('#eventDescription').readmore({
-    speed: 500,
-    collapsedHeight: 300,
-    heightMargin: 16,
-    moreLink: '<a href="#">czytaj więcej...</a>',
-    lessLink: '<a href="#">zwiń</a>'
-});
+
 
 (function () {
     // Initialize

@@ -181,7 +181,7 @@ namespace TicketReservation.Controllers
         {
             return View("ArtistiEdit", new ArtistViewModel()
             {
-
+                CategoriesForDropList = catRepo.CategoriesForDropList,
             });
         }
 

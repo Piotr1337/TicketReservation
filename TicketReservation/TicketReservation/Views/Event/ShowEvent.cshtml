@@ -12,12 +12,11 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <section id="eventDescription">
+        <article>
             <p class="eventTitle">@Model.EventName</p>
             <p>@Html.Raw(Model.OtherDetails)</p>
-        </section>
+        </article>
     </div>
 </div>
 
 @Html.Partial("TicketSummary",Model)
-    

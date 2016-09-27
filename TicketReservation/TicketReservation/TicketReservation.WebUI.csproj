@@ -230,6 +230,7 @@
     <Content Include="Content\bootstrap-datetimepicker-build.min.css">
       <DependentUpon>bootstrap-datetimepicker-build.css</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-switch.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -250,9 +251,13 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\jquery-filer.css" />
+    <Content Include="Content\fonts\jquery-filer.svg" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\jquery.filer-dragdropbox-theme.css" />
+    <Content Include="Content\jquery.filer.css" />
     <Content Include="Content\metro-bootstrap.min.css" />
     <Content Include="Content\myStyles.css">
       <DependentUpon>myStyles.less</DependentUpon>
@@ -391,6 +396,7 @@
     <Content Include="scripts\blazy.min.js" />
     <Content Include="scripts\bootstrap-datetimepicker.js" />
     <Content Include="scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="scripts\bootstrap-switch.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\chosen.jquery.min.js" />
@@ -406,6 +412,9 @@
     <Content Include="Content\fonts\summernote.eot" />
     <Content Include="Content\fonts\summernote.ttf" />
     <Content Include="Content\fonts\summernote.woff" />
+    <Content Include="Content\fonts\jquery-filer.eot" />
+    <Content Include="Content\fonts\jquery-filer.ttf" />
+    <Content Include="Content\fonts\jquery-filer.woff" />
     <None Include="scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="scripts\jquery-1.11.3.js" />
     <Content Include="scripts\jquery-1.11.3.min.js" />
@@ -413,6 +422,7 @@
     <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery-ui-1.8.11.js" />
     <Content Include="scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="scripts\jquery.filer.min.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
@@ -507,6 +517,7 @@
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\moment.min.js" />
     <Content Include="scripts\myCalendar.js" />
+    <Content Include="scripts\myFileUpload.js" />
     <Content Include="scripts\myMultiSelect.js" />
     <Content Include="scripts\myScripts.js" />
     <Content Include="scripts\myScriptsAdmin.js" />

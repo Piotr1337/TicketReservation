@@ -2,6 +2,12 @@
 $('.DateOfEvent').datetimepicker({ format: 'DD-MM-YYYY hh:mm', locale: 'pl' });
 
 
+$('#bandOrArtist').bootstrapSwitch({
+    onText: 'Artysta',
+    offText: 'Zespół',
+    size: 'normal',
+});
+
 $('#showAll').click(function() {
     $('#allEventsAdmin').slideToggle("medium");
 });
@@ -18,9 +24,6 @@ $(document).ready(function () {
             ],
         lang: "pl-PL"
     });
-});
-
-$(document).ready(function () {
     $('#Description').summernote({
         height: 300,
         toolbar:
@@ -31,8 +34,9 @@ $(document).ready(function () {
                 ['para', ['ul', 'ol', 'paragraph']],
             ],
         lang: "pl-PL"
-    });
+    });  
 });
+
 
 $('body').on('click', '#deleteEvent', function () {
     var eventId = $(this).data('eventid');

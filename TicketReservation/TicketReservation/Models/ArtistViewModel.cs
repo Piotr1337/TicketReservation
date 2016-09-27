@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TicketReservation.Models
 {
@@ -24,7 +25,10 @@ namespace TicketReservation.Models
 
         public int? EventID { get; set; }
 
+        [DisplayName("Kategoria wykonawcy / zespołu")]
         public string CategoryID { get; set; }
+
+        public bool IsArtistOrBand { get; set; }
 
         [DisplayName("Pseudonim artystyczny")]
         public string Nickname { get; set; }
@@ -35,5 +39,7 @@ namespace TicketReservation.Models
         public string BandName { get; set; }
 
         public string ImageMimeType { get; set; }
+
+        public IEnumerable<SelectListItem> CategoriesForDropList { get; set; }
     }
 }
