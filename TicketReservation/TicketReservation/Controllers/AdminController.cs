@@ -19,18 +19,27 @@ namespace TicketReservation.Controllers
         private IEventRepository repository;
         private ICategoryRepository catRepo;
         private ITicketRepository ticketRepository;
+        private IArtistRepository artistRepository;
 
-        public AdminController(IEventRepository repo, ICategoryRepository catRepository, ITicketRepository ticketRepo)
+
+        public AdminController(IEventRepository repo, ICategoryRepository catRepository, ITicketRepository ticketRepo, IArtistRepository artistRepo)
         {
             repository = repo;
             catRepo = catRepository;
             ticketRepository = ticketRepo;
+            artistRepository = artistRepo;
         }
 
         // GET: Admin
         public ViewResult Index()
         {
-            return View(repository.Events);
+            IndexAdminViewModel model = new IndexAdminViewModel()
+            {
+                IndexEvents = repository.Events,
+                IndexArtists = artistRepository.Artists,
+                
+            };
+            return View(model);
         }
 
         //EVENTY
@@ -179,16 +188,32 @@ namespace TicketReservation.Controllers
         //ARTYSCI
         public ViewResult AddArtist()
         {
-            return View("ArtistiEdit", new ArtistViewModel()
+            return View("ArtistEdit", new ArtistViewModel()
             {
                 CategoriesForDropList = catRepo.CategoriesForDropList,
             });
         }
 
-        //public ViewResult EditArtist(int artistId)
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult ArtistEdit(ArtistViewModel artist, HttpPostedFileBase image = null)
+        {
+            Artists model = Mapper.Map<ArtistViewModel, Artists>(artist);
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    model.ImageMimeType = image.ContentType;
+                    model.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(model.ImageData, 0, image.ContentLength);
+                }
+                artistRepository.SaveArtist(model);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
 
         //KATEGORIE
         public ActionResult GetSubcategory(int id)
@@ -208,6 +233,11 @@ namespace TicketReservation.Controllers
             });
 
             return selectListItems;
+        }
+
+        public string GetCategory(int categoryId)
+        {
+            return catRepo.GetCategory(categoryId);
         }
     }
 }

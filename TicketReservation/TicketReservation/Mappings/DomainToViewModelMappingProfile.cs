@@ -20,6 +20,8 @@ namespace TicketReservation.Mappings
             CreateMap<Events, AdminViewModel>();
             CreateMap<Ticket, TicketViewModel>();
             CreateMap<Members, MemberLoginViewModel>();
+            CreateMap<Artists, ArtistViewModel>();
+            CreateMap<Artists, Artists>();
         }
     }
 }

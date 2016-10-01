@@ -41,6 +41,7 @@ namespace TicketReservation.Infrastructure
             kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             kernel.Bind<ITicketRepository>().To<EFTicketRepository>();
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>();
+            kernel.Bind<IArtistRepository>().To<EFArtistRepository>();
         }
     }
 }

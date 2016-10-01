@@ -13,6 +13,7 @@ namespace TicketReservation.Domain.Abstract
         IEnumerable<Categories> Categories { get; }
         IEnumerable<SubCategories> SubCategories { get; }
         IEnumerable<SelectListItem> CategoriesForDropList { get; }
+        string GetCategory(int categoryId);
 
     }
 }

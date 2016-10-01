@@ -8,12 +8,6 @@ namespace TicketReservation.Domain.Entities
 
     public partial class Members
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Members()
-        {
-            Members_Orders = new HashSet<Members_Orders>();
-        }
-
         [Key]
         public int MemberID { get; set; }
 
@@ -33,8 +27,5 @@ namespace TicketReservation.Domain.Entities
 
         [StringLength(50)]
         public string Password { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Members_Orders> Members_Orders { get; set; }
     }
 }

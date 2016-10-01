@@ -3,13 +3,36 @@ $('.DateOfEvent').datetimepicker({ format: 'DD-MM-YYYY hh:mm', locale: 'pl' });
 
 
 $('#bandOrArtist').bootstrapSwitch({
-    onText: 'Artysta',
-    offText: 'Zespół',
+    onText: 'Zespół',
+    offText: 'Artysta',
     size: 'normal',
 });
 
-$('#showAll').click(function() {
+$('#bandOrArtist').change(function () {
+    if ($(this).is(":checked")) {
+        var returnVal = confirm("Are you sure?");
+        $(this).attr("checked", returnVal);
+    }
+    $('#bandOrArtist').val($(this).is(':checked'));
+});
+
+
+$('#showAllEvents').click(function () {
+    $('#allArtistsAdmin').slideUp("fast");
+    $('#allBandsAdmin').slideUp("fast");
     $('#allEventsAdmin').slideToggle("medium");
+});
+
+$('#showAllArtists').click(function () {
+    $('#allEventsAdmin').slideUp("fast");
+    $('#allBandsAdmin').slideUp("fast");
+    $('#allArtistsAdmin').slideToggle("medium");
+});
+
+$('#showAllBands').click(function () {
+    $('#allEventsAdmin').slideUp("fast");
+    $('#allArtistsAdmin').slideUp("fast");
+    $('#allBandsAdmin').slideToggle("medium");
 });
 
 $(document).ready(function () {

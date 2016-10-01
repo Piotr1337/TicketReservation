@@ -37,6 +37,12 @@ namespace TicketReservation.Domain.Concrete
             }
         }
 
+        public string GetCategory(int categoryId)
+        {
+            Categories foundCategory = context.Categories.FirstOrDefault(x => x.EventCategoryID == categoryId);
+            return foundCategory.EventCategoryName;
+        }
+
         public IEnumerable<SelectListItem> DefaultItem
         {
             get

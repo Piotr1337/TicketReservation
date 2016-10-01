@@ -89,7 +89,7 @@
             }
         },
         uploadFile: {
-            url: "./php/ajax_upload_file.php",
+            url: "Admin/ArtistEdit",
             data: null,
             type: 'POST',
             enctype: 'multipart/form-data',
@@ -112,27 +112,10 @@
                     $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
                 });
             },
-            statusCode: null,
-            onProgress: null,
-            onComplete: null
         },
-        files: null,
         addMore: false,
         allowDuplicates: true,
         clipBoardPaste: true,
-        excludeName: null,
-        beforeRender: null,
-        afterRender: null,
-        beforeShow: null,
-        beforeSelect: null,
-        onSelect: null,
-        afterShow: null,
-        onRemove: function (itemEl, file, id, listEl, boxEl, newInputEl, inputEl) {
-            var filerKit = inputEl.prop("jFiler"),
-		        file_name = filerKit.files_list[id].name;
-
-            $.post('./php/ajax_remove_file.php', { file: file_name });
-        },
         onEmpty: null,
         options: null,
         dialogs: {

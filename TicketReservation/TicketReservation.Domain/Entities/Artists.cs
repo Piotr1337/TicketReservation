@@ -17,19 +17,11 @@ namespace TicketReservation.Domain.Entities
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [StringLength(20)]
-        public string Gender { get; set; }
-
-        [StringLength(200)]
         public string Description { get; set; }
 
-        [StringLength(10)]
-        public string ImageData { get; set; }
+        public byte[] ImageData { get; set; }
 
-        public int? EventID { get; set; }
-
-        [StringLength(10)]
-        public string CategoryID { get; set; }
+        public int? CategoryID { get; set; }
 
         [StringLength(50)]
         public string Nickname { get; set; }
@@ -41,9 +33,5 @@ namespace TicketReservation.Domain.Entities
 
         [StringLength(50)]
         public string ImageMimeType { get; set; }
-
-        public virtual Events Events { get; set; }
-
-        public virtual Ticket Ticket { get; set; }
     }
 }
