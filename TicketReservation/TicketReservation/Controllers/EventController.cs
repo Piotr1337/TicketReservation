@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TicketReservation.Domain.Abstract;
@@ -12,6 +14,7 @@ using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
+    [AllowAnonymous]
     public class EventController : Controller
     {
         private IEventRepository repository;
@@ -59,14 +62,13 @@ namespace TicketReservation.Controllers
 
         public ViewResult ShowEvent(int? eventId)
         {
-            Events foundEvent = repository.GetEvent(eventId);
-
+            var foundEvent = repository.GetEvent(eventId);
             return View(foundEvent);
         }
 
         public FileContentResult GetImage(int? eventId)
         {
-            Events theEvent = repository.GetEvent(eventId);
+            var theEvent= repository.GetEvent(eventId);
             if (theEvent != null)
             {
                 return File(theEvent.ImageData, theEvent.ImageMimeType);

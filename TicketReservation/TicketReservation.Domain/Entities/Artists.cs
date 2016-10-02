@@ -26,7 +26,7 @@ namespace TicketReservation.Domain.Entities
         [StringLength(50)]
         public string Nickname { get; set; }
 
-        public bool? IsBand { get; set; }
+        public bool IsBand { get; set; }
 
         [StringLength(50)]
         public string BandName { get; set; }

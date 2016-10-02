@@ -22,7 +22,7 @@ namespace TicketReservation.Domain.Concrete
 
         public Events GetEvent(int? eventId)
         {
-            Events foundEvent = context.Events.Find(eventId);
+            var foundEvent = context.Events.Find(eventId);
             return foundEvent;           
         }
 

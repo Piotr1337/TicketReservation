@@ -94,18 +94,18 @@
                 <th>Kategoria</th>
                 <th>Akcje</th>
             </tr>
-            @foreach (var item in Model.IndexArtists)
+            @foreach (var item in Model.IndexArtists.Where(x => !x.IsBand))
             {
-                <tr data-rowid="@item.ArtistID">
-                    <td>@item.ArtistID</td>
-                    <td>@Html.ActionLink(item.Nickname, "Edit", new {eventId = item.ArtistID})</td>
-                    <td>@item.FirstName @item.LastName</td>
-                    <td>@Html.Action("GetCategory", "Admin", new { CategoryId = item.CategoryID })</td>
-                    <td>
-                        <button class="btn btn-default" type="button" data-eventid="@item.ArtistID" id="deleteEvent">Usuń</button>
-                        @Html.ActionLink("Edytuj", "Edit", new {eventId = item.ArtistID}, new {@class = "btn btn-default", id = "editEvent", @role = "button"})
-                    </td>
-                </tr>
+                    <tr data-rowid="@item.ArtistID">
+                        <td>@item.ArtistID</td>
+                        <td>@Html.ActionLink(item.Nickname, "ArtistEdit", new {artistId = item.ArtistID})</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@Html.Action("GetCategory", "Admin", new {CategoryId = item.CategoryID})</td>
+                        <td>
+                            <button class="btn btn-default" type="button" data-artistid="@item.ArtistID" id="deleteArtist">Usuń</button>
+                            @Html.ActionLink("Edytuj", "ArtistEdit", new {eventId = item.ArtistID}, new {@class = "btn btn-default", id = "editEvent", @role = "button"})
+                        </td>
+                    </tr>
             }
         </table>
     </div>
@@ -117,24 +117,17 @@
                 <th>Kategoria zespołu</th>
                 <th>Akcje</th>
             </tr>
-            @foreach (var item in Model.IndexArtists)
+            @foreach (var item in Model.IndexArtists.Where(x => x.IsBand))
             {
-                if (item.BandName != null)
-                {
                     <tr data-rowid="@item.ArtistID">
                         <td>@item.ArtistID</td>
-                        <td>@Html.ActionLink(item.BandName, "Edit", new {eventId = item.ArtistID})</td>
-                        <td></td>
+                        <td>@Html.ActionLink(item.BandName, "ArtistEdit", new {artistId = item.ArtistID})</td>
+                        <td>@Html.Action("GetCategory", "Admin", new { CategoryId = item.CategoryID })</td>
                         <td>
                             <button class="btn btn-default" type="button" data-eventid="@item.ArtistID" id="deleteEvent">Usuń</button>
-                            @Html.ActionLink("Edytuj", "Edit", new {eventId = item.ArtistID}, new {@class = "btn btn-default", id = "editEvent", @role = "button"})
+                            @Html.ActionLink("Edytuj", "ArtistEdit", new {eventId = item.ArtistID}, new {@class = "btn btn-default", id = "editEvent", @role = "button"})
                         </td>
                     </tr>
-                }
-                else
-                {
-                    
-                }
             }
         </table>
     </div>

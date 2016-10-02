@@ -109,6 +109,7 @@ namespace TicketReservation.Controllers
             return View("TicketEdit", new TicketViewModel()
             {
                 DateOfEvent = DateTime.Parse(date),
+                ArtistList = artistRepository.ArtistsForDropList,
                 EventID = eventId
             });
         }
@@ -194,6 +195,17 @@ namespace TicketReservation.Controllers
             });
         }
 
+        public ViewResult ArtistEdit(int artistId)
+        {
+
+            var theArtist = artistRepository.Artists.FirstOrDefault(x => x.ArtistID == artistId);
+            var viewModel = Mapper.Map<Artists, ArtistViewModel>(theArtist);
+
+            viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
+      
+            return View(viewModel);
+        }
+
         [HttpPost]
         public ActionResult ArtistEdit(ArtistViewModel artist, HttpPostedFileBase image = null)
         {
@@ -213,6 +225,14 @@ namespace TicketReservation.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult ArtistDelete(int artistId)
+        {
+            Artists deletedArtist = artistRepository.DeleteArtist(artistId);
+
+            return RedirectToAction("Index");
         }
 
         //KATEGORIE
@@ -238,6 +258,19 @@ namespace TicketReservation.Controllers
         public string GetCategory(int categoryId)
         {
             return catRepo.GetCategory(categoryId);
+        }
+
+        public FileContentResult GetImage(int artistId)
+        {
+            var theArtist = artistRepository.GetArtists(artistId);
+            if (theArtist != null)
+            {
+                return File(theArtist.ImageData, theArtist.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

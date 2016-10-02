@@ -6,6 +6,7 @@ using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using AutoMapper;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Entities;
@@ -21,6 +22,20 @@ namespace TicketReservation.Domain.Concrete
             get
             {
                 return context.Artists;
+            }
+        }
+
+        public IEnumerable<SelectListItem> ArtistsForDropList
+        {
+            get
+            {
+                IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
+                selectListItems = Artists.Select(x => new SelectListItem
+                {
+                    Value = x.ArtistID.ToString(),
+                    Text = x.Nickname
+                });
+                return DefaultItem.Concat(selectListItems);
             }
         }
 
@@ -60,6 +75,35 @@ namespace TicketReservation.Domain.Concrete
                 }
             }
            
+        }
+
+        public Artists GetArtists(int artistId)
+        {
+            var foundArtist = context.Artists.Find(artistId);
+            return foundArtist;
+        }
+
+        public Artists DeleteArtist(int artistId)
+        {
+            Artists dbEntry = context.Artists.Find(artistId);
+            if (dbEntry != null)
+            {
+                context.Artists.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+        public IEnumerable<SelectListItem> DefaultItem
+        {
+            get
+            {
+                return Enumerable.Repeat(new SelectListItem
+                {
+                    Value = "",
+                    Text = "- Wybierz -"
+                }, count: 1);
+            }
         }
     }
 }

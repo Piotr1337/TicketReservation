@@ -30,6 +30,9 @@
                 <br />
                 @Html.LabelFor(x => x.LastName)
                 @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                <br/>
+                @Html.LabelFor(x => x.BandName)
+                @Html.TextBoxFor(x => x.BandName, new { @class = "form-control" })
                 <br />
                 @Html.LabelFor(x => x.Nickname)
                 @Html.TextBoxFor(x => x.Nickname, new { @class = "form-control" })
@@ -58,8 +61,8 @@
                 }
                 else
                 {
-                    <img class="img thumbnail" width="575" height="300"
-                         src="@Url.Action("GetImage", "Event", new {Model.ArtistID})" />
+                    <img class="img thumbnail" width="557" height="300"
+                         src="@Url.Action("GetImage", "Admin", new { Model.ArtistID })" />
                 }
             </div>
         </div>

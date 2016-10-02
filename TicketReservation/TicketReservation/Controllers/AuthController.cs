@@ -11,6 +11,7 @@ using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
+    [AllowAnonymous]
     public class AuthController : Controller
     {
         private IMemberRepository _memberRepository;
@@ -20,7 +21,17 @@ namespace TicketReservation.Controllers
             _memberRepository = memberRepo;
         }
 
-        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Login(string returnUrl)
+        {
+            var model = new LoginViewModel
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult MemberLoginSummary()
         {
@@ -32,7 +43,7 @@ namespace TicketReservation.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Registration", model);
+                return View("Account", model);
             }
 
             if (model.LoginModel.Email != null && model.LoginModel.Password == _memberRepository.GetPassword(model.LoginModel.Email))
@@ -54,10 +65,10 @@ namespace TicketReservation.Controllers
             }
             ModelState.AddModelError("LoginError","Nieprawidłowy email albo hasło");
 
-            return View("Registration", model);
+            return View("Account", model);
         }
 
-        public ActionResult Registration()
+        public ActionResult Account()
         {
             return View();
         }
@@ -68,7 +79,7 @@ namespace TicketReservation.Controllers
             var authManager = ctx.Authentication;
 
             authManager.SignOut("ApplicationCookie");
-            return RedirectToAction("Registration", "Auth");
+            return RedirectToAction("List", "Event");
         }
 
         [HttpPost]

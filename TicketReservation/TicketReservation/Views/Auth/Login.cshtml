@@ -1,4 +1,4 @@
-﻿@model TicketReservation.Models.MemberLoginViewModel
+﻿@model TicketReservation.Models.LoginViewModel
 
 @{
     Layout = null;
@@ -20,8 +20,8 @@
 <div>
     @using (Html.BeginForm())
     {
-        @Html.LabelFor(u => u.Email)
-        @Html.TextBoxFor(u => u.Email, null, new { @class = "form-control" })
+        @Html.LabelFor(u => u.UserName)
+        @Html.TextBoxFor(u => u.UserName, null, new { @class = "form-control" })
         @Html.LabelFor(u => u.Password)
         @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
         <p>
