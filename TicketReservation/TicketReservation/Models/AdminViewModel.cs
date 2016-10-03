@@ -46,6 +46,7 @@ namespace TicketReservation.Models
         public string OtherDetails { get; set; }
 
         public byte[] ImageData { get; set; }
+
         public string ImageMimeType { get; set; }
 
         public virtual SubCategories SubCategory { get; set; }
@@ -53,6 +54,8 @@ namespace TicketReservation.Models
         public virtual Categories Category { get; set; }
 
         public virtual Events Events { get; set; }
+
+        public TicketViewModel TicketViewModel { get; set; }
 
         public IEnumerable<SelectListItem> SubCategoryForDropList { get; set; }
 

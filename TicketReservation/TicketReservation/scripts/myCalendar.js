@@ -186,15 +186,35 @@ $(document).ready(function () {
         $("#calendar").off("mousemove", forgetSlot);
     }
 
+
     function dblClickFunction(date) {
  
         if (date <= dateObjectForEnd) {
-            var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
-            window.location.href = url;
+            //var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
+            //window.location.href = url;
+            $('#ticketModal').modal('show');
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#Title').focus();
+            })
+            $('#ticketModal').on('submit', "#span", function (e) {
+                e.preventDefault();
+                $('#DateOfEvent').val(date.format("DD-MM-YYYY HH:MM"))
+
+                var form = $(this);
+                $.ajax({
+                    url: form.attr("action"),
+                    method: form.attr("method"),  // post
+                    data: form.serialize(),
+                    success: function (partialResult) {
+                        
+                    }
+                });
+            });
         } else {
             alert("Można dodać bilet tylko na zielonych polach")
         }
     }
+
 
     $("#calendar")
         .dblclick(function () {

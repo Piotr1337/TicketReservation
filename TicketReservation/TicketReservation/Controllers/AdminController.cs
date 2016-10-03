@@ -51,6 +51,10 @@ namespace TicketReservation.Controllers
 
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
             viewModel.SubCategoryForDropList = PopulateSubCategory(viewModel.EventCategoryID);
+            viewModel.TicketViewModel = new TicketViewModel()
+            {
+                ArtistList = artistRepository.ArtistsForDropList
+            };
             viewModel.Events = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             ViewBag.IsAdmin = true;
             return View(viewModel);

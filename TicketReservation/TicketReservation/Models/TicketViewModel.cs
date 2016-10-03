@@ -16,7 +16,7 @@ namespace TicketReservation.Models
 
         public int EventID { get; set; }
 
-        [DisplayName("Artysta")]
+        [DisplayName("Artysta/Zespół")]
         public int ArtistID { get; set; }
 
         [DisplayName("Data wydarzenia")]
@@ -25,7 +25,7 @@ namespace TicketReservation.Models
         [DisplayName("Miejscowość")]
         public string Location { get; set; }
 
-        [DisplayName("Cena")]
+        [DisplayName("Cena biletu")]
         public decimal Price { get; set; }
 
         [DisplayName("Tytuł")]

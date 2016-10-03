@@ -13,7 +13,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm("Edit", "Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     <div class="col-md-4">
         <div class="panel-body">
@@ -31,7 +31,7 @@
                     <div class="col-md-6">
                         @Html.LabelFor(m => m.EventStartDateTime)
                         <div class='input-group date datetimepicker1'>
-                            @Html.TextBoxFor(m => m.EventStartDateTime, null, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.EventStartDateTime, null, new {@class = "form-control"})
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -41,14 +41,14 @@
                     <div class="col-md-6">
                         @Html.LabelFor(m => m.EventEndDateTime)
                         <div class='input-group date datetimepicker2'>
-                            @Html.TextBoxFor(m => m.EventEndDateTime, null, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.EventEndDateTime, null, new {@class = "form-control"})
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
                         @Html.ValidationMessageFor(m => m.EventEndDateTime)
                     </div>
-                </div>             
+                </div>
                 <br/>
                 @Html.LabelFor(m => m.EventCategoryID)
                 @Html.DropDownListFor(m => m.EventCategoryID, new SelectList(Model.CategoriesForDropList, "Value", "Text"), new {@class = "form-control"})
@@ -64,8 +64,8 @@
                         Wybierz plik...
                         <input type="file" name="Image" size="40"
                                style="position: absolute; z-index: 2; top: 0;
-                               left: 0; filter: alpha(opacity=0); opacity: 0;
-                               background-color: transparent; color: transparent;"
+                                                                                                   left: 0; filter: alpha(opacity=0); opacity: 0;
+                                                                                                   background-color: transparent; color: transparent;"
                                onchange='$("#upload-file-info").html($(this).val());'>
                     </a>
                     <span class='label label-info' id="upload-file-info"></span>
@@ -85,8 +85,8 @@
     <div class="col-md-8">
         @Html.Label("Bilety")
         @*@Html.Partial("TicketSummary", Model.Events)*@
-        @Html.ActionLink("Dodaj", "AddTicket", "Admin" , new { eventId = Model.EventID } , new { @class = "glyphicon glyphicon-plus pull-right" })
-        <div id='calendar' style="width: 100%" >
+        @Html.ActionLink("Dodaj", "AddTicket", "Admin", new {eventId = Model.EventID}, new {@class = "glyphicon glyphicon-plus pull-right"})
+        <div id='calendar' style="width: 100%">
 
         </div>
     </div>
@@ -97,8 +97,57 @@
             @class = "btn btn-default"
         })
     </div>
-
 }
+    <!-- Modal -->
+    <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("TicketEdit", "Admin", FormMethod.Post, new {id = "span", @class = "formTicket"}))
+                    {
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label">Tytuł biletu</label>
+                                    <input type="text" class="form-control" id="Title"/>
+                                    <br/>
+                                    <label class="control-label">Data wydarzenia</label>
+                                    <div class='input-group date DateOfEvent'>
+                                        <input type="text" class="form-control" id="DateOfEvent"/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <br/>
+                                    <label class="control-label">Miejscowość</label>
+                                    <input type="text" class="form-control" id="Location"/>
+                                    <br/>
+                                    <label class="control-label">Artysta/Zespół</label>
+                                    @Html.DropDownListFor(m => m.ArtistID, new SelectList(Model.TicketViewModel.ArtistList, "Value", "Text"))
+                                    <br/>
+                                    <label class="control-label">Cena Biletu</label>
+                                    <input type="text" class="form-control" id="ticketPrice"/>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary saveTicket" type="submit">Save changes</button>
+                        </div>
+                        <div id="validationSummary" class="validation-summary">
+                            <ul></ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
