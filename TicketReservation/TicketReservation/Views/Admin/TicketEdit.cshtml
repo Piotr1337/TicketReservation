@@ -37,7 +37,7 @@
                 @Html.ValidationMessageFor(m => m.Location)
                 <br/>
                 @Html.LabelFor(m => m.ArtistID)
-                @Html.DropDownListFor(m => m.ArtistID, new SelectList(Model.ArtistList, "Value", "Text"));
+                @Html.DropDownListFor(m => m.ArtistID, Model.ArtistList, new { @class = "form-control chosen", style = "width: 360px;" });
                 <br/>
                 @Html.LabelFor(m => m.Price)
                 @Html.TextBoxFor(m => m.Price, null, new {@class = "form-control"})

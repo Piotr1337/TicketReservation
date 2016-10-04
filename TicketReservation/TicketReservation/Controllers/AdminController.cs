@@ -51,10 +51,6 @@ namespace TicketReservation.Controllers
 
             viewModel.CategoriesForDropList = catRepo.CategoriesForDropList;
             viewModel.SubCategoryForDropList = PopulateSubCategory(viewModel.EventCategoryID);
-            viewModel.TicketViewModel = new TicketViewModel()
-            {
-                ArtistList = artistRepository.ArtistsForDropList
-            };
             viewModel.Events = repository.Events.FirstOrDefault(x => x.EventID == eventId);
             ViewBag.IsAdmin = true;
             return View(viewModel);
@@ -169,7 +165,7 @@ namespace TicketReservation.Controllers
                                  price = e.Price,
                                  title = e.Title,
                                  artistID = e.ArtistID,
-                                 artistName = artistRepository.GetArtists(e.ArtistID).Nickname,
+                                 //artistName = artistRepository.GetArtists(e.ArtistID).Nickname,
                                  date = e.DateOfEvent,
                                  location = e.Location,
                                  eventID = e.EventID,

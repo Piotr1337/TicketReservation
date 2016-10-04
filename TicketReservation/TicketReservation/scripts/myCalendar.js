@@ -191,6 +191,7 @@ $(document).ready(function () {
             });
             $('#ticketModal').on('submit', "#span", function (e) {
                 e.preventDefault();
+                console.log("pizda")
                 $.ajax({
                     type: "POST",
                     url: "/Admin/TicketEdit",

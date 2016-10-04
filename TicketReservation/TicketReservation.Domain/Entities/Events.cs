@@ -1,3 +1,5 @@
+using System.Web.Mvc;
+
 namespace TicketReservation.Domain.Entities
 {
     using System;
@@ -28,6 +30,7 @@ namespace TicketReservation.Domain.Entities
 
         public DateTime? EventEndDateTime { get; set; }
 
+        [AllowHtml]
         public string OtherDetails { get; set; }
 
         public int? EventSubCategoryID { get; set; }

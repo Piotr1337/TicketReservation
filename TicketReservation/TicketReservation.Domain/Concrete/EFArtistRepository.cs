@@ -29,13 +29,22 @@ namespace TicketReservation.Domain.Concrete
         {
             get
             {
-                IEnumerable<SelectListItem> selectListItems = new List<SelectListItem>();
-                selectListItems = Artists.Select(x => new SelectListItem
-                {
-                    Value = x.ArtistID.ToString(),
-                    Text = x.Nickname
-                });
-                return DefaultItem.Concat(selectListItems);
+                var selectListItems = new List<SelectListItem>();
+                var selectListItems2 = new List<SelectListItem>();
+
+                var artists = new SelectListGroup() {Name = "Artysta"};
+                var bands = new SelectListGroup() { Name = "Zespół" };
+
+                selectListItems = Artists.Where(x => x.IsBand).Select(artist => new SelectListItem() {Text = artist.Nickname, Group = bands}).ToList();
+                selectListItems2 = Artists.Where(x => x.IsBand == false).Select(band => new SelectListItem() {Text = band.Nickname, Group = artists}).ToList();
+                //selectListItems = Artists.Select(x => new SelectListItem
+                //{
+                //    Value = x.ArtistID.ToString(),
+                //    Text = x.Nickname,
+                //    Disabled = false,
+
+                //});
+                return selectListItems.Concat(selectListItems2);
             }
         }
 
@@ -94,16 +103,6 @@ namespace TicketReservation.Domain.Concrete
             return dbEntry;
         }
 
-        public IEnumerable<SelectListItem> DefaultItem
-        {
-            get
-            {
-                return Enumerable.Repeat(new SelectListItem
-                {
-                    Value = "",
-                    Text = "- Wybierz -"
-                }, count: 1);
-            }
-        }
+       
     }
 }
