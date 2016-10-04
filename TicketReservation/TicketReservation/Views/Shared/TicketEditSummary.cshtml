@@ -1,0 +1,55 @@
+﻿@model TicketReservation.Models.TicketViewModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+</div>
+ <div class="modal-body">
+    @using (Html.BeginForm("TicketEdit", "Admin", FormMethod.Post, new { id = "span" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.HiddenFor(m => m.TicketID)
+                    @Html.HiddenFor(m => m.EventID)
+
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", id = "Title" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                    <br />
+                    @Html.LabelFor(m => m.DateOfEvent)
+                    <div class='input-group date DateOfEvent'>
+                        @Html.TextBoxFor(m => m.DateOfEvent, null, new { @class = "form-control", id = "DateOfEvent" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.DateOfEvent)
+                    <br />
+                    @Html.LabelFor(m => m.Location)
+                    @Html.TextBoxFor(m => m.Location, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Location)
+                    <br />
+                    @Html.LabelFor(m => m.ArtistID)
+                    @Html.DropDownListFor(m => m.ArtistID, Model.ArtistList, new { @class="form-control chosen", style = "width: 360px;" });
+                    <br />
+                    @Html.LabelFor(m => m.Price)
+                    @Html.TextBoxFor(m => m.Price, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Price)
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary saveTicket">Save changes</button>
+        </div>
+                    <div id="validationSummary" class="validation-summary">
+                        <ul></ul>
+                    </div>
+    }
+</div>
+
+
+
+
+

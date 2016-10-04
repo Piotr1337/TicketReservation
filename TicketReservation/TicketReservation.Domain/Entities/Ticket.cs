@@ -27,6 +27,8 @@ namespace TicketReservation.Domain.Entities
 
         public int? OrderID { get; set; }
 
+        public int ArtistID { get; set; }
+
         public virtual Events Events { get; set; }
     }
 }

@@ -150,6 +150,7 @@ namespace TicketReservation.Controllers
                 ticket.Title = item.Title;
                 ticket.Location = item.Location;
                 ticket.Price = item.Price;
+                ticket.ArtistID = item.ArtistID;
 
                 ticketList.Add(ticket);
             }
@@ -167,6 +168,8 @@ namespace TicketReservation.Controllers
                                  id = e.TicketID,
                                  price = e.Price,
                                  title = e.Title,
+                                 artistID = e.ArtistID,
+                                 artistName = artistRepository.GetArtists(e.ArtistID).Nickname,
                                  date = e.DateOfEvent,
                                  location = e.Location,
                                  eventID = e.EventID,
@@ -178,16 +181,19 @@ namespace TicketReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult TicketEdit(Ticket theTicket)
+        public ActionResult TicketEdit(TicketViewModel theTicket)
         {
-            var viewModel = Mapper.Map<Ticket, TicketViewModel>(theTicket);
+            var model = Mapper.Map<TicketViewModel, Ticket>(theTicket);
             if (ModelState.IsValid)
             {
-                var toModel = Mapper.Map<TicketViewModel, Ticket>(viewModel);
-                ticketRepository.SaveTicket(toModel);
-                TempData["ticketMessage"] = string.Format("Zapisano bilet {0}", toModel.Title);
+                ticketRepository.SaveTicket(model);
             }
-            return RedirectToAction("Edit","Admin", new { eventId = viewModel.EventID});
+            return RedirectToAction("Edit","Admin", new { eventId = model.EventID });
+        }
+
+        public PartialViewResult AddTicketPartialView(int eventId)
+        {
+            return PartialView("TicketEditSummary", new TicketViewModel() { EventID = eventId, ArtistList = artistRepository.ArtistsForDropList});
         }
 
         //ARTYSCI

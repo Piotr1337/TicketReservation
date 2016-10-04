@@ -13,3 +13,13 @@
 #editEvent a:link {
   color: #337ab7;
 }
+#editInPop {
+  cursor: pointer;
+  padding-right: 20px;
+}
+#cancelInPop {
+  cursor: pointer;
+}
+#customBgPop {
+  color: white;
+}

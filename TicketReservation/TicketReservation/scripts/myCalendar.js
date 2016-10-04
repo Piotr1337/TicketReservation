@@ -35,7 +35,7 @@ while (dateObjectForStart <= dateObjectForEnd) {
     dateObjectForStart = dateObjectForStart.addDays(1);
     var myNewDate = (new Date(dateObjectForStart)).toISOString().slice(0, 10)
     list.push(myNewDate)
-    console.log("M:" + " " + dateObjectForStart)
+    console.log("M:" + " " + dateObjectForStart);
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -91,18 +91,29 @@ $(document).ready(function () {
             dayRender: function (date, cell) {
 
                 var getNormalDate = new Date(date);
-                var myNewDate = (new Date(getNormalDate)).toISOString().slice(0, 10)
+                var myNewDate = (new Date(getNormalDate)).toISOString().slice(0, 10);
 
-                list.forEach(function (item) {
-                    //console.log("itemek" + item)
-                   if (myNewDate === item) {
-                       cell.css("background-color", "#eafde4");
-                   }
-               })
+                list.forEach(function(item) {
+                    if (myNewDate === item) {
+                        cell.css("background-color", "#eafde4");
+                    }
+                });
             },
             eventRender: function (event, element, view) {
-                var param = event.creatorID;
-                var url = '@Url.Action("GetImage", "Home", new { contactId = "myParam" })';
+
+                //Popover
+                var url = "/Admin/GetImage?artistId=" + event.artistID;
+                var input = "<h6>";
+                input += event.artistName;
+                input += "</h6>";
+                input += "<img width='200' height='100' src=" + url + ">";
+                input += "<p class='bg-info' id='customBgPop' style='padding: 5px;'>";
+                input += "<span class='glyphicon glyphicon-calendar'></span>";
+                input += "&nbsp; 2016-09-15 (22:00)";
+                input += "</p>";
+                input += "<a id='editInPop'><span class='glyphicon glyphicon-pencil' style='color: blue'></span>Edytuj</a>";
+                input += "<a id='cancelInPop'><span class='glyphicon glyphicon-remove' style='color: red'></span>Anuluj</a>";
+
                 if (view.name === "agendaWeek" || view.name === "agendaDay") {
                     if (event.allDay === true) {
                         element.find('.fc-title')
@@ -130,26 +141,8 @@ $(document).ready(function () {
                     animation: true,
                     placement: 'left',
 
-                    content:
-                        "<h6>" +
-                            event.roomName +
-                            "</h6>" +
-                            "<br/>" +
-                            "<img src=" +
-                            url.replace('myParam', encodeURIComponent(param)) +
-                            ">" +
-                            " " +
-                            event.creatorName +
-                            "<br/><br/>" +
-                            "<p class='bg-info' id='forAppend' style='padding: 5px;'>" +
-                            "<span class='glyphicon glyphicon-calendar' style='color: #3b8dff'></span>" +
-                            " " +
-                            event.normalStartDate +
-                            "</p>" +
-                            ('<div>' + (event.creatorID === event.loggedUserID ? "<a><span class='glyphicon glyphicon-pencil' style='color: blue'></span>Edytuj</a>" + " " + "<a><span class='glyphicon glyphicon-remove' style='color: red'></span>Anuluj</a>" : "<a><span class='glyphicon glyphicon-ok' style='color: green'></span>Akceptuj</a>" + "&nbsp" + "<a><span class='glyphicon glyphicon-remove' style='color: red'></span> Odrzuć</a>") + '</div>'),
-
-                    container: 'body',
-
+                    content: input,
+                    container: 'body'
                 });
 
                 $('body').on('click', function (e) {
@@ -158,10 +151,10 @@ $(document).ready(function () {
                 });
 
                 element.bind('dblclick',
-                    function () {
-                            var url = "/Admin/TicketEdit?ticketId=" + event.id;
-                            window.location.href = url;                                                     
-                    })
+                    function() {
+                        var url = "/Admin/TicketEdit?ticketId=" + event.id;
+                        window.location.href = url;
+                    });
 
             },
             dayClick: dayClickCallback,
@@ -190,23 +183,21 @@ $(document).ready(function () {
     function dblClickFunction(date) {
  
         if (date <= dateObjectForEnd) {
-            //var url = "/Admin/AddTicket?date=" + date.format() + "&eventId=" + eventId;
-            //window.location.href = url;
             $('#ticketModal').modal('show');
-            $('#myModal').on('shown.bs.modal', function () {
+            $('#ticketModal').on('shown.bs.modal', function() {
                 $('#Title').focus();
-            })
+                $('#DateOfEvent').val(date.format("DD-MM-YYYY HH:MM"));
+
+            });
             $('#ticketModal').on('submit', "#span", function (e) {
                 e.preventDefault();
-                $('#DateOfEvent').val(date.format("DD-MM-YYYY HH:MM"))
-
-                var form = $(this);
                 $.ajax({
-                    url: form.attr("action"),
-                    method: form.attr("method"),  // post
-                    data: form.serialize(),
-                    success: function (partialResult) {
-                        
+                    type: "POST",
+                    url: "/Admin/TicketEdit",
+                    data: $("#span").serialize(),
+                    success: function () {
+                        $('#ticketModal').modal('hide');
+                        $('#calendar').fullCalendar("refetchEvents");
                     }
                 });
             });
