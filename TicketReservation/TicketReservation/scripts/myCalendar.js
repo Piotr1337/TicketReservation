@@ -3,10 +3,6 @@
     $('.datetimepicker2').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
 });
 
-function convertToDash(start, end) {
-    
-}
-
 Date.prototype.addDays = function (days) {
     var dat = new Date(this.valueOf())
     dat.setDate(dat.getDate() + days);
@@ -184,14 +180,17 @@ $(document).ready(function () {
  
         if (date <= dateObjectForEnd) {
             $('#ticketModal').modal('show');
+            $('#ticketModal').on('hidden.bs.modal', function () {
+                $(this).find('form')[0].reset();
+                $(".chosen").trigger('chosen:updated');
+            });
             $('#ticketModal').on('shown.bs.modal', function() {
                 $('#Title').focus();
-                $('#DateOfEvent').val(date.format("DD-MM-YYYY HH:MM"));
-
+                $('#DateOfEvent').val(date.format("DD-MM-YYYY"));
             });
-            $('#ticketModal').on('submit', "#span", function (e) {
+            $('#ticketModal').on('click', ".saveTicket", function (e) {
                 e.preventDefault();
-                console.log("pizda")
+                console.log("ddd")
                 $.ajax({
                     type: "POST",
                     url: "/Admin/TicketEdit",

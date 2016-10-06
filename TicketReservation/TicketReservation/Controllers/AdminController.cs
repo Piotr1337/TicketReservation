@@ -166,7 +166,7 @@ namespace TicketReservation.Controllers
                                  title = e.Title,
                                  artistID = e.ArtistID,
                                  //artistName = artistRepository.GetArtists(e.ArtistID).Nickname,
-                                 date = e.DateOfEvent,
+                                 date = FormatIso8601(new DateTimeOffset(e.DateOfEvent.Year,e.DateOfEvent.Month,e.DateOfEvent.Day,e.DateOfEvent.Hour,e.DateOfEvent.Minute,e.DateOfEvent.Second, TimeSpan.FromHours(+2))),
                                  location = e.Location,
                                  eventID = e.EventID,
                                  beginDate = repository.GetEvent(eventID).EventStartDateTime.Value.ToShortDateString(),
@@ -176,10 +176,21 @@ namespace TicketReservation.Controllers
             return Json(rows.Where(x => x.eventID == eventID), JsonRequestBehavior.AllowGet);
         }
 
+        public static string FormatIso8601(DateTimeOffset dto)
+        {
+            string format = dto.Offset == TimeSpan.Zero
+                ? "yyyy-MM-ddTHH:mm:ss.fffZ"
+                : "yyyy-MM-ddTHH:mm:ss.fffzzz";
+
+            return dto.ToString(format, CultureInfo.InvariantCulture);
+        }
+
         [HttpPost]
         public ActionResult TicketEdit(TicketViewModel theTicket)
         {
             var model = Mapper.Map<TicketViewModel, Ticket>(theTicket);
+            DateTime readyDate = theTicket.DateOfEvent + theTicket.TimeOfEvent;
+            model.DateOfEvent = readyDate;
             if (ModelState.IsValid)
             {
                 ticketRepository.SaveTicket(model);

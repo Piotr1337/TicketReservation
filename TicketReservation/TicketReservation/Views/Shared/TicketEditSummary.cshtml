@@ -17,14 +17,16 @@
                     @Html.TextBoxFor(m => m.Title, null, new {@class = "form-control", id = "Title"})
                     @Html.ValidationMessageFor(m => m.Title)
                     <br/>
-                    @Html.LabelFor(m => m.DateOfEvent)
-                    <div class='input-group date DateOfEvent'>
-                        @Html.TextBoxFor(m => m.DateOfEvent, null, new {@class = "form-control", id = "DateOfEvent"})
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.DateOfEvent)
+                            @Html.TextBoxFor(m => m.DateOfEvent, null, new {@class = "form-control date", id = "DateOfEvent", @readonly = "readonly"})
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.TimeOfEvent)
+                            @Html.TextBoxFor(m => m.TimeOfEvent, null, new {@class = "form-control date", id = "TimeOfEvent"})
+                        </div>
                     </div>
-                    @Html.ValidationMessageFor(m => m.DateOfEvent)
                     <br/>
                     @Html.LabelFor(m => m.Location)
                     @Html.TextBoxFor(m => m.Location, null, new {@class = "form-control"})
@@ -37,14 +39,13 @@
                     @Html.LabelFor(m => m.Price)
                     @Html.TextBoxFor(m => m.Price, null, new {@class = "form-control"})
                     @Html.ValidationMessageFor(m => m.Price)
-
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-        <button class="btn btn-primary saveTicket">Zapisz bilet</button>
+        <button class="btn btn-primary saveTicket" type="submit">Zapisz bilet</button>
     </div>
 }
     

@@ -22,6 +22,9 @@ namespace TicketReservation.Models
         [DisplayName("Data wydarzenia")]
         public DateTime DateOfEvent { get; set; }
 
+        [DisplayName("Godzina wydarzenia")]
+        public TimeSpan TimeOfEvent { get; set; }
+
         [DisplayName("Miejscowość")]
         public string Location { get; set; }
 

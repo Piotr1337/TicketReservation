@@ -35,15 +35,9 @@ namespace TicketReservation.Domain.Concrete
                 var artists = new SelectListGroup() {Name = "Artysta"};
                 var bands = new SelectListGroup() { Name = "Zespół" };
 
-                selectListItems = Artists.Where(x => x.IsBand).Select(artist => new SelectListItem() {Text = artist.Nickname, Group = bands}).ToList();
-                selectListItems2 = Artists.Where(x => x.IsBand == false).Select(band => new SelectListItem() {Text = band.Nickname, Group = artists}).ToList();
-                //selectListItems = Artists.Select(x => new SelectListItem
-                //{
-                //    Value = x.ArtistID.ToString(),
-                //    Text = x.Nickname,
-                //    Disabled = false,
+                selectListItems = Artists.Where(x => x.IsBand).Select(artist => new SelectListItem() {Text = artist.Nickname, Value = artist.ArtistID.ToString(),  Group = bands}).ToList();
+                selectListItems2 = Artists.Where(x => x.IsBand == false).Select(band => new SelectListItem() {Text = band.Nickname, Value = band.ArtistID.ToString(), Group = artists}).ToList();
 
-                //});
                 return selectListItems.Concat(selectListItems2);
             }
         }

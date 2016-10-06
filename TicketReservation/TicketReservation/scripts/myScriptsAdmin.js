@@ -1,6 +1,8 @@
 ﻿jQuery.validator.methods["date"] = function (value, element) { return true; }
-$('.DateOfEvent').datetimepicker({ format: 'DD-MM-YYYY hh:mm', locale: 'pl' });
-
+$(function() {
+    $('#DateOfEvent').datetimepicker({ format: 'DD-MM-YYYY', locale: 'pl' });
+    $('#TimeOfEvent').datetimepicker({ format: 'LT', locale: 'pl', stepping: 30 });
+});
 
 $('#bandOrArtist').bootstrapSwitch({
    
