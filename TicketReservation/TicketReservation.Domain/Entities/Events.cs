@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace TicketReservation.Domain.Entities
 {
@@ -31,20 +32,26 @@ namespace TicketReservation.Domain.Entities
         public DateTime? EventEndDateTime { get; set; }
 
         [AllowHtml]
+        [JsonIgnore]
         public string OtherDetails { get; set; }
 
         public int? EventSubCategoryID { get; set; }
 
+        [JsonIgnore]
         public byte[] ImageData { get; set; }
 
         [StringLength(50)]
+        [JsonIgnore]
         public string ImageMimeType { get; set; }
 
+        [JsonIgnore]
         public virtual Categories Categories { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Ticket> Ticket { get; set; }
 
+        [JsonIgnore]
         public virtual SubCategories SubCategories { get; set; }
     }
 }

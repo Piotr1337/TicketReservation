@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Glimpse.Ado.Message;
+using Newtonsoft.Json;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Entities;
 using TicketReservation.Models;
@@ -19,12 +21,14 @@ namespace TicketReservation.Controllers
     {
         private IEventRepository repository;
         private ICategoryRepository categoryRep;
-          
+        private IArtistRepository artistRep;
 
-        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository)
+
+        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository, IArtistRepository artistRepository)
         {
             this.repository = eventRepository;
             this.categoryRep = categoryRepository;
+            this.artistRep = artistRepository;
         }
 
         [ChildActionOnly]
@@ -77,6 +81,24 @@ namespace TicketReservation.Controllers
             {
                 return null;
             }
+        }
+
+        [HttpPost]
+        public JsonResult AutoCompleteSearch(string prefix)
+        {
+            List<Events> events = repository.Events.ToList();
+            List<Artists> artists = artistRep.Artists.ToList();
+
+            var eventName = from e in events 
+                where e.EventName.StartsWith(prefix)
+                select new
+                {
+                   name = e.EventName,
+                };
+
+            var jsonSerializer = JsonConvert.SerializeObject(events);
+
+            return Json(jsonSerializer, JsonRequestBehavior.AllowGet);
         }
     }
 }

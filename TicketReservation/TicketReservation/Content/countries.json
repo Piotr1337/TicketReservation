@@ -1,0 +1,74 @@
+[
+  {
+    "EventID": 67,
+    "EventCategoryID": 1,
+    "PlaceID": 0,
+    "EventName": "Muzyka 1",
+    "EventStartDateTime": "2016-08-26T17:45:04",
+    "EventEndDateTime": "2016-08-30T17:45:04",
+    "EventSubCategoryID": 3
+  },
+  {
+    "EventID": 71,
+    "EventCategoryID": 3,
+    "PlaceID": 0,
+    "EventName": "Sport 6",
+    "EventStartDateTime": "2016-08-23T17:36:50",
+    "EventEndDateTime": "2016-08-23T17:36:50",
+    "EventSubCategoryID": 1014
+  },
+  {
+    "EventID": 83,
+    "EventCategoryID": 5,
+    "PlaceID": 0,
+    "EventName": "intercontinental bajers",
+    "EventStartDateTime": "2016-09-18T00:00:00",
+    "EventEndDateTime": "2016-09-22T00:00:00",
+    "EventSubCategoryID": 1017
+  },
+  {
+    "EventID": 84,
+    "EventCategoryID": 1,
+    "PlaceID": 0,
+    "EventName": "JPJP",
+    "EventStartDateTime": "2016-09-19T00:00:00",
+    "EventEndDateTime": "2016-09-30T00:00:00",
+    "EventSubCategoryID": 3
+  },
+  {
+    "EventID": 127,
+    "EventCategoryID": 2,
+    "PlaceID": 0,
+    "EventName": "Dobry Wieczór Jazz : Marcin Wasilewski Trio & Charles Lloyd",
+    "EventStartDateTime": "2016-09-26T00:00:00",
+    "EventEndDateTime": "2016-09-29T00:00:00",
+    "EventSubCategoryID": 1012
+  },
+  {
+    "EventID": 128,
+    "EventCategoryID": 2,
+    "PlaceID": 0,
+    "EventName": "¯ona potrzebna od zaraz...",
+    "EventStartDateTime": "2016-10-14T00:00:00",
+    "EventEndDateTime": "2016-10-24T00:00:00",
+    "EventSubCategoryID": 10
+  },
+  {
+    "EventID": 134,
+    "EventCategoryID": 1,
+    "PlaceID": 0,
+    "EventName": "Agnieszka Chyliñska Forever Child Tour",
+    "EventStartDateTime": "2016-10-21T00:00:00",
+    "EventEndDateTime": "2016-11-06T00:00:00",
+    "EventSubCategoryID": 4
+  },
+  {
+    "EventID": 135,
+    "EventCategoryID": 1,
+    "PlaceID": 0,
+    "EventName": "Bastille Warszawa",
+    "EventStartDateTime": "2016-11-24T00:00:00",
+    "EventEndDateTime": "2016-11-24T00:00:00",
+    "EventSubCategoryID": 2
+  }
+]
