@@ -91,8 +91,14 @@ namespace TicketReservation.Controllers
             List<Artists> artists = artistRep.Artists.ToList();
 
 
-            var eventsResult = events.Select(s => new { Id = s.EventID, Name = s.EventName, Icon = s.Categories.Icon });
+            var eventsResult = events.Select(s => new { Id = s.EventID, type = "wydarzenie", Name = s.EventName, Icon = s.Categories.Icon });
             var artistsResult = artists.Select(a => new {Id = a.ArtistID, Name = a.Nickname});
+
+            //var tt = new
+            //{
+            //    events = events.Select(s => new { Id = s.EventID, Name = s.EventName, Icon = s.Categories.Icon }),
+            //    artists = artists.Select(a => new { Id = a.ArtistID, Name = a.Nickname })
+            //};
 
             return Json(eventsResult, JsonRequestBehavior.AllowGet);
         }

@@ -1,10 +1,20 @@
 ﻿
 var options = {
-    url: "Event/AutoCompleteSearch",
+    url: "/Event/AutoCompleteSearch",
+
+
 
     getValue: function (element) {
         return element.Name;
     },
+
+    template: {
+        type: "custom",
+        method: function(value, item) {
+            return "<i id='searchInputIcons' class='" + item.Icon + "'></i>&nbsp;" + "<p id='searchInputValue' data-item-id='" + item.Id + "' >" + value + "</p>";
+        },
+    },
+
     placeholder: "artysta, zespół, wydarzenie...",
     ajaxSettings: {
         dataType: "json",
@@ -24,15 +34,29 @@ var options = {
         },
         maxNumberOfElements: 8,
         showAnimation: {
-            type: "fade", //normal|slide|fade
+            type: "fade",
             time: 400,
             callback: function () { }
         },
 
         hideAnimation: {
-            type: "slide", //normal|slide|fade
+            type: "slide", 
             time: 400,
             callback: function () { }
+        },
+        onClickEvent: function () {
+
+            $('li.selected').click(function (event) {
+                var id = $(event.target).data("item-id");
+                alert(id);
+                window.location = '/Event/ShowEvent?eventId=' + id;
+            });
+
+            //var selectedItemId = $("li.selected").on("click",function () {
+            //    var id = $("#searchInputValue").data("item-id");
+            //    alert(id);
+            //});
+
         }
 
     },
