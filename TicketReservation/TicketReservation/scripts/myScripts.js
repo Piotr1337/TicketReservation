@@ -1,14 +1,11 @@
 ﻿
 var options = {
-    url: function (phrase) {
-        return "Event/AutoCompleteSearch";
-    },
+    url: "Event/AutoCompleteSearch",
 
     getValue: function (element) {
-        console.log(element.EventName)
-        return element.EventName;
+        return element.Name;
     },
-
+    placeholder: "artysta, zespół, wydarzenie...",
     ajaxSettings: {
         dataType: "json",
         method: "POST",
@@ -21,12 +18,24 @@ var options = {
         data.phrase = $("#searchInput").val();
         return data;
     },
-    //list: {
-    //    match: {
-    //        enabled: true
-    //    },
-    //    maxNumberOfElements: 8
-    //},
+    list: {
+        match: {
+            enabled: true
+        },
+        maxNumberOfElements: 8,
+        showAnimation: {
+            type: "fade", //normal|slide|fade
+            time: 400,
+            callback: function () { }
+        },
+
+        hideAnimation: {
+            type: "slide", //normal|slide|fade
+            time: 400,
+            callback: function () { }
+        }
+
+    },
 
     theme: "square"
 

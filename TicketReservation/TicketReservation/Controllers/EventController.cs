@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Glimpse.Ado.Message;
 using Newtonsoft.Json;
 using TicketReservation.Domain.Abstract;
@@ -89,16 +90,11 @@ namespace TicketReservation.Controllers
             List<Events> events = repository.Events.ToList();
             List<Artists> artists = artistRep.Artists.ToList();
 
-            var eventName = from e in events 
-                where e.EventName.StartsWith(prefix)
-                select new
-                {
-                   name = e.EventName,
-                };
 
-            var jsonSerializer = JsonConvert.SerializeObject(events);
+            var eventsResult = events.Select(s => new { Id = s.EventID, Name = s.EventName, Icon = s.Categories.Icon });
+            var artistsResult = artists.Select(a => new {Id = a.ArtistID, Name = a.Nickname});
 
-            return Json(jsonSerializer, JsonRequestBehavior.AllowGet);
+            return Json(eventsResult, JsonRequestBehavior.AllowGet);
         }
     }
 }
