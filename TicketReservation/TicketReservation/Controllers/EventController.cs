@@ -85,14 +85,14 @@ namespace TicketReservation.Controllers
         }
 
         [HttpPost]
-        public JsonResult AutoCompleteSearch(string prefix)
+        public JsonResult AutoCompleteSearch()
         {
             List<Events> events = repository.Events.ToList();
             List<Artists> artists = artistRep.Artists.ToList();
 
 
             var eventsResult = events.Select(s => new { Id = s.EventID, type = "wydarzenie", Name = s.EventName, Icon = s.Categories.Icon });
-            var artistsResult = artists.Select(a => new {Id = a.ArtistID, Name = a.Nickname});
+            //var artistsResult = artists.Select(a => new {Id = a.ArtistID, Name = a.Nickname});
 
             //var tt = new
             //{
