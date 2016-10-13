@@ -614,6 +614,7 @@
     <Content Include="Views\Shared\MemberRegisterSummary.cshtml" />
     <Content Include="Views\Admin\ArtistEdit.cshtml" />
     <Content Include="Views\Shared\TicketEditSummary.cshtml" />
+    <Content Include="Views\Account\MemberProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

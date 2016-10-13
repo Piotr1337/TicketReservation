@@ -8,7 +8,6 @@ using TicketReservation.Models;
 
 namespace TicketReservation.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         IAuthProvider authProvider;
@@ -44,6 +43,11 @@ namespace TicketReservation.Controllers
             {
                 return View();
             }
+        }
+
+        public ViewResult MemberProfile()
+        {
+            return View();
         }
 
 

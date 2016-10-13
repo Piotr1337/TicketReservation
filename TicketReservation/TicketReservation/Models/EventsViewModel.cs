@@ -12,5 +12,6 @@ namespace TicketReservation.Models
         public Categories CurrentCategory { get; set; }
         public Events Event { get; set; }
         public IEnumerable<Ticket> Tickets { get; set; } 
+        public IEnumerable<Artists> Artists { get; set; } 
     }
 }

@@ -16,13 +16,11 @@ namespace TicketReservation.Domain.Entities
         public DateTime DateOfEvent { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Location { get; set; }
 
         public decimal Price { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Title { get; set; }
 
         public int? OrderID { get; set; }

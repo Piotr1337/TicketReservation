@@ -23,13 +23,15 @@ namespace TicketReservation.Controllers
         private IEventRepository repository;
         private ICategoryRepository categoryRep;
         private IArtistRepository artistRep;
+        private ITicketRepository ticketRep;
 
 
-        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository, IArtistRepository artistRepository)
+        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository, IArtistRepository artistRepository, ITicketRepository ticketRepository)
         {
             this.repository = eventRepository;
             this.categoryRep = categoryRepository;
             this.artistRep = artistRepository;
+            this.ticketRep = ticketRepository;
         }
 
         [ChildActionOnly]
@@ -67,8 +69,16 @@ namespace TicketReservation.Controllers
 
         public ViewResult ShowEvent(int? eventId)
         {
-            var foundEvent = repository.GetEvent(eventId);
-            return View(foundEvent);
+            List<Artists> getArtistsFromEvent = ticketRep.Tickets
+                .Where(x => x.EventID == eventId)
+                .Select(ticket => artistRep.GetArtists(ticket.ArtistID))
+                .ToList();
+            return View(new EventsViewModel()
+            {
+                Event = repository.GetEvent(eventId),
+                Artists = getArtistsFromEvent.Distinct().ToList(),
+                Tickets = ticketRep.Tickets
+            });
         }
 
         public FileContentResult GetImage(int? eventId)
