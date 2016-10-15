@@ -8,19 +8,19 @@
 <div class="container-fluid body-content">
     <div class="row">
         <div class="col-lg-8">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <div class="thumbnail">
-                        <img src="@Url.Action("GetImage", "Event", new {Model.Event.EventID})" class="img-responsive center-block">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="thumbnail eventInList">
+                            <img src="@Url.Action("GetImage", "Event", new {Model.Event.EventID})" class="img-responsive center-block">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <article>
+                            <p class="eventTitle">@Model.Event.EventName</p>
+                            <p>@Html.Raw(Model.Event.OtherDetails)</p>
+                        </article>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <article>
-                        <p class="eventTitle">@Model.Event.EventName</p>
-                        <p>@Html.Raw(Model.Event.OtherDetails)</p>
-                    </article>
-                </div>
-            </div>
             @Html.Partial("TicketSummary", Model.Event)
         </div>
         <div class="col-lg-4">
@@ -33,7 +33,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <img src="@Url.Action("GetImage", "Admin", new {artist.ArtistID})" class="img-responsive center-block">
+                                <img src="@Url.Action("GetArtistImage", "Event", new {artist.ArtistID})" class="img-responsive center-block">
                             </div>
                         </div>
                         <div class="row">

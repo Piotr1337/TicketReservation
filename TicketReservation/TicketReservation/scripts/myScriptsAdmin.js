@@ -65,6 +65,7 @@ $('#showAllBands').click(function () {
     $('#allBandsAdmin').slideToggle("medium");
 });
 
+
 $(document).ready(function () {
     $('#OtherDetails').summernote({
         height: 300,

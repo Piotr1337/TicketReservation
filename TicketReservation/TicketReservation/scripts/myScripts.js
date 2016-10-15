@@ -69,7 +69,7 @@ $("#searchInput").easyAutocomplete(options);
 $(document).ready(function() {
     $('article').readmore({
         speed: 500,
-        collapsedHeight: 300,
+        collapsedHeight: 380,
         heightMargin: 16,
         moreLink: '<a href="#">czytaj więcej...</a>',
         lessLink: '<a href="#">zwiń</a>'

@@ -5,15 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="accountHeadText">LOGOWANIE</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="accountHeadText">LOGOWANIE</h3>
+        </div>
     </div>
-</div>
-<div>
-    <p class="bg-danger">@Html.ValidationMessage("LoginError")</p>
-</div>
-<div class="row">
-    @Html.Partial("MemberLoginSummary", Model)
-    @Html.Partial("MemberRegisterSummary", Model)
+
+    <div>
+        <p class="bg-danger">@Html.ValidationMessage("LoginError")</p>
+    </div>
+    <div class="row">
+        @Html.Partial("MemberLoginSummary", Model)
+        @Html.Partial("MemberRegisterSummary", Model)
+    </div>
 </div>

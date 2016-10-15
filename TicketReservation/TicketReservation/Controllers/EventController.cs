@@ -48,6 +48,7 @@ namespace TicketReservation.Controllers
 
         public ViewResult List(int? categoryId,int? subcategoryId)
         {
+
             if (subcategoryId.HasValue)
             {
                 EventsViewModel model = new EventsViewModel
@@ -87,6 +88,19 @@ namespace TicketReservation.Controllers
             if (theEvent != null)
             {
                 return File(theEvent.ImageData, theEvent.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public FileContentResult GetArtistImage(int artistId)
+        {
+            var theArtist = artistRep.GetArtists(artistId);
+            if (theArtist != null)
+            {
+                return File(theArtist.ImageData, theArtist.ImageMimeType);
             }
             else
             {
