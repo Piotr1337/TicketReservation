@@ -556,7 +556,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\AppDbContext.cs" />
     <Compile Include="App\AppUser.cs" />
+    <Compile Include="App\AppUserPrincipal.cs" />
+    <Compile Include="App\AppViewPage.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

@@ -5,6 +5,9 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
+using TicketReservation.App;
+using TicketReservation.App_Start;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Entities;
 using TicketReservation.Models;
@@ -15,10 +18,21 @@ namespace TicketReservation.Controllers
     public class AuthController : Controller
     {
         private IMemberRepository _memberRepository;
+        private readonly UserManager<AppUser> userManager;
 
         public AuthController(IMemberRepository memberRepo)
         {
             _memberRepository = memberRepo;
+        }
+
+        public AuthController()
+       : this(Startup.UserManagerFactory.Invoke())
+        {
+        }
+
+        public AuthController(UserManager<AppUser> userManager)
+        {
+            this.userManager = userManager;
         }
 
         //[HttpGet]
@@ -105,6 +119,15 @@ namespace TicketReservation.Controllers
                 ModelState.AddModelError("","Cos nie tak");
             }
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && userManager != null)
+            {
+                userManager.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

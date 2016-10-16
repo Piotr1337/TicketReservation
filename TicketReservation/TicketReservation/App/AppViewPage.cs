@@ -4,18 +4,21 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
-using TicketReservation.App;
 
-namespace TicketReservation.Controllers
+namespace TicketReservation.App
 {
-    public abstract class AppController : Controller
+    public abstract class AppViewPage<TModel> : WebViewPage<TModel>
     {
-        public AppUserPrincipal CurrentUser
+        protected AppUserPrincipal CurrentUser
         {
             get
             {
                 return new AppUserPrincipal(this.User as ClaimsPrincipal);
             }
         }
+    }
+
+    public abstract class AppViewPage : AppViewPage<dynamic>
+    {
     }
 }

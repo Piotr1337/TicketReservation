@@ -38,10 +38,6 @@ namespace TicketReservation.Controllers
         [ChildActionOnly]
         public ActionResult NavBar()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewBag.Country = CurrentUser.Country;
-            }
             NavbarViewModel model = new NavbarViewModel
             {
                 Categories = categoryRep.Categories,
