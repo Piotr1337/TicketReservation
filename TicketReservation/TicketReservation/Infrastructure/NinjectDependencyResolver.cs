@@ -9,8 +9,6 @@ using Ninject;
 using TicketReservation.Domain.Abstract;
 using TicketReservation.Domain.Concrete;
 using TicketReservation.Domain.Entities;
-using TicketReservation.Infrastructure.Abstract;
-using TicketReservation.Infrastructure.Concrete;
 
 namespace TicketReservation.Infrastructure
 {
@@ -38,7 +36,6 @@ namespace TicketReservation.Infrastructure
         {
             kernel.Bind<IEventRepository>().To<EFEventRepository>();
             kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
-            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             kernel.Bind<ITicketRepository>().To<EFTicketRepository>();
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>();
             kernel.Bind<IArtistRepository>().To<EFArtistRepository>();

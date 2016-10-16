@@ -3,6 +3,7 @@
 <div class="col-md-6">
     @using (Html.BeginForm("MemberLoginSummary","Auth"))
     {
+        @Html.HiddenFor(x => x.ReturnUrl)
         <h4 class="accountText">MOJE KONTO:<b>LOGOWANIE</b></h4>
         @Html.TextBoxFor(m => m.LoginModel.Email, null, new { @class = "form-control", placeholder = "Adres email", id="Email" })
         @Html.ValidationMessageFor(m => m.LoginModel.Email)

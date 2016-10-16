@@ -21,22 +21,16 @@ namespace TicketReservation.Controllers
             _memberRepository = memberRepo;
         }
 
-        [HttpGet]
-        public ActionResult Login(string returnUrl)
-        {
-            var model = new LoginViewModel
-            {
-                ReturnUrl = returnUrl
-            };
+        //[HttpGet]
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    var model = new LoginViewModel
+        //    {
+        //        ReturnUrl = returnUrl
+        //    };
 
-            return View(model);
-        }
-
-        [HttpGet]
-        public ActionResult MemberLoginSummary()
-        {
-            return View();
-        }
+        //    return View(model);
+        //}
 
         [HttpPost]
         public ActionResult MemberLoginSummary(AuthModelView model)
@@ -52,8 +46,8 @@ namespace TicketReservation.Controllers
 
                 var identity = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Email, member.Email),
                     new Claim(ClaimTypes.Name, member.Email),
+                    new Claim(ClaimTypes.Country, "Polska"),
                 },"ApplicationCookie");
 
                 var ctx = Request.GetOwinContext();
@@ -61,16 +55,32 @@ namespace TicketReservation.Controllers
 
                 authManager.SignIn(identity);
 
-                return RedirectToAction("List","Event");
+                return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
             ModelState.AddModelError("LoginError","Nieprawidłowy email albo hasło");
 
             return View("Account", model);
         }
 
-        public ActionResult Account()
+        private string GetRedirectUrl(string returnUrl)
         {
-            return View();
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            {
+                return Url.Action("List", "Event");
+            }
+
+            return returnUrl;
+        }
+
+        [HttpGet]
+        public ActionResult Account(string returnUrl)
+        {
+            var model = new AuthModelView()
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return View(model);
         }
 
         public ActionResult Logout()

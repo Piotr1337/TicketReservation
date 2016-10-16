@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ using TicketReservation.Models;
 namespace TicketReservation.Controllers
 {
     [AllowAnonymous]
-    public class EventController : Controller
+    public class EventController : AppController
     {
         private IEventRepository repository;
         private ICategoryRepository categoryRep;
@@ -37,6 +38,10 @@ namespace TicketReservation.Controllers
         [ChildActionOnly]
         public ActionResult NavBar()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Country = CurrentUser.Country;
+            }
             NavbarViewModel model = new NavbarViewModel
             {
                 Categories = categoryRep.Categories,

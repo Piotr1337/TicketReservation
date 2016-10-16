@@ -17,8 +17,5 @@ namespace TicketReservation.Models
         [DataType(DataType.Password)]
         [Display(Name = "hasło")]
         public string Password { get; set; }
-
-        [HiddenInput]
-        public string ReturnUrl { get; set; }
     }
 }

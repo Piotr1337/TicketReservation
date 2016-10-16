@@ -1,4 +1,5 @@
-﻿@model TicketReservation.Models.NavbarViewModel
+﻿@using System.Security.Claims
+@model TicketReservation.Models.NavbarViewModel
 
 <div id="nav-first-row">
     <div class="hidden-xs">
@@ -48,8 +49,11 @@
                     <li class="dropdown">
                         @if (User.Identity.IsAuthenticated)
                         {
+                            //var claimsIdentity = User.Identity as ClaimsIdentity;
+                            //ViewBag.Country = claimsIdentity.FindFirst(ClaimTypes.Country).Value;
 
-                            <a href="#" class="dropdown userDrop" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>@User.Identity.Name</b> <span class="caret"></span></a>
+
+                            <a href="#" class="dropdown userDrop" data-toggle="dropdown"><i class="glyphicon glyphicon-user" id="iconsNavbar"></i><b>@User.Identity.Name Jaka pogoda w @ViewBag.Country?</b> <span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li><a href="#">Twój profil</a></li>
                                 <li><a href="#">Koszyk(0)</a></li>

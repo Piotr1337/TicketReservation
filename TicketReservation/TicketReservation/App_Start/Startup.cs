@@ -15,7 +15,7 @@ namespace TicketReservation.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
-                LoginPath = new PathString("/auth/Account")
+                LoginPath = new PathString("/Auth/Account")
             });
          
         }
