@@ -33,24 +33,20 @@ var options = {
             enabled: true
         },
         maxNumberOfElements: 8,
-        showAnimation: {
-            type: "fade",
-            time: 400,
-            callback: function () { }
-        },
 
-        hideAnimation: {
-            type: "slide", 
-            time: 400,
-            callback: function () { }
-        },
         onClickEvent: function () {
 
-            $('li.selected').click(function (event) {
-                var id = $(event.target).data("item-id");
-                alert(id);
+
+            $('li').on('click', function() {
+                var id = $(this).find("#searchInputValue").data("item-id");
                 window.location = '/Event/ShowEvent?eventId=' + id;
             });
+
+            //$('li.selected').click(function (event) {
+            //    var id = $(event.target).data("item-id");
+            //    alert(id);
+            //    window.location = '/Event/ShowEvent?eventId=' + id;
+            //});
 
             //var selectedItemId = $("li.selected").on("click",function () {
             //    var id = $("#searchInputValue").data("item-id");
